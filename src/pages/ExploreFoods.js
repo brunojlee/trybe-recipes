@@ -1,10 +1,16 @@
 import React from 'react';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 function ExploreFoods() {
   return (
-    <h1>
-      Explore Foods Page
-    </h1>
+    <>
+      <Header />
+      <main>
+        Explore Foods Page
+      </main>
+      <Footer />
+    </>
   );
 }
 
