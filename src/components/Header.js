@@ -4,9 +4,12 @@ import SearchBar from './SearchBar';
 function Header() {
   return (
     <>
-      <header>
-        Header
-      </header>
+      <button
+        data-testid="search-top-btn"
+        type="button"
+      >
+        Eu sou uma lupa
+      </button>
       <SearchBar />
     </>
   );

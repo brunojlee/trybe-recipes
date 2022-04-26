@@ -1,9 +1,11 @@
 import React from 'react';
-import RecipesContext from './RecipeContext';
+import RecipesContext from './RecipesContext';
 
 function RecipesProvider() {
   return (
-    <RecipesContext.Provider />
+    <RecipesContext.Provider>
+      { children }
+    </RecipesContext.Provider>
   );
 }
 
