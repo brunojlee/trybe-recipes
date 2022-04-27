@@ -4,14 +4,14 @@ import RecipesContext from './RecipesContext';
 
 function RecipesProvider({ children }) {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  const [email, setEmail] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const context = {
     isButtonDisabled,
     setIsButtonDisabled,
-    email,
-    setEmail,
+    userEmail,
+    setUserEmail,
     password,
     setPassword,
   };

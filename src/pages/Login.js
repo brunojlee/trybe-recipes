@@ -1,33 +1,45 @@
+import PropTypes from 'prop-types';
 import React, { useContext, useEffect } from 'react';
 import RecipesContext from '../context/RecipesContext';
 
-function Login() {
+function Login({ history }) {
   const {
     isButtonDisabled,
     setIsButtonDisabled,
-    email,
-    setEmail,
+    userEmail,
+    setUserEmail,
     password,
     setPassword,
   } = useContext(RecipesContext);
 
   const handleEmail = ({ target: { value } }) => {
-    setEmail(value);
-    validateButton();
+    setUserEmail(value);
   };
 
   const handlePassword = ({ target: { value } }) => {
     setPassword(value);
   };
 
+  const handleClick = () => {
+    localStorage.setItem('mealsToken', JSON.stringify(1));
+    localStorage.setItem('cocktailsToken', JSON.stringify(1));
+    localStorage.setItem('user', JSON.stringify({ email: userEmail }));
+    history.push('/foods');
+  };
+
   useEffect(() => {
-    const minPasswordLength = 6;
-    // const emailFormatRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-    if (password.length > minPasswordLength) {
-      setIsButtonDisabled(false);
-    }
-    setIsButtonDisabled(true);
-  }, [email, password]);
+    const validateButton = async () => {
+      const minPasswordLength = 6;
+      const emailFormatRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+      if (password.length > minPasswordLength && userEmail.match(emailFormatRegex)) {
+        await setIsButtonDisabled(false);
+      } else {
+        await setIsButtonDisabled(true);
+      }
+    };
+    validateButton();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userEmail, password]);
 
   return (
     <form>
@@ -38,7 +50,7 @@ function Login() {
           type="email"
           name="email"
           placeholder="email"
-          value={ email }
+          value={ userEmail }
           onChange={ (event) => handleEmail(event) }
         />
       </label>
@@ -55,13 +67,20 @@ function Login() {
       </label>
       <button
         disabled={ isButtonDisabled }
-        type="submit"
+        type="button"
         data-testid="login-submit-btn"
+        onClick={ () => handleClick() }
       >
         Entrar
       </button>
     </form>
   );
 }
+
+Login.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }),
+}.isRequired;
 
 export default Login;
