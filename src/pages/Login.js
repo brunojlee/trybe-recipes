@@ -1,8 +1,9 @@
-import PropTypes from 'prop-types';
 import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 
-function Login({ history }) {
+function Login() {
+  const history = useHistory();
   const {
     isButtonDisabled,
     setIsButtonDisabled,
@@ -76,11 +77,5 @@ function Login({ history }) {
     </form>
   );
 }
-
-Login.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }),
-}.isRequired;
 
 export default Login;
