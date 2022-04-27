@@ -1,42 +1,60 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import RecipesContext from '../context/RecipesContext';
 import fetchDrinks from '../services/fetchDrinks';
 import fetchFoods from '../services/fetchFoods';
 
 function SearchBar() {
-  const apiFilter = async (radio, value) => {
-    const activeUrl = window.location.href;
-    if (activeUrl.includes('/foods')) {
-      try {
-        const data = await fetchFoods({ radio, value,
-        });
-        return data;
-      } catch (error) {
-        return error;
+  const [pageLocation, setPageLocation] = useState('');
+  const [radioSelected, setRadio] = useState('');
+  const [searchBarInput, setSearchBarInput] = useState('');
+  const { searchResults, setSearchResults } = useContext(RecipesContext);
+
+  useEffect(() => {
+    const checkPage = () => {
+      const activeUrl = window.location.href;
+      if (activeUrl.includes('/foods')) {
+        setPageLocation('foods');
+      } else {
+        setPageLocation('drinks');
       }
-    } else {
-      try {
-        const data = await fetchDrinks();
-        return data;
-      } catch (error) {
-        return error;
-      }
+    };
+    checkPage();
+  }, []);
+
+  const handleSelectedRadio = ({ target }) => {
+    setRadio(target.value);
+  };
+
+  const handleInputChange = ({ target }) => {
+    setSearchBarInput(target.value);
+  };
+
+  const handleSearchFetch = async () => {
+    if (pageLocation === 'foods') {
+      setSearchResults(fetchFoods(radioSelected, searchBarInput));
+      console.log(searchResults);
+    }
+    if (pageLocation === 'drinks') {
+      setSearchResults(await fetchDrinks(radioSelected, searchBarInput));
+      console.log(searchResults.meals);
     }
   };
 
-  useEffect(() => { }, []);
-  const consoleTexto = () => {
-    console.log(apiFilter());
-  };
-
-  const handleSelectedSortOrd = () => {
-    apiFilter('ingredient', 'chicken_breast');
-  };
+  useEffect(() => {
+    if (searchBarInput.length > 1 && radioSelected === 'first-letter') {
+      // eslint-disable-next-line react-hooks/exhaustive-deps, no-alert
+      alert('Your search must have only 1 (one) character');/*
+      setSearchBarInput(''); */
+    }
+  }, [searchBarInput, radioSelected]);
 
   return (
     <form>
       <input
         type="text"
         data-testid="search-input"
+        onChange={ handleInputChange }
+        value={ searchBarInput }
       />
       <label htmlFor="ingredient">
         <input
@@ -44,7 +62,7 @@ function SearchBar() {
           name="radios"
           value="ingredient"
           type="radio"
-          onClick={ handleSelectedSortOrd }
+          onClick={ handleSelectedRadio }
         />
         Ingredient
       </label>
@@ -54,7 +72,7 @@ function SearchBar() {
           name="radios"
           value="name"
           type="radio"
-          /* onClick={ handleSelectedSortOrd } */
+          onClick={ handleSelectedRadio }
         />
         Name
       </label>
@@ -64,13 +82,13 @@ function SearchBar() {
           name="radios"
           value="first-letter"
           type="radio"
-          /* onClick={ handleSelectedSortOrd } */
+          onClick={ handleSelectedRadio }
         />
         First Letter
         <button
           type="button"
           data-testid="exec-search-btn"
-          onClick={ consoleTexto }
+          onClick={ handleSearchFetch }
         >
           Search
         </button>

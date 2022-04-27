@@ -1,24 +1,22 @@
-const FOODS_BASE_API = 'www.themealdb.com/api/json/v1/1/filter.php?';
-
-const fetchFoods = async (type, value) => {
+const fetchFoods = async (radioSelected, searchBarInput) => {
   let response = '';
-  switch (type) {
+
+  switch (radioSelected) {
   case 'ingredient':
-    response = await fetch(`${FOODS_BASE_API}i=${value}`);
+    response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchBarInput}`);
     break;
   case 'name':
-    response = await fetch(`${FOODS_BASE_API}s=${value}`);
+    response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchBarInput}`);
     break;
   case 'first-letter':
-    response = await fetch(`${FOODS_BASE_API}f=${value}`);
+    response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${searchBarInput}`);
     break;
-
   default:
-    break;
+    return 'Radio not selected';
   }
 
   const json = await response.json();
-
+  console.log(json);
   return response.ok ? Promise.resolve(json) : Promise.reject(json);
 };
 

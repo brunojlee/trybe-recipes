@@ -5,7 +5,7 @@ import Header from '../components/Header';
 export default function Drinks() {
   return (
     <>
-      <Header />
+      <Header pageName="Drinks" />
       <main>Drinks</main>
       <Footer />
     </>
