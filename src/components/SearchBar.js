@@ -1,4 +1,7 @@
+/* eslint-disable no-alert */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 import fetchDrinks from '../services/fetchDrinks';
 import fetchFoods from '../services/fetchFoods';
@@ -7,7 +10,9 @@ function SearchBar() {
   const [pageLocation, setPageLocation] = useState('');
   const [radioSelected, setRadio] = useState('');
   const [searchBarInput, setSearchBarInput] = useState('');
+  const [resultClick, setResultClick] = useState(false);
   const { searchResults, setSearchResults } = useContext(RecipesContext);
+  const history = useHistory();
 
   useEffect(() => {
     const checkPage = () => {
@@ -29,24 +34,33 @@ function SearchBar() {
     setSearchBarInput(target.value);
   };
 
-  const handleSearchFetch = async () => {
-    if (pageLocation === 'foods') {
-      setSearchResults(fetchFoods(radioSelected, searchBarInput));
-      console.log(searchResults);
-    }
-    if (pageLocation === 'drinks') {
-      setSearchResults(await fetchDrinks(radioSelected, searchBarInput));
-      console.log(searchResults.meals);
-    }
-  };
+  useEffect(() => {
+    const handleSearchFetch = async () => {
+      if (pageLocation === 'foods') {
+        setSearchResults(await fetchFoods(radioSelected, searchBarInput));
+      }
+      if (pageLocation === 'drinks') {
+        setSearchResults(await fetchDrinks(radioSelected, searchBarInput));
+      }
+    };
+    handleSearchFetch();
+  }, [resultClick]);
 
   useEffect(() => {
     if (searchBarInput.length > 1 && radioSelected === 'first-letter') {
-      // eslint-disable-next-line react-hooks/exhaustive-deps, no-alert
       alert('Your search must have only 1 (one) character');/*
       setSearchBarInput(''); */
     }
   }, [searchBarInput, radioSelected]);
+
+  useEffect(() => {
+    if (searchResults.meals && searchResults.meals.length === 1) {
+      history.push(`./${pageLocation}/${searchResults.meals[0].idMeal}`);
+    }
+    if (searchResults.drinks && searchResults.drinks.length === 1) {
+      history.push(`./${pageLocation}/${searchResults.drinks[0].idDrink}`);
+    }
+  }, [searchResults]);
 
   return (
     <form>
@@ -88,7 +102,7 @@ function SearchBar() {
         <button
           type="button"
           data-testid="exec-search-btn"
-          onClick={ handleSearchFetch }
+          onClick={ () => setResultClick(!resultClick) }
         >
           Search
         </button>

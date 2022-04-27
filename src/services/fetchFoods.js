@@ -16,7 +16,6 @@ const fetchFoods = async (radioSelected, searchBarInput) => {
   }
 
   const json = await response.json();
-  console.log(json);
   return response.ok ? Promise.resolve(json) : Promise.reject(json);
 };
 
