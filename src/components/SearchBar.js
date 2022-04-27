@@ -1,42 +1,74 @@
-import React, { useEffect } from 'react';
+/* eslint-disable no-alert */
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import RecipesContext from '../context/RecipesContext';
 import fetchDrinks from '../services/fetchDrinks';
 import fetchFoods from '../services/fetchFoods';
 
 function SearchBar() {
-  const apiFilter = async (radio, value) => {
-    const activeUrl = window.location.href;
-    if (activeUrl.includes('/foods')) {
-      try {
-        const data = await fetchFoods({ radio, value,
-        });
-        return data;
-      } catch (error) {
-        return error;
+  const [pageLocation, setPageLocation] = useState('');
+  const [radioSelected, setRadio] = useState('');
+  const [searchBarInput, setSearchBarInput] = useState('');
+  const [resultClick, setResultClick] = useState(false);
+  const { searchResults, setSearchResults } = useContext(RecipesContext);
+  const history = useHistory();
+
+  useEffect(() => {
+    const checkPage = () => {
+      const activeUrl = window.location.href;
+      if (activeUrl.includes('/foods')) {
+        setPageLocation('foods');
+      } else {
+        setPageLocation('drinks');
       }
-    } else {
-      try {
-        const data = await fetchDrinks();
-        return data;
-      } catch (error) {
-        return error;
+    };
+    checkPage();
+  }, []);
+
+  const handleSelectedRadio = ({ target }) => {
+    setRadio(target.value);
+  };
+
+  const handleInputChange = ({ target }) => {
+    setSearchBarInput(target.value);
+  };
+
+  useEffect(() => {
+    const handleSearchFetch = async () => {
+      if (pageLocation === 'foods') {
+        setSearchResults(await fetchFoods(radioSelected, searchBarInput));
       }
+      if (pageLocation === 'drinks') {
+        setSearchResults(await fetchDrinks(radioSelected, searchBarInput));
+      }
+    };
+    handleSearchFetch();
+  }, [resultClick]);
+
+  useEffect(() => {
+    if (searchBarInput.length > 1 && radioSelected === 'first-letter') {
+      alert('Your search must have only 1 (one) character');/*
+      setSearchBarInput(''); */
     }
-  };
+  }, [searchBarInput, radioSelected]);
 
-  useEffect(() => { }, []);
-  const consoleTexto = () => {
-    console.log(apiFilter());
-  };
-
-  const handleSelectedSortOrd = () => {
-    apiFilter('ingredient', 'chicken_breast');
-  };
+  useEffect(() => {
+    if (searchResults.meals && searchResults.meals.length === 1) {
+      history.push(`./${pageLocation}/${searchResults.meals[0].idMeal}`);
+    }
+    if (searchResults.drinks && searchResults.drinks.length === 1) {
+      history.push(`./${pageLocation}/${searchResults.drinks[0].idDrink}`);
+    }
+  }, [searchResults]);
 
   return (
     <form>
       <input
         type="text"
         data-testid="search-input"
+        onChange={ handleInputChange }
+        value={ searchBarInput }
       />
       <label htmlFor="ingredient">
         <input
@@ -44,7 +76,7 @@ function SearchBar() {
           name="radios"
           value="ingredient"
           type="radio"
-          onClick={ handleSelectedSortOrd }
+          onClick={ handleSelectedRadio }
         />
         Ingredient
       </label>
@@ -54,7 +86,7 @@ function SearchBar() {
           name="radios"
           value="name"
           type="radio"
-          /* onClick={ handleSelectedSortOrd } */
+          onClick={ handleSelectedRadio }
         />
         Name
       </label>
@@ -64,13 +96,13 @@ function SearchBar() {
           name="radios"
           value="first-letter"
           type="radio"
-          /* onClick={ handleSelectedSortOrd } */
+          onClick={ handleSelectedRadio }
         />
         First Letter
         <button
           type="button"
           data-testid="exec-search-btn"
-          onClick={ consoleTexto }
+          onClick={ () => setResultClick(!resultClick) }
         >
           Search
         </button>
