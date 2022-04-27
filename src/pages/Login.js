@@ -43,7 +43,7 @@ function Login() {
   }, [userEmail, password]);
 
   return (
-    <form>
+    <form className="bg-orange">
       <label htmlFor="email">
         Email:
         <input
