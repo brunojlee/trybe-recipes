@@ -7,6 +7,7 @@ function RecipesProvider({ children }) {
   const [userEmail, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const context = {
     isButtonDisabled,
@@ -17,6 +18,8 @@ function RecipesProvider({ children }) {
     setPassword,
     searchResults,
     setSearchResults,
+    loading,
+    setLoading,
   };
 
   return (

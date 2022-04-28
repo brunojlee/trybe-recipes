@@ -10,7 +10,7 @@ function SearchBar() {
   const [radioSelected, setRadio] = useState('');
   const [searchBarInput, setSearchBarInput] = useState('');
   const [resultClick, setResultClick] = useState(false);
-  const { searchResults, setSearchResults } = useContext(RecipesContext);
+  const { searchResults, setSearchResults, setLoading } = useContext(RecipesContext);
   const history = useHistory();
 
   useEffect(() => {
@@ -37,9 +37,11 @@ function SearchBar() {
     const handleSearchFetch = async () => {
       if (pageLocation === 'foods') {
         setSearchResults(await fetchFoods(radioSelected, searchBarInput));
+        setLoading(false);
       }
       if (pageLocation === 'drinks') {
         setSearchResults(await fetchDrinks(radioSelected, searchBarInput));
+        setLoading(false);
       }
     };
     handleSearchFetch();
