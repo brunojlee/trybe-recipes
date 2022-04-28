@@ -5,7 +5,7 @@ import Header from '../components/Header';
 export default function Foods() {
   return (
     <>
-      <Header pageName="Foods" />
+      <Header pageName="Foods" showSearchBar="true" showProfileImg="true" />
       <main>Foods</main>
       <Footer />
     </>

@@ -15,7 +15,7 @@ export default function Profile() {
 
   return (
     <>
-      <Header />
+      <Header pageName="Profile" showProfileImg="true" />
       <span data-testid="profile-email">
         {userEmail}
       </span>
