@@ -7,7 +7,7 @@ export default function Explore() {
   const history = useHistory();
   return (
     <>
-      <Header />
+      <Header pageName="Explore" showProfileImg="true" />
       <section>
         <button
           type="button"

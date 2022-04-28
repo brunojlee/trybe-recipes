@@ -5,7 +5,7 @@ import Header from '../components/Header';
 function ExploreFoods() {
   return (
     <>
-      <Header />
+      <Header pageName="Explore Foods" showProfileImg="true" />
       <main>
         Explore Foods Page
       </main>
