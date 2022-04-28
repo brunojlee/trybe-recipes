@@ -60,6 +60,14 @@ function SearchBar() {
     if (searchResults.drinks && searchResults.drinks.length === 1) {
       history.push(`./${pageLocation}/${searchResults.drinks[0].idDrink}`);
     }
+    if (searchResults.meals === null) {
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+      setLoading(true);
+    }
+    if (searchResults.drinks === null) {
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+      setLoading(true);
+    }
   }, [searchResults]);
 
   return (
