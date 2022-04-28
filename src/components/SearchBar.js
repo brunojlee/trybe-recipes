@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -48,8 +47,7 @@ function SearchBar() {
 
   useEffect(() => {
     if (searchBarInput.length > 1 && radioSelected === 'first-letter') {
-      alert('Your search must have only 1 (one) character');/*
-      setSearchBarInput(''); */
+      global.alert('Your search must have only 1 (one) character');
     }
   }, [searchBarInput, radioSelected]);
 
