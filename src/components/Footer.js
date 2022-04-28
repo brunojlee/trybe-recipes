@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import RecipesContext from '../context/RecipesContext';
 import DrinkIcon from '../images/drinkIcon.svg';
 import ExploreIcon from '../images/exploreIcon.svg';
 import MealIcon from '../images/mealIcon.svg';
@@ -7,6 +8,7 @@ import styles from '../styles/Footer.module.css';
 
 function Footer() {
   const history = useHistory();
+  const { setLoading } = useContext(RecipesContext);
 
   return (
     <footer
@@ -16,7 +18,10 @@ function Footer() {
       <button
         type="button"
         data-testid="drinks-bottom-btn"
-        onClick={ () => { history.push('/drinks'); } }
+        onClick={ () => {
+          setLoading(true);
+          history.push('/drinks');
+        } }
         src={ DrinkIcon }
       >
         <img src={ DrinkIcon } alt="Drink" />
@@ -27,15 +32,18 @@ function Footer() {
         onClick={ () => { history.push('/explore'); } }
         src={ ExploreIcon }
       >
-        <img src={ ExploreIcon } alt="Drink" />
+        <img src={ ExploreIcon } alt="Explore" />
       </button>
       <button
         type="button"
         data-testid="food-bottom-btn"
-        onClick={ () => { history.push('/foods'); } }
+        onClick={ () => {
+          setLoading(true);
+          history.push('/foods');
+        } }
         src={ MealIcon }
       >
-        <img src={ MealIcon } alt="Drink" />
+        <img src={ MealIcon } alt="Food" />
       </button>
     </footer>
   );

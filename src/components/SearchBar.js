@@ -10,7 +10,7 @@ function SearchBar() {
   const [radioSelected, setRadio] = useState('');
   const [searchBarInput, setSearchBarInput] = useState('');
   const [resultClick, setResultClick] = useState(false);
-  const { searchResults, setSearchResults } = useContext(RecipesContext);
+  const { searchResults, setSearchResults, setLoading } = useContext(RecipesContext);
   const history = useHistory();
 
   useEffect(() => {
@@ -37,9 +37,11 @@ function SearchBar() {
     const handleSearchFetch = async () => {
       if (pageLocation === 'foods') {
         setSearchResults(await fetchFoods(radioSelected, searchBarInput));
+        setLoading(false);
       }
       if (pageLocation === 'drinks') {
         setSearchResults(await fetchDrinks(radioSelected, searchBarInput));
+        setLoading(false);
       }
     };
     handleSearchFetch();
@@ -57,6 +59,14 @@ function SearchBar() {
     }
     if (searchResults.drinks && searchResults.drinks.length === 1) {
       history.push(`./${pageLocation}/${searchResults.drinks[0].idDrink}`);
+    }
+    if (searchResults.meals === null) {
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+      setLoading(true);
+    }
+    if (searchResults.drinks === null) {
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+      setLoading(true);
     }
   }, [searchResults]);
 
