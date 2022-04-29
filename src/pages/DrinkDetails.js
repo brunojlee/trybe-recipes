@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 import fetchDrinksId from '../services/fetchDrinksId';
 
@@ -6,6 +7,7 @@ function DrinkDetails() {
   const regexNumbers = /([0-9])\w+/;
   const recipeId = window.location.pathname.match(regexNumbers)[0];
   const [recipeData, setRecipeData] = useState([]);
+  const history = useHistory();
 
   const {
     loading,
@@ -48,6 +50,11 @@ function DrinkDetails() {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [recipeData]);
+
+  const goProgress = () => {
+    setLoading(true);
+    history.push(`/drinks/${recipeId}/in-progress`);
+  };
 
   return (
     <>
@@ -111,6 +118,7 @@ function DrinkDetails() {
             <button
               type="button"
               data-testid="start-recipe-btn"
+              onClick={ goProgress }
             >
               Start Recipe
             </button>
