@@ -98,7 +98,7 @@ function DrinkDetails() {
                 ingredients.map((el, index) => (
                   <li
                     key={ index }
-                    data-testid={ `${index}-x` }
+                    data-testid={ `${index}-ingredient-name-and-measure` }
                   >
                     {`${el[1]} ${measures[index][1]}`}
                   </li>
