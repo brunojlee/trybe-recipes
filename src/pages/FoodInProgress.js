@@ -7,7 +7,7 @@ function FoodInProgress() {
         Food in Progress Page
       </h1>
       <img
-        src={ recipe.strMealThumb }
+        /* src={ recipe.strMealThumb } */
         alt="Foto da receita"
         data-testid="recipe-photo"
       />

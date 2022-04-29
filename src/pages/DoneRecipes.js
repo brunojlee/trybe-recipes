@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import shareIcon from '../images/shareIcon.svg';
 
 export default function DoneRecipes() {
+  const index = 0;
   return (
     <>
       <Header pageName="Done Recipes" showProfileImg="true" />
