@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import RecipesContext from '../context/RecipesContext';
 import fetchDrinksId from '../services/fetchDrinksId';
+import DrinksRecomendations from '../components/DrinksRecomendations';
+import fetchDrinksRecomendations from '../services/fetchDrinksRecomendations';
 
 function DrinkDetails() {
   const regexNumbers = /([0-9])\w+/;
@@ -14,12 +16,19 @@ function DrinkDetails() {
     measures,
     setIngredients,
     setMeasures,
+    setDrinksRecomendations,
+    drinksRecomendations,
   } = useContext(RecipesContext);
 
   useEffect(() => {
     const updateData = async () => {
       const fetchApi = await fetchDrinksId(recipeId);
-      if (fetchApi.drinks) {
+      const allDrinks = await fetchDrinksRecomendations();
+      const SIX = 6;
+      console.log(allDrinks);
+      const drinksFiltered = allDrinks.drinks.slice(0, SIX);
+      if (fetchApi.drinks && allDrinks) {
+        setDrinksRecomendations(drinksFiltered);
         setRecipeData([fetchApi.drinks[0]]);
         setLoading(false);
       }
@@ -114,6 +123,11 @@ function DrinkDetails() {
             >
               Start Recipe
             </button>
+            {
+              drinksRecomendations.map((drink, index) => (
+                <DrinksRecomendations key={ index } drink={ drink } index={ index } />
+              ))
+            }
           </>
         )
       }
