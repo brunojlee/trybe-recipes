@@ -9,7 +9,7 @@ function Header({ pageName, showSearchBar, showProfileImg }) {
   const history = useHistory();
   const [searchBarToggle, setSearchBarToggle] = React.useState(false);
   return (
-    <header>
+    <header className="w-full flex items-evenly py-6">
       {showProfileImg && (
         <button
           type="button"

@@ -71,7 +71,7 @@ function SearchBar() {
   }, [searchResults]);
 
   return (
-    <form>
+    <form className="bg-orange px-4">
       <input
         type="text"
         data-testid="search-input"

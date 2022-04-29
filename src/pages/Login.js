@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
+import fetchAllDrinks from '../services/fetchAllDrinks';
+import fetchAllMeals from '../services/fetchAllMeals';
 
 function Login() {
   const history = useHistory();
@@ -11,6 +13,8 @@ function Login() {
     setUserEmail,
     password,
     setPassword,
+    setAllMeals,
+    setAllDrinks,
   } = useContext(RecipesContext);
 
   const handleEmail = ({ target: { value } }) => {
@@ -42,39 +46,53 @@ function Login() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userEmail, password]);
 
+  useEffect(() => {
+    const handleAllDrinksAndMeals = async () => {
+      const allMeals = await fetchAllMeals();
+      const allDrinks = await fetchAllDrinks();
+      setAllMeals(allMeals.meals);
+      setAllDrinks(allDrinks.drinks);
+    };
+    handleAllDrinksAndMeals();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <form className="bg-orange">
-      <label htmlFor="email">
-        Email:
-        <input
-          data-testid="email-input"
-          type="email"
-          name="email"
-          placeholder="email"
-          value={ userEmail }
-          onChange={ (event) => handleEmail(event) }
-        />
-      </label>
-      <label htmlFor="password">
-        Senha:
-        <input
-          data-testid="password-input"
-          type="password"
-          name="password"
-          placeholder="Senha"
-          value={ password }
-          onChange={ (event) => handlePassword(event) }
-        />
-      </label>
-      <button
-        disabled={ isButtonDisabled }
-        type="button"
-        data-testid="login-submit-btn"
-        onClick={ () => handleClick() }
-      >
-        Entrar
-      </button>
-    </form>
+    <>
+      <h1>App de Receitas</h1>
+      <form className="bg-orange">
+        <label htmlFor="email">
+          Email:
+          <input
+            data-testid="email-input"
+            type="email"
+            name="email"
+            placeholder="email"
+            value={ userEmail }
+            onChange={ (event) => handleEmail(event) }
+          />
+        </label>
+        <label htmlFor="password">
+          Senha:
+          <input
+            data-testid="password-input"
+            type="password"
+            name="password"
+            placeholder="Senha"
+            value={ password }
+            onChange={ (event) => handlePassword(event) }
+          />
+        </label>
+        <button
+          disabled={ isButtonDisabled }
+          type="button"
+          data-testid="login-submit-btn"
+          onClick={ () => handleClick() }
+        >
+          Entrar
+        </button>
+      </form>
+    </>
   );
 }
 
