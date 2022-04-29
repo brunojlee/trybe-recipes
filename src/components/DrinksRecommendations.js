@@ -1,9 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
-function DrinksRecomendations({ drink, index }) {
+function DrinksRecommendations({ drink, index }) {
   return (
-    <div data-testid={ `${index}-recipe-card` }>
+    <div data-testid={ `${index}-recomendation-card` }>
       <img
         data-testid={ `${index}-card-img` }
         src={ drink.strDrinkThumb }
@@ -14,8 +14,8 @@ function DrinksRecomendations({ drink, index }) {
   );
 }
 
-DrinksRecomendations.propTypes = {
+DrinksRecommendations.propTypes = {
   drink: PropTypes.objectOf(PropTypes.any),
 }.isRequired;
 
-export default DrinksRecomendations;
+export default DrinksRecommendations;
