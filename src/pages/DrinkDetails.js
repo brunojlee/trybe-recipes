@@ -1,36 +1,35 @@
 import React, { useContext, useEffect, useState } from 'react';
-import DrinksRecommendations from '../components/DrinksRecommendations';
+import MealRecommendationCard from '../components/MealRecommendationCard';
 import RecipesContext from '../context/RecipesContext';
 import fetchDrinksId from '../services/fetchDrinksId';
-import fetchDrinksRecommendations from '../services/fetchDrinksRecommendations';
+import fetchMealsRecommendations from '../services/fetchMealsRecommendations';
 
 function DrinkDetails() {
   const regexNumbers = /([0-9])\w+/;
   const recipeId = window.location.pathname.match(regexNumbers)[0];
   const [recipeData, setRecipeData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const {
-    loading,
-    setLoading,
     ingredients,
     measures,
     setIngredients,
     setMeasures,
-    setDrinksRecommendations,
-    drinksRecommendations,
+    setMealsRecommendations,
+    mealsRecommendations,
   } = useContext(RecipesContext);
 
   useEffect(() => {
     const updateData = async () => {
       const fetchApi = await fetchDrinksId(recipeId);
-      const allDrinks = await fetchDrinksRecommendations();
+      const allMeals = await fetchMealsRecommendations();
       const SIX = 6;
-      console.log(allDrinks);
-      const drinksFiltered = allDrinks.drinks.slice(0, SIX);
-      if (fetchApi.drinks && allDrinks) {
-        setDrinksRecommendations(drinksFiltered);
+      console.log(allMeals);
+      const mealsFiltered = allMeals.meals.slice(0, SIX);
+      if (fetchApi.drinks && allMeals) {
+        setMealsRecommendations(mealsFiltered);
         setRecipeData([fetchApi.drinks[0]]);
-        setLoading(false);
+        setIsLoading(false);
       }
     };
     updateData();
@@ -64,14 +63,14 @@ function DrinkDetails() {
         Drink Details Page
       </h1>
       {
-        !loading && (
+        !isLoading && (
           <>
             <h2 data-testid="recipe-title">
-              {recipeData.strDrink}
+              {recipeData[0].strDrink}
             </h2>
             <img
               data-testid="recipe-photo"
-              src={ recipeData.strDrinkThumb }
+              src={ recipeData[0].strDrinkThumb }
               alt="Drink"
             />
             <button
@@ -89,14 +88,14 @@ function DrinkDetails() {
             <span
               data-testid="recipe-category"
             >
-              {recipeData.strAlcoholic}
+              {recipeData[0].strAlcoholic}
             </span>
             <iframe
               title="video"
               width="320"
               height="240"
               src={
-                recipeData.strVideo ? recipeData.strVideo
+                recipeData[0].strVideo ? recipeData[0].strVideo
                   .replace('watch?v=', 'embed/') : ''
               }
               frameBorder="0"
@@ -115,7 +114,7 @@ function DrinkDetails() {
               }
             </ul>
             <span data-testid="instructions">
-              {recipeData.strInstructions}
+              {recipeData[0].strInstructions}
             </span>
             <button
               type="button"
@@ -124,8 +123,8 @@ function DrinkDetails() {
               Start Recipe
             </button>
             {
-              drinksRecommendations.map((drink, index) => (
-                <DrinksRecommendations key={ index } drink={ drink } index={ index } />
+              mealsRecommendations.map((meal, index) => (
+                <MealRecommendationCard key={ index } meal={ meal } index={ index } />
               ))
             }
           </>
