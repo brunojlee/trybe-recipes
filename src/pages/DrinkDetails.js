@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import MealRecommendationCard from '../components/MealRecommendationCard';
+import RecommendationCard from '../components/RecommendationCard';
 import RecipesContext from '../context/RecipesContext';
 import fetchDrinksId from '../services/fetchDrinksId';
 import fetchMealsRecommendations from '../services/fetchMealsRecommendations';
@@ -9,14 +9,13 @@ function DrinkDetails() {
   const recipeId = window.location.pathname.match(regexNumbers)[0];
   const [recipeData, setRecipeData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [mealsRecommendations, setMealsRecommendations] = useState('');
 
   const {
     ingredients,
-    measures,
     setIngredients,
+    measures,
     setMeasures,
-    setMealsRecommendations,
-    mealsRecommendations,
   } = useContext(RecipesContext);
 
   useEffect(() => {
@@ -24,7 +23,6 @@ function DrinkDetails() {
       const fetchApi = await fetchDrinksId(recipeId);
       const allMeals = await fetchMealsRecommendations();
       const SIX = 6;
-      console.log(allMeals);
       const mealsFiltered = allMeals.meals.slice(0, SIX);
       if (fetchApi.drinks && allMeals) {
         setMealsRecommendations(mealsFiltered);
@@ -124,7 +122,7 @@ function DrinkDetails() {
             </button>
             {
               mealsRecommendations.map((meal, index) => (
-                <MealRecommendationCard key={ index } meal={ meal } index={ index } />
+                <RecommendationCard key={ index } meal={ meal } index={ index } />
               ))
             }
           </>
