@@ -12,13 +12,15 @@ function DrinkInProgress() {
     setLoading,
     ingredients,
     measures,
+    setIngredients,
+    setMeasures,
   } = useContext(RecipesContext);
 
   useEffect(() => {
     const updateData = async () => {
       const fetchApi = await fetchDrinksId(recipeId);
       if (fetchApi.drinks) {
-        setRecipeData([fetchApi.drinks[0]]);
+        setRecipeData(fetchApi.drinks[0]);
         setLoading(false);
       }
     };
@@ -26,10 +28,31 @@ function DrinkInProgress() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (loading) {
+      const entries = Object.entries(recipeData);
+      const ingredientFilter = entries
+        .filter((el) => el[0].includes('strIngredient'));
+      const measuresFilter = entries
+        .filter((el) => el[0].includes('strMeasure'));
+
+      const filteredIngredient = ingredientFilter
+        .filter((ingredientInfo) => ingredientInfo[1] !== null)
+        .filter((ingredientInfo) => ingredientInfo[1].length > 0);
+      setIngredients(filteredIngredient);
+
+      const filteredMeasures = measuresFilter
+        .filter((measureInfo) => measureInfo[1] !== null)
+        .filter((measureInfo) => measureInfo[1].length > 0);
+      setMeasures(filteredMeasures);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [recipeData]);
+
   return (
     <>
       <h1 data-testid="recipe-title">
-        Food in Progress Page
+        Drink in Progress Page
       </h1>
       {
         !loading && console.log(recipeData)
@@ -38,11 +61,10 @@ function DrinkInProgress() {
         /* src={ recipe.strMealThumb } */
         alt="Foto da receita"
         data-testid="recipe-photo"
+        src={ recipeData.strDrinkThumb }
       />
       <div>
-        {
-          !loading && <h2 data-testid="recipe-category">{recipeData[0].strAlcoholic}</h2>
-        }
+        <h2 data-testid="recipe-category">{recipeData.strAlcoholic}</h2>
         <ul>
           {
             ingredients.map((el, index) => (
