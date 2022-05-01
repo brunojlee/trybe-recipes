@@ -9,7 +9,7 @@ afterEach(() => {
 });
 
 describe('33 - Implemente os elementos da tela de detalhes de uma receita respeitando os atributos descritos no protótipo', () => {
-  it.skip('A tela de comida possui todos os atributos data-testid', () => {
+  it('A tela de comida possui todos os atributos data-testid', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {
         win.fetch = fetchMock;
@@ -74,7 +74,7 @@ describe('34 - Realize uma request para a API passando o `id` da receita que dev
 });
 
 describe('35 - Desenvolva a tela de forma que contenha uma imagem da receita, o título, a categoria (ou se é ou não alcoólico), uma lista de ingredientes seguidos pelas quantidades, instruções, um vídeo do youtube "embedado" e recomendações', () => {
-  it.skip('Verifica se os elementos descritos no protótipo existem na tela de detalhes de comida', () => {
+  it('Verifica se os elementos descritos no protótipo existem na tela de detalhes de comida', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {
         win.fetch = fetchMock;
@@ -154,7 +154,7 @@ describe('36 - Implemente as recomendações, para receitas de comida, a recomen
       .should('be.calledWith', 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
   });
 
-  it.skip('Verifica se a requisição para a API de comidas foi realizada', () => {
+  it('Verifica se a requisição para a API de comidas foi realizada', () => {
     cy.visit('http://localhost:3000/drinks/178319', {
       onBeforeLoad(win) {
         cy.spy(win, 'fetch');
@@ -168,7 +168,7 @@ describe('36 - Implemente as recomendações, para receitas de comida, a recomen
 });
 
 describe('37 - Implemente os cards de recomendação, onde serão 6 cards, mas mostrando apenas 2 e o scroll é horizontal, similar a um `carousel`', () => {
-  it.skip('Verifica se existem todas as recomendações na tela de detalhes de uma comida', () => {
+  it('Verifica se existem todas as recomendações na tela de detalhes de uma comida', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {
         win.fetch = fetchMock;
@@ -218,7 +218,7 @@ describe('37 - Implemente os cards de recomendação, onde serão 6 cards, mas m
 });
 
 describe('38 - Desenvolva um botão de nome "Start Recipe" que deve ficar fixo na parte de baixo da tela o tempo todo', () => {
-  it.skip('Verifica posicionamento do botão na tela de detalhes de comida', () => {
+  it('Verifica posicionamento do botão na tela de detalhes de comida', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {
         win.fetch = fetchMock;
@@ -244,7 +244,7 @@ describe('38 - Desenvolva um botão de nome "Start Recipe" que deve ficar fixo n
 });
 
 describe('39 - Implemente a solução de forma que caso a receita já tenha sido feita, o botão "Start Recipe" deve sumir', () => {
-  it.skip('Verifica se botão de iniciar receita não é visível na tela de detalhes de uma comida', () => {
+  it('Verifica se botão de iniciar receita não é visível na tela de detalhes de uma comida', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {
         const doneRecipes = [{
@@ -290,7 +290,7 @@ describe('39 - Implemente a solução de forma que caso a receita já tenha sido
 });
 
 describe('40 - Implemente a solução de modo que caso a receita tenha sido iniciada mas não finalizada, o texto do botão deve ser "Continue Recipe"', () => {
-  it.skip('Verifica botão de "Continue Recipe" na tela de detalhes de uma comida', () => {
+  it('Verifica botão de "Continue Recipe" na tela de detalhes de uma comida', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {
         const inProgressRecipes = {
@@ -324,7 +324,7 @@ describe('40 - Implemente a solução de modo que caso a receita tenha sido inic
 });
 
 describe('41 - Redirecione a pessoa usuária caso o botão "Start Recipe" seja clicado, a rota deve mudar para a tela de receita em progresso', () => {
-  it.skip('Redireciona para tela de receita da comida em progresso', () => {
+  it('Redireciona para tela de receita da comida em progresso', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {
         win.fetch = fetchMock;
@@ -348,7 +348,7 @@ describe('41 - Redirecione a pessoa usuária caso o botão "Start Recipe" seja c
 });
 
 describe('42 - Implemente um botão de compartilhar e um de favoritar a receita', () => {
-  it.skip('Verifica se os botões estão disponíveis na tela de detalhes de uma comida', () => {
+  it('Verifica se os botões estão disponíveis na tela de detalhes de uma comida', () => {
     cy.visit('http://localhost:3000/foods/52771', {
       onBeforeLoad(win) {
         win.fetch = fetchMock;

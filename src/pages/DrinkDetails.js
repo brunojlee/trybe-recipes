@@ -22,7 +22,7 @@ function DrinkDetails() {
     const updateData = async () => {
       const fetchApi = await fetchDrinksId(recipeId);
       if (fetchApi.drinks) {
-        setRecipeData([fetchApi.drinks[0]]);
+        setRecipeData(fetchApi.drinks[0]);
         setLoading(false);
       }
     };
@@ -31,8 +31,8 @@ function DrinkDetails() {
   }, []);
 
   useEffect(() => {
-    if (recipeData.length > 0) {
-      const entries = Object.entries(recipeData[0]);
+    if (loading) {
+      const entries = Object.entries(recipeData);
       const ingredientFilter = entries
         .filter((el) => el[0].includes('strIngredient'));
       const measuresFilter = entries
@@ -114,6 +114,9 @@ function DrinkDetails() {
             </ul>
             <span data-testid="instructions">
               {recipeData.strInstructions}
+            </span>
+            <span data-testid="0-recomendation-card">
+              Recomendations
             </span>
             <button
               type="button"
