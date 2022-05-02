@@ -8,8 +8,6 @@ function RecipesProvider({ children }) {
   const [password, setPassword] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [allDrinks, setAllDrinks] = useState('');
-  const [allMeals, setAllMeals] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
   const [isChecked, setIsChecked] = useState([]);
@@ -25,10 +23,6 @@ function RecipesProvider({ children }) {
     setSearchResults,
     loading,
     setLoading,
-    allDrinks,
-    setAllDrinks,
-    allMeals,
-    setAllMeals,
     ingredients,
     setIngredients,
     measures,

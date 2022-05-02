@@ -71,50 +71,68 @@ function SearchBar() {
   }, [searchResults]);
 
   return (
-    <form className="bg-orange px-4">
+    <form className="bg-grey1 border-b-4 border-darkblue text-white text-center">
       <input
+        className="text-black mt-4 mb-2 py-1 px-2 rounded-xl border-2 border-darkblue"
         type="text"
         data-testid="search-input"
         onChange={ handleInputChange }
         value={ searchBarInput }
       />
-      <label htmlFor="ingredient">
-        <input
-          data-testid="ingredient-search-radio"
-          name="radios"
-          value="ingredient"
-          type="radio"
-          onClick={ handleSelectedRadio }
-        />
-        Ingredient
-      </label>
-      <label htmlFor="name">
-        <input
-          data-testid="name-search-radio"
-          name="radios"
-          value="name"
-          type="radio"
-          onClick={ handleSelectedRadio }
-        />
-        Name
-      </label>
-      <label htmlFor="first-letter">
-        <input
-          data-testid="first-letter-search-radio"
-          name="radios"
-          value="first-letter"
-          type="radio"
-          onClick={ handleSelectedRadio }
-        />
-        First Letter
-        <button
-          type="button"
-          data-testid="exec-search-btn"
-          onClick={ () => setResultClick(!resultClick) }
+      <div className="w-screen flex justify-evenly">
+        <label
+          className="font-bold text-black flex items-center "
+          htmlFor="ingredient"
         >
-          Search
-        </button>
-      </label>
+          <input
+            className="mr-2 checked:after:bg-black"
+            data-testid="ingredient-search-radio"
+            name="radios"
+            value="ingredient"
+            type="radio"
+            onClick={ handleSelectedRadio }
+          />
+          Ingredient
+        </label>
+        <label
+          className="font-bold text-black flex items-center"
+          htmlFor="name"
+        >
+          <input
+            className="mr-2"
+            data-testid="name-search-radio"
+            name="radios"
+            value="name"
+            type="radio"
+            onClick={ handleSelectedRadio }
+          />
+          Name
+        </label>
+        <label
+          className="font-bold text-black flex items-center"
+          htmlFor="first-letter"
+        >
+          <input
+            className="mr-2"
+            data-testid="first-letter-search-radio"
+            name="radios"
+            value="first-letter"
+            type="radio"
+            onClick={ handleSelectedRadio }
+          />
+          First Letter
+        </label>
+      </div>
+      <button
+        className="font-bold bg-yellow font-3xl text-darkblue
+        rounded-xl py-1 px-4 mb-2 opacity-90
+        hover:opacity-100"
+        type="button"
+        data-testid="exec-search-btn"
+        onClick={ () => setResultClick(!resultClick) }
+      >
+        Search
+      </button>
     </form>
   );
 }

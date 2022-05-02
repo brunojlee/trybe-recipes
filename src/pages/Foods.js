@@ -1,21 +1,27 @@
 import React, { useContext, useState } from 'react';
-import FoodRecipeCard from '../components/FoodRecipeCard';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import RecipeCard from '../components/RecipeCard';
 import RecipesContext from '../context/RecipesContext';
 
 export default function Foods() {
-  const [showCard, setShowCard] = useState(false);
+  const [showCards, setShowCards] = useState(false);
   const { searchResults } = useContext(RecipesContext);
 
-  if (showCard === false && searchResults.meals && searchResults.meals.length > 0) {
-    setShowCard(true);
+  if (showCards === false && searchResults.meals && searchResults.meals.length > 0) {
+    setShowCards(true);
   }
+  const MAGIC_NUMBER = 12;
+
   return (
     <>
       <Header pageName="Foods" showSearchBar="true" showProfileImg="true" />
       <main>
-        {showCard && (<FoodRecipeCard />) }
+        {
+          showCards && (
+            <RecipeCard meals={ searchResults.meals.slice(0, MAGIC_NUMBER) } />
+          )
+        }
       </main>
       <Footer />
     </>
