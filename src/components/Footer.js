@@ -13,7 +13,10 @@ function Footer() {
   return (
     <footer
       data-testid="footer"
-      className={ `${styles['footer-container']}` }
+      className={
+        `flex justify-between w-screen border-t-4 border-darkblue
+         px-8 py-3 bg-orange ${styles['footer-container']}`
+      }
     >
       <button
         type="button"

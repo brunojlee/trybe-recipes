@@ -4,6 +4,8 @@ import RecipesContext from '../context/RecipesContext';
 import fetchAllDrinks from '../services/fetchAllDrinks';
 import fetchAllMeals from '../services/fetchAllMeals';
 
+import logoIcon from '../images/logoIcon.png';
+
 function Login() {
   const history = useHistory();
   const {
@@ -58,12 +60,17 @@ function Login() {
   }, []);
 
   return (
-    <>
-      <h1>App de Receitas</h1>
-      <form className="bg-orange">
-        <label htmlFor="email">
-          Email:
+    <div className="h-screen flex flex-col justify-center items-center bg-orange">
+      <img
+        className="w-50"
+        src={ logoIcon }
+        alt="logoapp"
+      />
+      <form className="mt-4 bg-orange flex flex-col items-center text-center">
+        <label className="flex flex-col py-1" htmlFor="email">
+          Email
           <input
+            className="p-1 rounded-xl mt-2 w-60"
             data-testid="email-input"
             type="email"
             name="email"
@@ -72,9 +79,10 @@ function Login() {
             onChange={ (event) => handleEmail(event) }
           />
         </label>
-        <label htmlFor="password">
-          Senha:
+        <label className="flex flex-col py-1" htmlFor="password">
+          Senha
           <input
+            className="p-1 rounded-xl mt-2 w-60"
             data-testid="password-input"
             type="password"
             name="password"
@@ -84,6 +92,8 @@ function Login() {
           />
         </label>
         <button
+          className="bg-darkblue
+          py-2 px-4 text-white rounded-xl mt-4 opacity-70 hover:opacity-100"
           disabled={ isButtonDisabled }
           type="button"
           data-testid="login-submit-btn"
@@ -92,7 +102,7 @@ function Login() {
           Entrar
         </button>
       </form>
-    </>
+    </div>
   );
 }
 
