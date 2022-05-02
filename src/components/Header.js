@@ -9,31 +9,45 @@ function Header({ pageName, showSearchBar, showProfileImg }) {
   const history = useHistory();
   const [searchBarToggle, setSearchBarToggle] = React.useState(false);
   return (
-    <header className="w-full flex items-evenly py-6">
-      {showProfileImg && (
-        <button
-          type="button"
-          onClick={ () => { history.push('/profile'); } }
-        >
-          <img src={ profileIcon } data-testid="profile-top-btn" alt="userIMG" />
-        </button>
-      )}
-      <h2 data-testid="page-title">
-        { pageName }
-      </h2>
-      {
-        showSearchBar && (
-          <button type="button" onClick={ () => setSearchBarToggle(!searchBarToggle) }>
+    <>
+      <header
+        className="flex justify-between px-8 py-6 bg-orange
+        border-b-4 border-darkblue"
+      >
+        {showProfileImg && (
+          <button
+            type="button"
+            onClick={ () => { history.push('/profile'); } }
+          >
             <img
-              src={ searchIcon }
+              className="stroke-current"
+              src={ profileIcon }
+              data-testid="profile-top-btn"
               alt="userIMG"
-              data-testid="search-top-btn"
             />
-          </button>)
-      }
-      {searchBarToggle && (
-        <SearchBar />)}
-    </header>
+          </button>
+        )}
+        <h2 className="text-2xl font-bold" data-testid="page-title">
+          { pageName }
+        </h2>
+        {
+          showSearchBar && (
+            <button type="button" onClick={ () => setSearchBarToggle(!searchBarToggle) }>
+              <img
+                src={ searchIcon }
+                alt="userIMG"
+                data-testid="search-top-btn"
+              />
+            </button>)
+        }
+      </header>
+      <div>
+        {
+          searchBarToggle && (
+            <SearchBar />)
+        }
+      </div>
+    </>
   );
 }
 
