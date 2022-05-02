@@ -1,41 +1,59 @@
+import copy from 'clipboard-copy';
 import React, { useContext, useEffect, useState } from 'react';
-import Slider from 'react-slick';
+import { useHistory } from 'react-router-dom';
 import RecommendationCard from '../components/RecommendationCard';
 import RecipesContext from '../context/RecipesContext';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
+import ShareIcon from '../images/shareIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import fetchDrinksId from '../services/fetchDrinksId';
 import fetchMealsRecommendations from '../services/fetchMealsRecommendations';
+import styles from '../styles/RecipeDetailsPage.module.css';
 
 function DrinkDetails() {
   const regexNumbers = /([0-9])\w+/;
   const recipeId = window.location.pathname.match(regexNumbers)[0];
   const [recipeData, setRecipeData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [mealsRecommendations, setMealsRecommendations] = useState('');
+  const [linkCopied, setLinkCopied] = useState(false);
+  const [favorite, setFavorite] = useState(false);
+  // const [recipeInfo, setRecipeInfo] = useState([]);
 
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 360,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  const history = useHistory();
 
   const {
     ingredients,
     setIngredients,
     measures,
     setMeasures,
+    loading,
+    setLoading,
   } = useContext(RecipesContext);
+
+  const handleShare = async () => {
+    const recipeURL = window.location.pathname;
+    await copy(`http://localhost:3000${recipeURL}`);
+    setLinkCopied(!linkCopied);
+  };
+
+  const recipeInfo = {
+    id: recipeData.idDrink,
+    type: recipeData.strDrink,
+    nationality: recipeData.strDrink,
+    category: recipeData.strCategory,
+    alcoholicOrNot: recipeData.strAlcoholic,
+    name: recipeData.strDrink,
+    image: recipeData.strDrinkThumb,
+  };
+
+  const handleFavorite = () => {
+    const getLocalStorage = localStorage.key('favoriteRecipes')
+      ? JSON.parse(localStorage.getItem('favoriteRecipes')) : [];
+    console.log(getLocalStorage);
+    localStorage.setItem('favoriteRecipes', [JSON.stringify([...getLocalStorage,
+      recipeInfo])]);
+    setFavorite(!favorite);
+  };
 
   useEffect(() => {
     const updateData = async () => {
@@ -45,8 +63,8 @@ function DrinkDetails() {
       const mealsFiltered = allMeals.meals.slice(0, SIX);
       if (fetchApi.drinks && allMeals) {
         setMealsRecommendations(mealsFiltered);
-        setRecipeData([fetchApi.drinks[0]]);
-        setIsLoading(false);
+        setRecipeData(fetchApi.drinks[0]);
+        setLoading(false);
       }
     };
     updateData();
@@ -54,8 +72,8 @@ function DrinkDetails() {
   }, []);
 
   useEffect(() => {
-    if (recipeData.length > 0) {
-      const entries = Object.entries(recipeData[0]);
+    if (loading) {
+      const entries = Object.entries(recipeData);
       const ingredientFilter = entries
         .filter((el) => el[0].includes('strIngredient'));
       const measuresFilter = entries
@@ -71,6 +89,7 @@ function DrinkDetails() {
         .filter((measureInfo) => measureInfo[1].length > 0);
       setMeasures(filteredMeasures);
     }
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [recipeData]);
 
@@ -80,39 +99,58 @@ function DrinkDetails() {
         Drink Details Page
       </h1>
       {
-        !isLoading && (
+        !loading && (
           <>
             <h2 data-testid="recipe-title">
-              {recipeData[0].strDrink}
+              {recipeData.strDrink}
             </h2>
             <img
               data-testid="recipe-photo"
-              src={ recipeData[0].strDrinkThumb }
+              src={ recipeData.strDrinkThumb }
               alt="Drink"
             />
             <button
               type="button"
               data-testid="share-btn"
+              src={ ShareIcon }
+              onClick={ () => handleShare() }
             >
-              Share
+              {
+                linkCopied ? 'Link copied!' : <img src={ ShareIcon } alt="Share" />
+              }
             </button>
-            <button
-              type="button"
-              data-testid="favorite-btn"
-            >
-              Favorite
-            </button>
+            {
+              favorite ? (
+                <button
+                  type="button"
+                  data-testid="favorite-btn"
+                  src={ whiteHeartIcon }
+                  onClick={ () => handleFavorite() }
+                >
+                  <img src={ whiteHeartIcon } alt="isFavorite" />
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  data-testid="favorite-btn"
+                  src={ blackHeartIcon }
+                  onClick={ () => handleFavorite() }
+                >
+                  <img src={ blackHeartIcon } alt="isNotFavorite" />
+                </button>
+              )
+            }
             <span
               data-testid="recipe-category"
             >
-              {recipeData[0].strAlcoholic}
+              {recipeData.strAlcoholic}
             </span>
             <iframe
               title="video"
               width="320"
               height="240"
               src={
-                recipeData[0].strVideo ? recipeData[0].strVideo
+                recipeData.strVideo ? recipeData.strVideo
                   .replace('watch?v=', 'embed/') : ''
               }
               frameBorder="0"
@@ -131,21 +169,21 @@ function DrinkDetails() {
               }
             </ul>
             <span data-testid="instructions">
-              {recipeData[0].strInstructions}
+              {recipeData.strInstructions}
             </span>
+            {
+              mealsRecommendations.map((meal, index) => (
+                <RecommendationCard key={ index } meal={ meal } index={ index } />
+              ))
+            }
             <button
+              className={ `${styles['start-recipe-btn']}` }
               type="button"
+              onClick={ () => { history.push(`${recipeId}/in-progress`); } }
               data-testid="start-recipe-btn"
             >
               Start Recipe
             </button>
-            <Slider { ...settings }>
-              {
-                mealsRecommendations.map((meal, index) => (
-                  <RecommendationCard key={ index } meal={ meal } index={ index } />
-                ))
-              }
-            </Slider>
           </>
         )
       }

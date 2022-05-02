@@ -4,8 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 
 ReactDOM.render(
   <BrowserRouter>
