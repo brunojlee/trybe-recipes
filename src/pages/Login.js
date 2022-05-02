@@ -1,8 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
-import fetchAllDrinks from '../services/fetchAllDrinks';
-import fetchAllMeals from '../services/fetchAllMeals';
 
 import logoIcon from '../images/logoIcon.png';
 
@@ -15,8 +13,6 @@ function Login() {
     setUserEmail,
     password,
     setPassword,
-    setAllMeals,
-    setAllDrinks,
   } = useContext(RecipesContext);
 
   const handleEmail = ({ target: { value } }) => {
@@ -47,17 +43,6 @@ function Login() {
     validateButton();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userEmail, password]);
-
-  useEffect(() => {
-    const handleAllDrinksAndMeals = async () => {
-      const allMeals = await fetchAllMeals();
-      const allDrinks = await fetchAllDrinks();
-      setAllMeals(allMeals.meals);
-      setAllDrinks(allDrinks.drinks);
-    };
-    handleAllDrinksAndMeals();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className="h-screen flex flex-col justify-center items-center bg-orange">
