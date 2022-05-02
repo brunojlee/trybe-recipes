@@ -23,7 +23,7 @@ function DrinkInProgress() {
 
   useEffect(() => {
     const updateData = async () => {
-      getCheckedIngredients();
+      getCheckedIngredients(recipeId);
       const fetchApi = await fetchDrinksId(recipeId);
       if (fetchApi.drinks) {
         setRecipeData(fetchApi.drinks[0]);

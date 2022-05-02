@@ -2,9 +2,9 @@ export const saveCheckedIngredients = (recipeId, recipeData) => {
   localStorage.setItem(`${recipeId}`, JSON.stringify(recipeData));
 };
 
-export const getCheckedIngredients = () => {
-  const chaves = []; for (let i = 0; i < localStorage.length; i += 1) {
-    chaves.push(localStorage.key(i));
-  }
+export const getCheckedIngredients = (recipeId) => {
+  const chaves = [];
+  chaves.push(localStorage.getItem(recipeId));
+
   return chaves;
 };

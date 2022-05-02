@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import RecipesContext from '../context/RecipesContext';
 import fetchFoodsId from '../services/fetchFoodsId';
+import { getCheckedIngredients } from '../services/localStorage';
 import './FoodInProgress.css';
 
 function FoodInProgress() {
@@ -20,6 +21,7 @@ function FoodInProgress() {
 
   useEffect(() => {
     const updateData = async () => {
+      getCheckedIngredients(recipeId);
       const fetchApi = await fetchFoodsId(recipeId);
       if (fetchApi.meals) {
         setRecipeData(fetchApi.meals[0]);
