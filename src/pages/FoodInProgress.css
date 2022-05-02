@@ -1,0 +1,7 @@
+* {
+  text-decoration: none solid black;
+}
+
+.done {
+  text-decoration: line-through;
+}

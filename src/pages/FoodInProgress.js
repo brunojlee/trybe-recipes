@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import RecipesContext from '../context/RecipesContext';
 import fetchFoodsId from '../services/fetchFoodsId';
+import './FoodInProgress.css';
 
 function FoodInProgress() {
   const regexNumbers = /([0-9])\w+/;
   const recipeId = window.location.pathname.match(regexNumbers)[0];
   const [recipeData, setRecipeData] = useState([]);
+  const [isChecked, setIsChecked] = useState(false);
 
   const {
     loading,
@@ -49,6 +51,16 @@ function FoodInProgress() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [recipeData]);
 
+  const handleChange = ({ target }) => {
+    const { name } = target;
+    setIsChecked((prevSelection) => ({
+      ...prevSelection, [name]: target.checked,
+    }));
+    document.getElementById(
+      name,
+    ).classList.toggle('done');
+  };
+
   return (
     <>
       <h1 data-testid="recipe-title">
@@ -67,10 +79,19 @@ function FoodInProgress() {
           {
             ingredients.map((el, index) => (
               <li
+                className="ingredient"
+                id={ `ingredient${index}` }
                 key={ index }
                 data-testid={ `${index}-ingredient-step` }
               >
                 {`${el[1]} ${measures[index][1]}`}
+                <input
+                  type="checkbox"
+                  name={ `ingredient${index}` }
+                  checked={ isChecked[`ingredient${index}`]
+                    ? isChecked[`ingredient${index}`] : false }
+                  onChange={ handleChange }
+                />
               </li>
             ))
           }
