@@ -58,6 +58,7 @@ function DrinkDetails() {
   useEffect(() => {
     const updateData = async () => {
       const fetchApi = await fetchDrinksId(recipeId);
+
       const allMeals = await fetchMealsRecommendations();
       const SIX = 6;
       const mealsFiltered = allMeals.meals.slice(0, SIX);
@@ -92,6 +93,11 @@ function DrinkDetails() {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [recipeData]);
+
+  const goProgress = () => {
+    setLoading(true);
+    history.push(`/drinks/${recipeId}/in-progress`);
+  };
 
   return (
     <>
@@ -179,8 +185,8 @@ function DrinkDetails() {
             <button
               className={ `${styles['start-recipe-btn']}` }
               type="button"
-              onClick={ () => { history.push(`${recipeId}/in-progress`); } }
               data-testid="start-recipe-btn"
+              onClick={ goProgress }
             >
               Start Recipe
             </button>

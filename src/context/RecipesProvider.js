@@ -10,6 +10,7 @@ function RecipesProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
+  const [isChecked, setIsChecked] = useState([]);
 
   const context = {
     isButtonDisabled,
@@ -26,6 +27,8 @@ function RecipesProvider({ children }) {
     setIngredients,
     measures,
     setMeasures,
+    isChecked,
+    setIsChecked,
   };
 
   return (
