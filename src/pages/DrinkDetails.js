@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import Slider from 'react-slick';
 import RecommendationCard from '../components/RecommendationCard';
 import RecipesContext from '../context/RecipesContext';
 import fetchDrinksId from '../services/fetchDrinksId';
@@ -10,6 +11,24 @@ function DrinkDetails() {
   const [recipeData, setRecipeData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [mealsRecommendations, setMealsRecommendations] = useState('');
+
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 360,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   const {
     ingredients,
@@ -120,11 +139,13 @@ function DrinkDetails() {
             >
               Start Recipe
             </button>
-            {
-              mealsRecommendations.map((meal, index) => (
-                <RecommendationCard key={ index } meal={ meal } index={ index } />
-              ))
-            }
+            <Slider { ...settings }>
+              {
+                mealsRecommendations.map((meal, index) => (
+                  <RecommendationCard key={ index } meal={ meal } index={ index } />
+                ))
+              }
+            </Slider>
           </>
         )
       }
