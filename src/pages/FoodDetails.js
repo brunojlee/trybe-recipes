@@ -112,7 +112,7 @@ function FoodDetails() {
                     key={ index }
                     data-testid={ `${index}-ingredient-name-and-measure` }
                   >
-                    {`${el[1]} ${measures[index][1]}`}
+                    {`${el[1]} ${measures[index] ? measures[index][1] : ''}`}
                   </li>
                 ))
               }

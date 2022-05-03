@@ -1,24 +1,37 @@
-import React, { useContext, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useContext, useEffect } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import RecipeCard from '../components/RecipeCard';
 import RecipesContext from '../context/RecipesContext';
+import fetchDrinks from '../services/fetchDrinks';
 
 export default function Drinks() {
-  const [showCards, setShowCards] = useState(false);
-  const { searchResults } = useContext(RecipesContext);
+  const { searchResults,
+    setSearchResults,
+    loading,
+    setLoading } = useContext(RecipesContext);
 
-  if (showCards === false && searchResults.drinks && searchResults.drinks.length > 0) {
-    setShowCards(true);
+  if (loading === false && searchResults.meals && searchResults.meals.length > 0) {
+    setLoading(true);
   }
+
   const MAGIC_NUMBER = 12;
+
+  useEffect(() => {
+    const handleSearchFetch = async () => {
+      setSearchResults(await fetchDrinks('name', ''));
+      setLoading(false);
+    };
+    handleSearchFetch();
+  }, []);
 
   return (
     <>
       <Header pageName="Drinks" showSearchBar="true" showProfileImg="true" />
       <main>
         {
-          showCards && (
+          !loading && (
             <RecipeCard drinks={ searchResults.drinks.slice(0, MAGIC_NUMBER) } />
           )
         }

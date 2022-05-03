@@ -55,18 +55,20 @@ function SearchBar() {
 
   useEffect(() => {
     if (searchResults.meals && searchResults.meals.length === 1) {
+      setLoading(true);
       history.push(`./${pageLocation}/${searchResults.meals[0].idMeal}`);
     }
     if (searchResults.drinks && searchResults.drinks.length === 1) {
+      setLoading(true);
       history.push(`./${pageLocation}/${searchResults.drinks[0].idDrink}`);
     }
     if (searchResults.meals === null) {
-      global.alert('Sorry, we haven\'t found any recipes for these filters.');
       setLoading(true);
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
     if (searchResults.drinks === null) {
-      global.alert('Sorry, we haven\'t found any recipes for these filters.');
       setLoading(true);
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
   }, [searchResults]);
 
@@ -129,7 +131,10 @@ function SearchBar() {
         hover:opacity-100"
         type="button"
         data-testid="exec-search-btn"
-        onClick={ () => setResultClick(!resultClick) }
+        onClick={ () => {
+          setLoading(true);
+          setResultClick(!resultClick);
+        } }
       >
         Search
       </button>
