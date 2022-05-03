@@ -29,7 +29,7 @@ export default function Drinks() {
   return (
     <>
       <Header pageName="Drinks" showSearchBar="true" showProfileImg="true" />
-      <main>
+      <main className="mt-1 mb-20">
         {
           !loading && (
             <RecipeCard drinks={ searchResults.drinks.slice(0, MAGIC_NUMBER) } />
