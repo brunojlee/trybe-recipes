@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 import fetchDrinksId from '../services/fetchDrinksId';
 import { getCheckedIngredients, saveCheckedIngredients } from '../services/localStorage';
@@ -8,6 +9,8 @@ function DrinkInProgress() {
   const regexNumbers = /([0-9])\w+/;
   const recipeId = window.location.pathname.match(regexNumbers)[0];
   const [recipeData, setRecipeData] = useState([]);
+  const [disableFinished, setDisableFinished] = useState(false);
+  const history = useHistory();
 
   const {
     loading,
@@ -34,7 +37,7 @@ function DrinkInProgress() {
   useEffect(() => {
     const bringCheckedIngredients = async () => {
       const localStorageCheckeds = localStorage.key(recipeId.toString) > 0
-        ? JSON.parse(getCheckedIngredients(recipeId)) : [];
+        ? JSON.parse(getCheckedIngredients(recipeId)) : { ingredient0: false };
       setIsChecked(localStorageCheckeds);
       console.log(localStorageCheckeds);
     };
@@ -76,6 +79,11 @@ function DrinkInProgress() {
 
   useEffect(() => {
     saveCheckedIngredients(recipeId, isChecked);
+    setDisableFinished(
+      Object.values(isChecked)
+        .every((el) => el) && Object.values(isChecked).length === ingredients.length,
+    );
+    console.log(Object.values(isChecked).length);
   }, [isChecked]);
 
   return (
@@ -101,7 +109,7 @@ function DrinkInProgress() {
                   ? { textDecoration: 'line-through solid rgb(0,0,0)' }
                   : { textDecoration: 'none solid rgb(0,0,0)' } }
               >
-                {`${el[1]} ${measures[index][1]}`}
+                {`${el[1]} ${measures[index] ? measures[index][1] : ''}`}
                 <input
                   type="checkbox"
                   name={ `ingredient${index}` }
@@ -135,8 +143,11 @@ function DrinkInProgress() {
       </button>
 
       <button
+        className="bg-darkblue rounded-xl text-white px-2 py-1 disabled:opacity-20"
         type="button"
         data-testid="finish-recipe-btn"
+        disabled={ !disableFinished }
+        onClick={ () => history.push('/done-recipes') }
       >
         Finalizar receita
       </button>
