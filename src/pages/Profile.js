@@ -5,7 +5,8 @@ import Header from '../components/Header';
 
 export default function Profile() {
   const history = useHistory();
-  const userEmail = JSON.parse(localStorage.getItem('user'));
+  const userEmail = localStorage.getItem('user')
+    ? JSON.parse(localStorage.getItem('user')) : { email: '' };
 
   const clearLocalStorage = () => {
     localStorage.clear();
