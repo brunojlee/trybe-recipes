@@ -63,8 +63,6 @@ function DrinkDetails() {
     image: recipeData.strDrinkThumb,
   };
 
-  // console.log(recipeData);
-
   const handleFavorite = isHandleFavoriteFunction(
     recipeInfo, recipeId, favoriteRecipes, setFavoriteRecipes,
   );

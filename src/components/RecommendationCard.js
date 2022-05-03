@@ -7,10 +7,10 @@ function RecommendationCard({ meal, drink, index }) {
       <div data-testid={ `${index}-recomendation-card` }>
         <img
           data-testid={ `${index}-card-img` }
-          src={ drink.strMealThumb }
+          src={ drink.strDrinkThumb }
           alt="Drink"
         />
-        <span data-testid={ `${index}-recomendation-title` }>{drink.strMeal}</span>
+        <span data-testid={ `${index}-recomendation-title` }>{drink.strDrink}</span>
       </div>
     );
   }
