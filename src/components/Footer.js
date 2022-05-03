@@ -32,7 +32,10 @@ function Footer() {
       <button
         type="button"
         data-testid="explore-bottom-btn"
-        onClick={ () => { history.push('/explore'); } }
+        onClick={ () => {
+          setLoading(true);
+          history.push('/explore');
+        } }
         src={ ExploreIcon }
       >
         <img src={ ExploreIcon } alt="Explore" />

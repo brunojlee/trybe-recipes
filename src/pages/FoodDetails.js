@@ -117,57 +117,57 @@ function FoodDetails() {
 
   return (
     <>
-      <h1>
-        Foods Details Page
+
+      <h1
+        className="text-center bg-orange py-4 text-2xl font-bold border-b-4
+        border-darkblue"
+      >
+        Food Details Page
+
       </h1>
       {
         !loading && (
           <>
-            <h2 data-testid="recipe-title">
+            <h2
+              className="text-center py-4 text-2xl font-bold"
+              data-testid="recipe-title"
+            >
               {recipeData.strMeal}
             </h2>
             <img
+              className="mx-auto rounded"
               data-testid="recipe-photo"
               src={ recipeData.strMealThumb }
+              style={ { maxWidth: '60%' } }
               alt="Food"
             />
-            <button
-              type="button"
-              data-testid="share-btn"
-              src={ ShareIcon }
-              onClick={ () => handleShare() }
-            >
-              {
-                linkCopied ? 'Link copied!' : <img src={ ShareIcon } alt="Share" />
-              }
-            </button>
-            {
-              favoriteRecipes.find((recipe) => recipe.id === recipeId) ? (
-                <button
-                  type="button"
-                  data-testid="favorite-btn"
-                  src={ blackHeartIcon }
-                  onClick={ () => handleFavorite() }
-                >
-                  <img src={ blackHeartIcon } alt="isFavorite" />
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  data-testid="favorite-btn"
-                  src={ whiteHeartIcon }
-                  onClick={ () => handleFavorite() }
-                >
-                  <img src={ whiteHeartIcon } alt="isNotFavorite" />
-                </button>
-              )
-            }
-            <span
+            <h3
+              className="w-56 border-2 border-black text-center text-xl px-2
+              py-1 my-4 mx-auto rounded-xl"
               data-testid="recipe-category"
             >
               {recipeData.strCategory}
-            </span>
+            </h3>
+            <div className="flex flex-row mx-auto justify-center m-4">
+              <button
+                className="items-center
+                w-28 mx-1 py-2 px-4 bg-darkblue text-white rounded-xl"
+                type="button"
+                data-testid="share-btn"
+              >
+                Share
+              </button>
+              <button
+                className="items-center
+                w-28 mx-1 py-2 px-4 bg-darkblue text-white rounded-xl"
+                type="button"
+                data-testid="favorite-btn"
+              >
+                Favorite
+              </button>
+            </div>
             <iframe
+              className="mx-auto"
               title="video"
               width="320"
               height="240"
@@ -179,7 +179,14 @@ function FoodDetails() {
               allowFullScreen
               data-testid="video"
             />
-            <ul>
+
+            <ul className="text-start mx-12 text-xl">
+              <p
+               className="text-center my-4 text-xl font-bold text-darkblue"
+               data-testid="0-recomendation-card"
+              >
+                Recomendations
+              </p>
               {
                 ingredients.map((el, index) => (
                   <li
@@ -191,9 +198,12 @@ function FoodDetails() {
                 ))
               }
             </ul>
-            <span data-testid="instructions">
+            <p 
+              className="text-justify m-4"
+              data-testid="instructions"
+            >
               {recipeData.strInstructions}
-            </span>
+            </p>
             {
               drinksRecommendations.map((drink, index) => (
                 <RecommendationCard key={ index } drink={ drink } index={ index } />
@@ -205,8 +215,18 @@ function FoodDetails() {
               data-testid="start-recipe-btn"
               onClick={ goProgress }
             >
-              Start Recipe
-            </button>
+              {recipeData.strInstructions}
+            </p>
+            <div className="flex my-8 justify-center">
+              <button
+                className="w-44 py-2 px-4 bg-darkblue text-white rounded-xl"
+                type="button"
+                data-testid="start-recipe-btn"
+                onClick={ goProgress }
+              >
+                Start Recipe
+              </button>
+            </div>
           </>
         )
       }

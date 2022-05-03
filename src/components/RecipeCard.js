@@ -30,15 +30,27 @@ function RecipeCard({ drinks, meals }) {
                   history.push(`./drinks/${recipe.idDrink}`);
                 } }
               >
-                <div data-testid={ `${index}-recipe-card` }>
+                <div
+                  className="flex flex-row items-center justify-between m-2 mx-4
+                  border-darkblue rounded-lg
+                  border-2"
+                  data-testid={ `${index}-recipe-card` }
+                >
                   <img
+                    className="rounded-l"
                     data-testid={ `${index}-card-img` }
                     src={ recipe.strDrinkThumb }
                     alt="Drink"
+                    style={ { maxWidth: '40%' } }
                   />
-                  <h2 data-testid={ `${index}-card-name` }>
-                    { recipe.strDrink }
-                  </h2>
+                  <div className="w-full text-center">
+                    <h2
+                      className="text-2xl text-darkblue"
+                      data-testid={ `${index}-card-name` }
+                    >
+                      { recipe.strDrink }
+                    </h2>
+                  </div>
                 </div>
               </button>
             ))
@@ -60,15 +72,28 @@ function RecipeCard({ drinks, meals }) {
                 history.push(`./foods/${recipe.idMeal}`);
               } }
             >
-              <div data-testid={ `${index}-recipe-card` }>
+              <div
+                className="flex flex-row items-center justify-between m-2 mx-4
+                border-darkblue rounded-lg
+                border-2"
+                data-testid={ `${index}-recipe-card` }
+              >
                 <img
+                  className="rounded-l"
                   data-testid={ `${index}-card-img` }
                   src={ recipe.strMealThumb }
                   alt="Food"
+                  style={ { maxWidth: '40%' } }
                 />
-                <h2 data-testid={ `${index}-card-name` }>
-                  { recipe.strMeal }
-                </h2>
+                <div className="w-full text-center">
+                  <h2
+                    className="text-2xl text-darkblue"
+                    data-testid={ `${index}-card-name` }
+                  >
+                    { recipe.strMeal }
+                  </h2>
+
+                </div>
               </div>
             </button>
           ))
