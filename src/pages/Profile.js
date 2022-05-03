@@ -1,12 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import RecipesContext from '../context/RecipesContext';
 
 export default function Profile() {
   const history = useHistory();
-  const { userEmail } = useContext(RecipesContext);
+  const userEmail = JSON.parse(localStorage.getItem('user'));
 
   const clearLocalStorage = () => {
     localStorage.clear();
@@ -20,7 +19,7 @@ export default function Profile() {
         className="w-full mx-auto font-bold text-2xl py-8 border-b-2 border-darkblue"
         data-testid="profile-email"
       >
-        {userEmail}
+        {userEmail.email}
       </h2>
       <div className="flex flex-col pt-24 justify-center my-auto items-center">
         <button
