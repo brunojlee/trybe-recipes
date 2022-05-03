@@ -1,14 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
 import RecipesContext from '../context/RecipesContext';
 import fetchFoodsId from '../services/fetchFoodsId';
-import { getCheckedIngredients } from '../services/localStorage';
-import './FoodInProgress.css';
+import { getCheckedIngredients, saveCheckedIngredients } from '../services/localStorage';
 
 function FoodInProgress() {
   const regexNumbers = /([0-9])\w+/;
   const recipeId = window.location.pathname.match(regexNumbers)[0];
   const [recipeData, setRecipeData] = useState([]);
-  const [isChecked, setIsChecked] = useState(false);
 
   const {
     loading,
@@ -17,11 +16,12 @@ function FoodInProgress() {
     measures,
     setIngredients,
     setMeasures,
+    isChecked,
+    setIsChecked,
   } = useContext(RecipesContext);
 
   useEffect(() => {
     const updateData = async () => {
-      getCheckedIngredients(recipeId);
       const fetchApi = await fetchFoodsId(recipeId);
       if (fetchApi.meals) {
         setRecipeData(fetchApi.meals[0]);
@@ -29,7 +29,16 @@ function FoodInProgress() {
       }
     };
     updateData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const bringCheckedIngredients = async () => {
+      const localStorageCheckeds = localStorage.key(recipeId.toString) > 0
+        ? JSON.parse(getCheckedIngredients(recipeId)) : [];
+      setIsChecked(localStorageCheckeds);
+      console.log(localStorageCheckeds);
+    };
+    bringCheckedIngredients();
   }, []);
 
   useEffect(() => {
@@ -55,13 +64,17 @@ function FoodInProgress() {
 
   const handleChange = ({ target }) => {
     const { name } = target;
-    setIsChecked((prevSelection) => ({
-      ...prevSelection, [name]: target.checked,
-    }));
-    document.getElementById(
-      name,
-    ).classList.toggle('done');
+    const updateCheckedIngredients = () => {
+      setIsChecked((prevSelection) => ({
+        ...prevSelection, [name]: target.checked,
+      }));
+    };
+    updateCheckedIngredients();
   };
+
+  useEffect(() => {
+    saveCheckedIngredients(recipeId, isChecked);
+  }, [isChecked]);
 
   return (
     <>
@@ -81,10 +94,12 @@ function FoodInProgress() {
           {
             ingredients.map((el, index) => (
               <li
-                className="ingredient"
                 id={ `ingredient${index}` }
                 key={ index }
                 data-testid={ `${index}-ingredient-step` }
+                style={ isChecked[`ingredient${index}`]
+                  ? { textDecoration: 'line-through solid rgb(0,0,0)' }
+                  : { textDecoration: 'none solid rgb(0,0,0)' } }
               >
                 {`${el[1]} ${measures[index][1]}`}
                 <input
@@ -92,7 +107,11 @@ function FoodInProgress() {
                   name={ `ingredient${index}` }
                   checked={ isChecked[`ingredient${index}`]
                     ? isChecked[`ingredient${index}`] : false }
+                  style={ isChecked[`ingredient${index}`]
+                    ? { textDecoration: 'none solid rgb(0,0,0)' }
+                    : { textDecoration: 'line-through solid rgb(0,0,0)' } }
                   onChange={ handleChange }
+
                 />
               </li>
             ))
