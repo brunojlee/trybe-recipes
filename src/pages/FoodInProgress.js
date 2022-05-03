@@ -85,7 +85,11 @@ function FoodInProgress() {
 
   return (
     <>
-      <h1 data-testid="recipe-title">
+      <h1
+        className="text-center bg-orange py-4 text-2xl font-bold border-b-4
+        border-darkblue"
+        data-testid="recipe-title"
+      >
         Food in Progress Page
       </h1>
       <img

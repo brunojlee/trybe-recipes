@@ -101,16 +101,23 @@ function DrinkDetails() {
 
   return (
     <>
-      <h1>
+      <h1
+        className="text-center bg-orange py-4 text-2xl font-bold border-b-4
+        border-darkblue"
+      >
         Drink Details Page
       </h1>
       {
         !loading && (
           <>
-            <h2 data-testid="recipe-title">
+            <h2
+              className="text-center py-4 text-2xl font-bold"
+              data-testid="recipe-title"
+            >
               {recipeData.strDrink}
             </h2>
             <img
+              className="mx-auto rounded"
               data-testid="recipe-photo"
               src={ recipeData.strDrinkThumb }
               alt="Drink"
