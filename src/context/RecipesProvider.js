@@ -11,6 +11,7 @@ function RecipesProvider({ children }) {
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
   const [isChecked, setIsChecked] = useState([]);
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
   const context = {
     isButtonDisabled,
@@ -29,6 +30,8 @@ function RecipesProvider({ children }) {
     setMeasures,
     isChecked,
     setIsChecked,
+    favoriteRecipes,
+    setFavoriteRecipes,
   };
 
   return (

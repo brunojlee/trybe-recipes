@@ -10,14 +10,29 @@ import fetchDrinksId from '../services/fetchDrinksId';
 import fetchMealsRecommendations from '../services/fetchMealsRecommendations';
 import styles from '../styles/RecipeDetailsPage.module.css';
 
+function isHandleFavoriteFunction(recipeInfo, recipeId,
+  favoriteRecipes, setFavoriteRecipes) {
+  return () => {
+    if (favoriteRecipes.find((recipe) => recipe.id === recipeId)) {
+      const filteredRecipes = favoriteRecipes.filter((recipe) => recipe.id !== recipeId);
+      localStorage.setItem('favoriteRecipes', [JSON.stringify(filteredRecipes)]);
+      setFavoriteRecipes(filteredRecipes);
+    } else {
+      const getLocalStorage = localStorage.key('favoriteRecipes')
+        ? JSON.parse(localStorage.getItem('favoriteRecipes')) : [];
+      localStorage.setItem('favoriteRecipes', [JSON.stringify([...getLocalStorage,
+        recipeInfo])]);
+      setFavoriteRecipes([...favoriteRecipes, recipeInfo]);
+    }
+  };
+}
+
 function DrinkDetails() {
   const regexNumbers = /([0-9])\w+/;
   const recipeId = window.location.pathname.match(regexNumbers)[0];
   const [recipeData, setRecipeData] = useState([]);
   const [mealsRecommendations, setMealsRecommendations] = useState('');
   const [linkCopied, setLinkCopied] = useState(false);
-  const [favorite, setFavorite] = useState(false);
-  // const [recipeInfo, setRecipeInfo] = useState([]);
 
   const history = useHistory();
 
@@ -28,6 +43,8 @@ function DrinkDetails() {
     setMeasures,
     loading,
     setLoading,
+    favoriteRecipes,
+    setFavoriteRecipes,
   } = useContext(RecipesContext);
 
   const handleShare = async () => {
@@ -38,22 +55,19 @@ function DrinkDetails() {
 
   const recipeInfo = {
     id: recipeData.idDrink,
-    type: recipeData.strDrink,
-    nationality: recipeData.strDrink,
+    type: 'drink',
+    nationality: '',
     category: recipeData.strCategory,
     alcoholicOrNot: recipeData.strAlcoholic,
     name: recipeData.strDrink,
     image: recipeData.strDrinkThumb,
   };
 
-  const handleFavorite = () => {
-    const getLocalStorage = localStorage.key('favoriteRecipes')
-      ? JSON.parse(localStorage.getItem('favoriteRecipes')) : [];
-    console.log(getLocalStorage);
-    localStorage.setItem('favoriteRecipes', [JSON.stringify([...getLocalStorage,
-      recipeInfo])]);
-    setFavorite(!favorite);
-  };
+  // console.log(recipeData);
+
+  const handleFavorite = isHandleFavoriteFunction(
+    recipeInfo, recipeId, favoriteRecipes, setFavoriteRecipes,
+  );
 
   useEffect(() => {
     const updateData = async () => {
@@ -67,6 +81,11 @@ function DrinkDetails() {
         setRecipeData(fetchApi.drinks[0]);
         setLoading(false);
       }
+      const getLocalStorage = localStorage.key('favoriteRecipes')
+        ? JSON.parse(localStorage.getItem('favoriteRecipes')) : [];
+
+      setFavoriteRecipes(getLocalStorage);
+      console.log(getLocalStorage);
     };
     updateData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -126,23 +145,23 @@ function DrinkDetails() {
               }
             </button>
             {
-              favorite ? (
-                <button
-                  type="button"
-                  data-testid="favorite-btn"
-                  src={ whiteHeartIcon }
-                  onClick={ () => handleFavorite() }
-                >
-                  <img src={ whiteHeartIcon } alt="isFavorite" />
-                </button>
-              ) : (
+              favoriteRecipes.find((recipe) => recipe.id === recipeId) ? (
                 <button
                   type="button"
                   data-testid="favorite-btn"
                   src={ blackHeartIcon }
                   onClick={ () => handleFavorite() }
                 >
-                  <img src={ blackHeartIcon } alt="isNotFavorite" />
+                  <img src={ blackHeartIcon } alt="isFavorite" />
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  data-testid="favorite-btn"
+                  src={ whiteHeartIcon }
+                  onClick={ () => handleFavorite() }
+                >
+                  <img src={ whiteHeartIcon } alt="isNotFavorite" />
                 </button>
               )
             }

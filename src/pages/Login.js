@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
-
 import logoIcon from '../images/logoIcon.png';
 
 function Login() {
@@ -27,6 +26,7 @@ function Login() {
     localStorage.setItem('mealsToken', JSON.stringify(1));
     localStorage.setItem('cocktailsToken', JSON.stringify(1));
     localStorage.setItem('user', JSON.stringify({ email: userEmail }));
+    // localStorage.setItem('favoriteRecipes', JSON.stringify([]));
     history.push('/foods');
   };
 
