@@ -223,6 +223,12 @@ function FoodDetails() {
               onClick={ goProgress }
             >
               Start Recipe
+              {/* {
+                console.log(
+                  Object.values(JSON.parse(localStorage.getItem('meals'))[recipeId]),
+                )
+
+              } */}
             </button>
           </>
         )

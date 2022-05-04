@@ -9,8 +9,6 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import fetchFoodsId from '../services/fetchFoodsId';
 import { getCheckedIngredients, saveCheckedIngredients } from '../services/localStorage';
 
-localStorage.setItem('inProgressRecipes', JSON.stringify({ meals: {} }));
-
 function checkBoxStyles(isChecked, index) {
   return isChecked[`ingredient${index}`]
     ? { textDecoration: 'none solid rgb(0,0,0)' }

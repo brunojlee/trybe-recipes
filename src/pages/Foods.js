@@ -6,6 +6,10 @@ import RecipeCard from '../components/RecipeCard';
 import RecipesContext from '../context/RecipesContext';
 import fetchFoods from '../services/fetchFoods';
 
+if (!localStorage.getItem('inProgressRecipes')) {
+  localStorage.setItem('inProgressRecipes', JSON.stringify({ meals: {}, cocktails: {} }));
+}
+
 export default function Foods() {
   const { searchResults,
     setSearchResults,
