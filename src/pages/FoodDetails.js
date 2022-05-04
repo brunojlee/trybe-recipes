@@ -1,7 +1,7 @@
 import copy from 'clipboard-copy';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import RecommendationCard from '../components/RecommendationCard';
+import SwiperDrinks from '../components/SwiperDrinks';
 import RecipesContext from '../context/RecipesContext';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import ShareIcon from '../images/shareIcon.svg';
@@ -221,15 +221,10 @@ function FoodDetails() {
             <span data-testid="instructions">
               {recipeData.strInstructions}
             </span>
-            <p
+            {/* <p
               className="text-center my-4 text-xl font-bold text-darkblue"
-              data-testid="0-recomendation-card"
-            />
-            {
-              drinksRecommendations.map((drink, index) => (
-                <RecommendationCard key={ index } drink={ drink } index={ index } />
-              ))
-            }
+            /> */}
+            <SwiperDrinks drinksRecommendations={ drinksRecommendations } />
             <button
               className={ `${styles['start-recipe-btn']}` }
               type="button"
