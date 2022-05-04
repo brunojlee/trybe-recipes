@@ -8,21 +8,37 @@ import ShareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import fetchDrinksId from '../services/fetchDrinksId';
 import {
-  getCheckedIngredients,
+  getCheckedIngredientsDrinks,
   saveCheckedIngredientsDrink,
 } from '../services/localStorage';
 
+function handleChangeOut(isChecked, setIsChecked) {
+  return ({ target }) => {
+    const { name } = target;
+    const filter = isChecked.filter((el) => el !== name);
+    const updateCheckedIngredients = () => {
+      if (target.checked) {
+        setIsChecked(() => ([
+          ...filter, name,
+        ]));
+      } else {
+        setIsChecked(() => ([
+          ...filter,
+        ]));
+      }
+    };
+    updateCheckedIngredients();
+  };
+}
 function checkBoxStyles(isChecked, index) {
-  return isChecked[`ingredient${index}`]
+  return isChecked.find((el) => el === `ingredient${index}`)
     ? { textDecoration: 'none solid rgb(0,0,0)' }
     : { textDecoration: 'line-through solid rgb(0,0,0)' };
 }
-
 function getCheckeds(recipeId) {
-  return localStorage.key(recipeId.toString) > 0
-    ? JSON.parse(getCheckedIngredients(recipeId)) : { ingredient0: false };
+  return getCheckedIngredientsDrinks(recipeId)
+    ? getCheckedIngredientsDrinks(recipeId) : [];
 }
-
 function handleIngredientsMeasuresData(loading, recipeData, setIngredients, setMeasures) {
   if (loading) {
     const entries = Object.entries(recipeData);
@@ -30,21 +46,18 @@ function handleIngredientsMeasuresData(loading, recipeData, setIngredients, setM
       .filter((el) => el[0].includes('strIngredient'));
     const measuresFilter = entries
       .filter((el) => el[0].includes('strMeasure'));
-
     const filteredIngredient = ingredientFilter
       .filter((ingredientInfo) => ingredientInfo[1] !== null)
       .filter((ingredientInfo) => ingredientInfo[1].length > 0);
     setIngredients(filteredIngredient);
-
     const filteredMeasures = measuresFilter
       .filter((measureInfo) => measureInfo[1] !== null)
       .filter((measureInfo) => measureInfo[1].length > 0);
     setMeasures(filteredMeasures);
   }
 }
-
 function checkStyle(isChecked, index) {
-  return isChecked[`ingredient${index}`]
+  return isChecked.find((el) => el === `ingredient${index}`)
     ? { textDecoration: 'line-through solid rgb(0,0,0)' }
     : { textDecoration: 'none solid rgb(0,0,0)' };
 }
@@ -125,15 +138,7 @@ function DrinkInProgress() {
     handleIngredientsMeasuresData(loading, recipeData, setIngredients, setMeasures);
   }, [recipeData]);
 
-  const handleChange = ({ target }) => {
-    const { name } = target;
-    const updateCheckedIngredients = () => {
-      setIsChecked((prevSelection) => ({
-        ...prevSelection, [name]: target.checked,
-      }));
-    };
-    updateCheckedIngredients();
-  };
+  const handleChange = handleChangeOut(isChecked, setIsChecked);
 
   const handleShare = async () => {
     await copy(`http://localhost:3000/drinks/${recipeId}`);
@@ -180,8 +185,10 @@ function DrinkInProgress() {
                     <input
                       type="checkbox"
                       name={ `ingredient${index}` }
-                      checked={ isChecked[`ingredient${index}`]
-                        ? isChecked[`ingredient${index}`] : false }
+                      checked={ (
+                        isChecked.find(
+                          (e) => e === `ingredient${index}`,
+                        )) !== undefined }
                       style={ checkBoxStyles(isChecked, index) }
                       onChange={ handleChange }
                     />

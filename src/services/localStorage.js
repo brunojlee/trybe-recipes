@@ -13,8 +13,11 @@ export const saveCheckedIngredientsDrink = (recipeId, recipeData) => {
 };
 
 export const getCheckedIngredients = (recipeId) => {
-  const chaves = [];
-  chaves.push(localStorage.getItem(recipeId));
+  const data = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  return data.meals[recipeId];
+};
 
-  return chaves;
+export const getCheckedIngredientsDrinks = (recipeId) => {
+  const data = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  return data.cocktails[recipeId];
 };

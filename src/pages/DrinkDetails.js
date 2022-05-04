@@ -10,6 +10,21 @@ import fetchDrinksId from '../services/fetchDrinksId';
 import fetchMealsRecommendations from '../services/fetchMealsRecommendations';
 import styles from '../styles/RecipeDetailsPage.module.css';
 
+function progressTestOut(recipeId) {
+  return () => {
+    const inProgressRecipesData = JSON.parse(
+      localStorage.getItem('inProgressRecipes'),
+    ).cocktails[recipeId]
+      ? Object.values(
+        JSON.parse(localStorage.getItem('inProgressRecipes')).cocktails[recipeId],
+      ) : false;
+    console.log(inProgressRecipesData);
+    if (inProgressRecipesData) {
+      return true;
+    }
+    return false;
+  };
+}
 function isHandleFavoriteFunction(recipeInfo, recipeId,
   favoriteRecipes, setFavoriteRecipes) {
   return () => {
@@ -26,6 +41,8 @@ function isHandleFavoriteFunction(recipeInfo, recipeId,
     }
   };
 }
+const getLocalStorageOut = localStorage.getItem('favoriteRecipes')
+  ? JSON.parse(localStorage.getItem('favoriteRecipes')) : [];
 
 function DrinkDetails() {
   const regexNumbers = /([0-9])\w+/;
@@ -79,9 +96,7 @@ function DrinkDetails() {
         setRecipeData(fetchApi.drinks[0]);
         setLoading(false);
       }
-      const getLocalStorage = localStorage.getItem('favoriteRecipes')
-        ? JSON.parse(localStorage.getItem('favoriteRecipes')) : [];
-
+      const getLocalStorage = getLocalStorageOut;
       setFavoriteRecipes(getLocalStorage);
     };
     updateData();
@@ -114,6 +129,8 @@ function DrinkDetails() {
     setLoading(true);
     history.push(`/drinks/${recipeId}/in-progress`);
   };
+
+  const progressTest = progressTestOut(recipeId);
 
   return (
     <>
@@ -211,7 +228,9 @@ function DrinkDetails() {
               data-testid="start-recipe-btn"
               onClick={ goProgress }
             >
-              Start Recipe
+              {
+                progressTest() ? 'Continue Recipe' : 'Start Recipe'
+              }
             </button>
           </>
         )

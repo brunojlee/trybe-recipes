@@ -10,6 +10,21 @@ import fetchDrinksRecommendations from '../services/fetchDrinksRecommendations';
 import fetchFoodsId from '../services/fetchFoodsId';
 import styles from '../styles/RecipeDetailsPage.module.css';
 
+function progressTestOut(recipeId) {
+  return () => {
+    const inProgressRecipesData = JSON.parse(
+      localStorage.getItem('inProgressRecipes'),
+    ).meals[recipeId]
+      ? Object.values(
+        JSON.parse(localStorage.getItem('inProgressRecipes')).meals[recipeId],
+      ) : false;
+    console.log(inProgressRecipesData);
+    if (inProgressRecipesData) {
+      return true;
+    }
+    return false;
+  };
+}
 function isHandleFavoriteFunction(recipeInfo, recipeId,
   favoriteRecipes, setFavoriteRecipes) {
   return () => {
@@ -26,6 +41,8 @@ function isHandleFavoriteFunction(recipeInfo, recipeId,
     }
   };
 }
+const getLocalStorageOut = localStorage.getItem('favoriteRecipes')
+  ? JSON.parse(localStorage.getItem('favoriteRecipes')) : [];
 
 function FoodDetails() {
   const regexNumbers = /([0-9])\w+/;
@@ -33,9 +50,7 @@ function FoodDetails() {
   const [recipeData, setRecipeData] = useState([]);
   const [drinksRecommendations, setDrinksRecommendations] = useState('');
   const [linkCopied, setLinkCopied] = useState(false);
-
   const history = useHistory();
-
   const {
     ingredients,
     setIngredients,
@@ -46,7 +61,6 @@ function FoodDetails() {
     favoriteRecipes,
     setFavoriteRecipes,
   } = useContext(RecipesContext);
-
   const handleShare = async () => {
     const recipeURL = window.location.pathname;
     await copy(`http://localhost:3000${recipeURL}`);
@@ -79,9 +93,7 @@ function FoodDetails() {
         setRecipeData(fetchApi.meals[0]);
         setLoading(false);
       }
-      const getLocalStorage = localStorage.getItem('favoriteRecipes')
-        ? JSON.parse(localStorage.getItem('favoriteRecipes')) : [];
-
+      const getLocalStorage = getLocalStorageOut;
       setFavoriteRecipes(getLocalStorage);
     };
     updateData();
@@ -114,6 +126,8 @@ function FoodDetails() {
     setLoading(true);
     history.push(`/foods/${recipeId}/in-progress`);
   };
+
+  const progressTest = progressTestOut(recipeId);
 
   return (
     <>
@@ -222,13 +236,9 @@ function FoodDetails() {
               data-testid="start-recipe-btn"
               onClick={ goProgress }
             >
-              Start Recipe
-              {/* {
-                console.log(
-                  Object.values(JSON.parse(localStorage.getItem('meals'))[recipeId]),
-                )
-
-              } */}
+              {
+                progressTest() ? 'Continue Recipe' : 'Start Recipe'
+              }
             </button>
           </>
         )
