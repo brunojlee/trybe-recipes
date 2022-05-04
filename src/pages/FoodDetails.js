@@ -18,7 +18,6 @@ function progressTestOut(recipeId) {
       ? Object.values(
         JSON.parse(localStorage.getItem('inProgressRecipes')).meals[recipeId],
       ) : false;
-    console.log(inProgressRecipesData);
     if (inProgressRecipesData) {
       return true;
     }
@@ -52,15 +51,8 @@ function FoodDetails() {
   const [linkCopied, setLinkCopied] = useState(false);
   const history = useHistory();
   const {
-    ingredients,
-    setIngredients,
-    measures,
-    setMeasures,
-    loading,
-    setLoading,
-    favoriteRecipes,
-    setFavoriteRecipes,
-  } = useContext(RecipesContext);
+    ingredients, setIngredients, measures, setMeasures, loading,
+    setLoading, favoriteRecipes, setFavoriteRecipes } = useContext(RecipesContext);
   const handleShare = async () => {
     const recipeURL = window.location.pathname;
     await copy(`http://localhost:3000${recipeURL}`);
@@ -77,14 +69,12 @@ function FoodDetails() {
     image: recipeData.strMealThumb,
   };
 
-  const handleFavorite = isHandleFavoriteFunction(
-    recipeInfo, recipeId, favoriteRecipes, setFavoriteRecipes,
-  );
+  const handleFavorite = isHandleFavoriteFunction(recipeInfo, recipeId,
+    favoriteRecipes, setFavoriteRecipes);
 
   useEffect(() => {
     const updateData = async () => {
       const fetchApi = await fetchFoodsId(recipeId);
-
       const allDrinks = await fetchDrinksRecommendations();
       const SIX = 6;
       const drinksFiltered = allDrinks.drinks.slice(0, SIX);
@@ -103,22 +93,17 @@ function FoodDetails() {
   useEffect(() => {
     if (loading) {
       const entries = Object.entries(recipeData);
-      const ingredientFilter = entries
-        .filter((el) => el[0].includes('strIngredient'));
-      const measuresFilter = entries
-        .filter((el) => el[0].includes('strMeasure'));
-
+      const ingredientFilter = entries.filter((el) => el[0].includes('strIngredient'));
+      const measuresFilter = entries.filter((el) => el[0].includes('strMeasure'));
       const filteredIngredient = ingredientFilter
         .filter((ingredientInfo) => ingredientInfo[1] !== null)
         .filter((ingredientInfo) => ingredientInfo[1].length > 0);
       setIngredients(filteredIngredient);
-
       const filteredMeasures = measuresFilter
         .filter((measureInfo) => measureInfo[1] !== null)
         .filter((measureInfo) => measureInfo[1].length > 0);
       setMeasures(filteredMeasures);
     }
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [recipeData]);
 
@@ -126,9 +111,7 @@ function FoodDetails() {
     setLoading(true);
     history.push(`/foods/${recipeId}/in-progress`);
   };
-
   const progressTest = progressTestOut(recipeId);
-
   return (
     <>
       <h1
