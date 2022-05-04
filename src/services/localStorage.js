@@ -1,5 +1,9 @@
 export const saveCheckedIngredients = (recipeId, recipeData) => {
-  localStorage.setItem(`${recipeId}`, JSON.stringify(recipeData));
+  localStorage.setItem('meals', JSON.stringify({ [recipeId]: recipeData }));
+};
+
+export const saveCheckedIngredientsDrink = (recipeId, recipeData) => {
+  localStorage.setItem('drinks', JSON.stringify({ [recipeId]: recipeData }));
 };
 
 export const getCheckedIngredients = (recipeId) => {

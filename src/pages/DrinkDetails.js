@@ -18,7 +18,7 @@ function isHandleFavoriteFunction(recipeInfo, recipeId,
       localStorage.setItem('favoriteRecipes', [JSON.stringify(filteredRecipes)]);
       setFavoriteRecipes(filteredRecipes);
     } else {
-      const getLocalStorage = localStorage.key('favoriteRecipes')
+      const getLocalStorage = localStorage.getItem('favoriteRecipes')
         ? JSON.parse(localStorage.getItem('favoriteRecipes')) : [];
       localStorage.setItem('favoriteRecipes', [JSON.stringify([...getLocalStorage,
         recipeInfo])]);
@@ -79,11 +79,10 @@ function DrinkDetails() {
         setRecipeData(fetchApi.drinks[0]);
         setLoading(false);
       }
-      const getLocalStorage = localStorage.key('favoriteRecipes')
+      const getLocalStorage = localStorage.getItem('favoriteRecipes')
         ? JSON.parse(localStorage.getItem('favoriteRecipes')) : [];
 
       setFavoriteRecipes(getLocalStorage);
-      console.log(getLocalStorage);
     };
     updateData();
     // eslint-disable-next-line react-hooks/exhaustive-deps

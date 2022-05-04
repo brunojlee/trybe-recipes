@@ -18,7 +18,7 @@ function isHandleFavoriteFunction(recipeInfo, recipeId,
       localStorage.setItem('favoriteRecipes', [JSON.stringify(filteredRecipes)]);
       setFavoriteRecipes(filteredRecipes);
     } else {
-      const getLocalStorage = localStorage.key('favoriteRecipes')
+      const getLocalStorage = localStorage.getItem('favoriteRecipes')
         ? JSON.parse(localStorage.getItem('favoriteRecipes')) : [];
       localStorage.setItem('favoriteRecipes', [JSON.stringify([...getLocalStorage,
         recipeInfo])]);
@@ -79,7 +79,7 @@ function FoodDetails() {
         setRecipeData(fetchApi.meals[0]);
         setLoading(false);
       }
-      const getLocalStorage = localStorage.key('favoriteRecipes')
+      const getLocalStorage = localStorage.getItem('favoriteRecipes')
         ? JSON.parse(localStorage.getItem('favoriteRecipes')) : [];
 
       setFavoriteRecipes(getLocalStorage);
@@ -117,7 +117,10 @@ function FoodDetails() {
 
   return (
     <>
-      <h1>
+      <h1
+        className="text-center bg-orange py-4 text-2xl font-bold border-b-4
+        border-darkblue"
+      >
         Foods Details Page
       </h1>
       {
