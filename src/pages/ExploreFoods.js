@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { fetchRandomFoods } from '../services/fetchRandomRecipe';
+import RecipesContext from '../context/RecipesContext';
 
 function ExploreFoods() {
   const history = useHistory();
   const [randomMeal, setRandomMeal] = useState('');
+
+  const { setLoading } = useContext(RecipesContext);
 
   const handleSurprise = () => {
     history.push(`/foods/${randomMeal.idMeal}`);
@@ -27,7 +30,10 @@ function ExploreFoods() {
         <button
           type="button"
           data-testid="explore-by-ingredient"
-          onClick={ () => { history.push('foods/ingredients'); } }
+          onClick={ () => {
+            setLoading(true);
+            history.push('foods/ingredients');
+          } }
         >
           By Ingredient
         </button>
