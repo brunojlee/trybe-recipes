@@ -17,6 +17,7 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import fetchDrinksId from '../services/fetchDrinksId';
 import {
   saveCheckedIngredientsDrink,
+  saveDoneRecipe,
 } from '../services/localStorage';
 
 function DrinkInProgress() {
@@ -40,6 +41,10 @@ function DrinkInProgress() {
     setFavoriteRecipes,
   } = useContext(RecipesContext);
 
+  const timeElapsed = Date.now();
+
+  const today = new Date(timeElapsed);
+
   const recipeInfo = {
     id: recipeData.idDrink,
     type: 'drink',
@@ -48,6 +53,18 @@ function DrinkInProgress() {
     alcoholicOrNot: recipeData.strAlcoholic,
     name: recipeData.strDrink,
     image: recipeData.strDrinkThumb,
+  };
+
+  const finishedRecipeInfo = {
+    id: recipeData.idDrink,
+    type: 'drink',
+    nationality: '',
+    category: recipeData.strCategory,
+    alcoholicOrNot: recipeData.strAlcoholic,
+    name: recipeData.strDrink,
+    image: recipeData.strDrinkThumb,
+    doneDate: today,
+    tags: recipeData.strTags ? recipeData.strTags.split(',') : [],
   };
 
   const handleFavorite = isHandleFavoriteFunction(
@@ -93,6 +110,11 @@ function DrinkInProgress() {
         .every((el) => el) && Object.values(isChecked).length === ingredients.length,
     );
   }, [isChecked]);
+
+  const finishRecipe = () => {
+    saveDoneRecipe(recipeId, finishedRecipeInfo);
+    history.push('/done-recipes');
+  };
 
   return (
     <>
@@ -177,7 +199,7 @@ function DrinkInProgress() {
             type="button"
             data-testid="finish-recipe-btn"
             disabled={ !disableFinished }
-            onClick={ () => history.push('/done-recipes') }
+            onClick={ finishRecipe }
           >
             Finalizar receita
           </button>

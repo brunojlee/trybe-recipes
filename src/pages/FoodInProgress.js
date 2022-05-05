@@ -15,7 +15,7 @@ import blackHeartIcon from '../images/blackHeartIcon.svg';
 import ShareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import fetchFoodsId from '../services/fetchFoodsId';
-import { saveCheckedIngredients } from '../services/localStorage';
+import { saveCheckedIngredients, saveDoneRecipe } from '../services/localStorage';
 
 function FoodInProgress() {
   const regexNumbers = /([0-9])\w+/;
@@ -38,6 +38,10 @@ function FoodInProgress() {
     setFavoriteRecipes,
   } = useContext(RecipesContext);
 
+  const timeElapsed = Date.now();
+
+  const today = new Date(timeElapsed);
+
   const recipeInfo = {
     id: recipeData.idMeal,
     type: 'food',
@@ -46,6 +50,18 @@ function FoodInProgress() {
     alcoholicOrNot: '',
     name: recipeData.strMeal,
     image: recipeData.strMealThumb,
+  };
+
+  const finishedRecipeInfo = {
+    id: recipeData.idMeal,
+    type: 'food',
+    nationality: recipeData.strArea,
+    category: recipeData.strCategory,
+    alcoholicOrNot: '',
+    name: recipeData.strDrink,
+    image: recipeData.strDrinkThumb,
+    doneDate: today,
+    tags: recipeData.strTags ? recipeData.strTags.split(',') : [],
   };
 
   const handleFavorite = isHandleFavoriteFunction(
@@ -92,6 +108,11 @@ function FoodInProgress() {
         .every((el) => el) && Object.values(isChecked).length === ingredients.length,
     );
   }, [isChecked]);
+
+  const finishRecipe = () => {
+    saveDoneRecipe(recipeId, finishedRecipeInfo);
+    history.push('/done-recipes');
+  };
 
   return (
     <>
@@ -178,7 +199,7 @@ function FoodInProgress() {
               type="button"
               data-testid="finish-recipe-btn"
               disabled={ !disableFinished }
-              onClick={ () => history.push('/done-recipes') }
+              onClick={ finishRecipe }
             >
               Finalizar receita
             </button>

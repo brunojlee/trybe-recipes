@@ -21,3 +21,9 @@ export const getCheckedIngredientsDrinks = (recipeId) => {
   const data = JSON.parse(localStorage.getItem('inProgressRecipes'));
   return data.cocktails[recipeId];
 };
+
+export const saveDoneRecipe = (recipeId, doneRecipeData) => {
+  const data = JSON.parse(localStorage.getItem('doneRecipes'));
+  const newData = { ...data, [recipeId]: doneRecipeData };
+  localStorage.setItem('doneRecipes', JSON.stringify(newData));
+};
