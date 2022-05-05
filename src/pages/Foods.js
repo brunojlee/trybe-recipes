@@ -27,7 +27,7 @@ export default function Foods() {
 
   useEffect(() => {
     const handleSearchFetch = async () => {
-      await setMealsCategory(await fetchMealsCategory());
+      setMealsCategory(await fetchMealsCategory());
     };
     handleSearchFetch();
   }, []);
@@ -35,17 +35,17 @@ export default function Foods() {
   useEffect(() => {
     const handleFetchCategory = async () => {
       if (categorySelected) {
-        const teste = await fetchFilterMealsByCategory(categorySelected);
-        await setSearchResults(teste);
+        const filterMealsByCategory = await fetchFilterMealsByCategory(categorySelected);
+        await setSearchResults(filterMealsByCategory);
         setLoading(false);
       }
     };
     handleFetchCategory();
   }, [categorySelected]);
 
-  const handleCategory = async (category) => {
+  const handleCategory = (category) => {
     setLoading(true);
-    await setCategorySelected(category);
+    setCategorySelected(category);
   };
 
   return (
