@@ -63,7 +63,7 @@ export default function DoneRecipes() {
 
         <div>
           {
-            doneRecipes
+            doneRecipes && doneRecipes
               .filter(
                 (recipe) => (
                   selectedCategory !== 'all' ? recipe.type === selectedCategory : recipe),

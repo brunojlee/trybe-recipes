@@ -19,7 +19,6 @@ function progressTestOut(recipeId) {
       ? Object.values(
         JSON.parse(localStorage.getItem('inProgressRecipes')).cocktails[recipeId],
       ) : false;
-    console.log(inProgressRecipesData);
     if (inProgressRecipesData) {
       return true;
     }
