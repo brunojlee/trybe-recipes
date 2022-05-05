@@ -58,8 +58,8 @@ function FoodInProgress() {
     nationality: recipeData.strArea,
     category: recipeData.strCategory,
     alcoholicOrNot: '',
-    name: recipeData.strDrink,
-    image: recipeData.strDrinkThumb,
+    name: recipeData.strMeal,
+    image: recipeData.strMealThumb,
     doneDate: today,
     tags: recipeData.strTags ? recipeData.strTags.split(',') : [],
   };
