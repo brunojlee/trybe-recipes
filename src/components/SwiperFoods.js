@@ -1,9 +1,9 @@
-/* eslint-disable import/no-unresolved */
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import PropTypes from 'prop-types';
+import 'swiper/swiper-bundle.min.css';
+import 'swiper/swiper.min.css';
 import RecommendationCard from './RecommendationCard';
-import 'swiper/css';
 
 function SwiperFoods({ mealsRecommendations }) {
   return (
