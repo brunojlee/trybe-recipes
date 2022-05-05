@@ -124,20 +124,22 @@ function FoodDetails() {
       {
         !loading && (
           <>
-            <ButtonPrevious />
-            <h2
-              className="text-center py-4 text-2xl font-bold"
-              data-testid="recipe-title"
-            >
-              {recipeData.strMeal}
-            </h2>
-            <img
-              className="mx-auto rounded"
-              data-testid="recipe-photo"
-              src={ recipeData.strMealThumb }
-              style={ { maxWidth: '60%' } }
-              alt="Food"
-            />
+            <div className="bg-grey1 pb-6 border-b-4 border-darkblue">
+              <ButtonPrevious />
+              <h2
+                className="text-center py-2 text-2xl font-bold"
+                data-testid="recipe-title"
+              >
+                {recipeData.strMeal}
+              </h2>
+              <img
+                className="mx-auto rounded border-b-4 border-darkblue"
+                data-testid="recipe-photo"
+                src={ recipeData.strMealThumb }
+                style={ { maxWidth: '60%' } }
+                alt="Food"
+              />
+            </div>
             <div className="flex flex-row mx-auto justify-center m-4">
               <button
                 type="button"
