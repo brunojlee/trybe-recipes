@@ -55,8 +55,9 @@ export default function Foods() {
         {
           !loading && (
             <>
-              <div>
+              <div className="flex flex-wrap w-screen justify-center h-24 items-center">
                 <button
+                  className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
                   type="button"
                   data-testid="All-category-filter"
                   onClick={ () => handleCategory('All') }
@@ -66,6 +67,7 @@ export default function Foods() {
                 {mealsCategory.meals
                 && mealsCategory.meals.slice(0, FIVE).map((category, index) => (
                   <button
+                    className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
                     key={ index }
                     type="button"
                     data-testid={ `${category.strCategory}-category-filter` }

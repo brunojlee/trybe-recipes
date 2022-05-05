@@ -1,6 +1,7 @@
 import copy from 'clipboard-copy';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import ButtonPrevious from '../components/ButtonPrevious';
 import SwiperFoods from '../components/SwiperFoods';
 import RecipesContext from '../context/RecipesContext';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -143,6 +144,7 @@ function DrinkDetails() {
       {
         !loading && (
           <>
+            <ButtonPrevious />
             <h2
               className="text-center py-4 text-2xl font-bold"
               data-testid="recipe-title"
