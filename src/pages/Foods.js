@@ -18,6 +18,7 @@ export default function Foods() {
     setSearchResults,
     loading,
     setLoading } = useContext(RecipesContext);
+
   const [mealsCategory, setMealsCategory] = useState('');
   const [categorySelected, setCategorySelected] = useState('All');
 
@@ -26,25 +27,24 @@ export default function Foods() {
 
   useEffect(() => {
     const handleSearchFetch = async () => {
-      setMealsCategory(await fetchMealsCategory());
+      await setMealsCategory(await fetchMealsCategory());
     };
     handleSearchFetch();
   }, []);
 
   useEffect(() => {
     const handleFetchCategory = async () => {
-      setLoading(true);
       if (categorySelected) {
         const teste = await fetchFilterMealsByCategory(categorySelected);
-        setSearchResults(teste);
+        await setSearchResults(teste);
         setLoading(false);
       }
     };
     handleFetchCategory();
-    // setLoading(false);
   }, [categorySelected]);
 
   const handleCategory = async (category) => {
+    setLoading(true);
     await setCategorySelected(category);
   };
 
@@ -63,7 +63,8 @@ export default function Foods() {
                 >
                   All
                 </button>
-                {mealsCategory.meals.slice(0, FIVE).map((category, index) => (
+                {mealsCategory.meals
+                && mealsCategory.meals.slice(0, FIVE).map((category, index) => (
                   <button
                     key={ index }
                     type="button"
@@ -77,7 +78,10 @@ export default function Foods() {
                   </button>
                 ))}
               </div>
-              <RecipeCard meals={ searchResults.meals.slice(0, TWELVE) } />
+              <RecipeCard
+                meals={ searchResults.meals
+                  ? searchResults.meals.slice(0, TWELVE) : '' }
+              />
             </>
           )
         }

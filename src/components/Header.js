@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import RecipesContext from '../context/RecipesContext';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
@@ -9,9 +8,7 @@ import SearchBar from './SearchBar';
 function Header({ pageName, showSearchBar, showProfileImg }) {
   const history = useHistory();
   const [searchBarToggle, setSearchBarToggle] = useState(false);
-  const { loading, setLoading } = useContext(RecipesContext);
-  const handleSearchBar = () => {
-    setLoading(!loading);
+  const handleSearchBar = async () => {
     setSearchBarToggle(!searchBarToggle);
   };
   return (

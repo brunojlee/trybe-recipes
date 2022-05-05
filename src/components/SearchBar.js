@@ -14,7 +14,8 @@ function SearchBar() {
   const history = useHistory();
 
   useEffect(() => {
-    const checkPage = () => {
+    const checkPage = async () => {
+      await setLoading(true);
       const activeUrl = window.location.href;
       if (activeUrl.includes('/foods')) {
         setPageLocation('foods');
@@ -26,21 +27,25 @@ function SearchBar() {
   }, []);
 
   const handleSelectedRadio = ({ target }) => {
+    setLoading(true);
     setRadio(target.value);
   };
 
   const handleInputChange = ({ target }) => {
+    setLoading(true);
     setSearchBarInput(target.value);
   };
 
   useEffect(() => {
+    setLoading(true);
     const handleSearchFetch = async () => {
+      await setLoading(true);
       if (pageLocation === 'foods') {
-        setSearchResults(await fetchFoods(radioSelected, searchBarInput));
+        await setSearchResults(await fetchFoods(radioSelected, searchBarInput));
         setLoading(false);
       }
       if (pageLocation === 'drinks') {
-        setSearchResults(await fetchDrinks(radioSelected, searchBarInput));
+        await setSearchResults(await fetchDrinks(radioSelected, searchBarInput));
         setLoading(false);
       }
     };
@@ -49,6 +54,7 @@ function SearchBar() {
 
   useEffect(() => {
     if (searchBarInput.length > 1 && radioSelected === 'first-letter') {
+      setLoading(true);
       global.alert('Your search must have only 1 (one) character');
     }
   }, [searchBarInput, radioSelected]);
