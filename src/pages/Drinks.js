@@ -27,7 +27,7 @@ export default function Drinks() {
 
   useEffect(() => {
     const handleSearchFetch = async () => {
-      await setDrinksCategory(await fetchDrinksCategory());
+      setDrinksCategory(await fetchDrinksCategory());
     };
     handleSearchFetch();
   }, []);
@@ -35,17 +35,18 @@ export default function Drinks() {
   useEffect(() => {
     const handleFetchCategory = async () => {
       if (categorySelected) {
-        const teste = await fetchFilterDrinksByCategory(categorySelected);
-        await setSearchResults(teste);
+        const filterDrinksByCategory = await
+        fetchFilterDrinksByCategory(categorySelected);
+        await setSearchResults(filterDrinksByCategory);
         setLoading(false);
       }
     };
     handleFetchCategory();
   }, [categorySelected]);
 
-  const handleCategory = async (category) => {
+  const handleCategory = (category) => {
     setLoading(true);
-    await setCategorySelected(category);
+    setCategorySelected(category);
   };
 
   return (

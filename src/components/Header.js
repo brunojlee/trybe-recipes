@@ -55,9 +55,9 @@ function Header({ pageName, showSearchBar, showProfileImg }) {
 }
 
 Header.propTypes = {
-  pageName: PropTypes.string.isRequired,
-  showSearchBar: PropTypes.string.isRequired,
-  showProfileImg: PropTypes.string.isRequired,
-};
+  pageName: PropTypes.string,
+  showSearchBar: PropTypes.string,
+  showProfileImg: PropTypes.string,
+}.isRequired;
 
 export default Header;
