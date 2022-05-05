@@ -1,10 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import RecipeCard from '../components/RecipeCard';
 import RecipesContext from '../context/RecipesContext';
-import fetchFoods from '../services/fetchFoods';
+import {
+  fetchFilterMealsByCategory,
+  fetchMealsCategory,
+} from '../services/fetchCategory';
 
 if (!localStorage.getItem('inProgressRecipes')) {
   localStorage.setItem('inProgressRecipes', JSON.stringify({ meals: {}, cocktails: {} }));
@@ -15,20 +18,37 @@ export default function Foods() {
     setSearchResults,
     loading,
     setLoading } = useContext(RecipesContext);
+  const [mealsCategory, setMealsCategory] = useState('');
+  const [categorySelected, setCategorySelected] = useState('All');
 
-  if (loading === false && searchResults.drinks && searchResults.drinks.length > 0) {
-    setLoading(true);
-  }
-
-  const MAGIC_NUMBER = 12;
+  const TWELVE = 12;
+  const FIVE = 5;
 
   useEffect(() => {
     const handleSearchFetch = async () => {
-      setSearchResults(await fetchFoods('name', ''));
-      setLoading(false);
+      setMealsCategory(await fetchMealsCategory());
     };
     handleSearchFetch();
   }, []);
+
+  useEffect(() => {
+    const handleFetchCategory = async () => {
+      setLoading(true);
+      console.log(categorySelected);
+      if (categorySelected) {
+        const teste = await fetchFilterMealsByCategory(categorySelected);
+        setSearchResults(teste);
+        setLoading(false);
+        console.log(teste);
+      }
+    };
+    handleFetchCategory();
+    // setLoading(false);
+  }, [categorySelected]);
+
+  const handleCategory = async (category) => {
+    await setCategorySelected(category);
+  };
 
   return (
     <>
@@ -36,7 +56,31 @@ export default function Foods() {
       <main className="mt-1 mb-20">
         {
           !loading && (
-            <RecipeCard meals={ searchResults.meals.slice(0, MAGIC_NUMBER) } />
+            <>
+              <div>
+                <button
+                  type="button"
+                  data-testid="All-category-filter"
+                  onClick={ () => handleCategory('All') }
+                >
+                  All
+                </button>
+                {mealsCategory.meals.slice(0, FIVE).map((category, index) => (
+                  <button
+                    key={ index }
+                    type="button"
+                    data-testid={ `${category.strCategory}-category-filter` }
+                    onClick={ () => handleCategory(
+                      category.strCategory === categorySelected
+                        ? 'All' : category.strCategory,
+                    ) }
+                  >
+                    {category.strCategory}
+                  </button>
+                ))}
+              </div>
+              <RecipeCard meals={ searchResults.meals.slice(0, TWELVE) } />
+            </>
           )
         }
       </main>

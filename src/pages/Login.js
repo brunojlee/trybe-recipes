@@ -12,6 +12,7 @@ function Login() {
     setUserEmail,
     password,
     setPassword,
+    setLoading,
   } = useContext(RecipesContext);
 
   const handleEmail = ({ target: { value } }) => {
@@ -27,6 +28,7 @@ function Login() {
     localStorage.setItem('cocktailsToken', JSON.stringify(1));
     localStorage.setItem('user', JSON.stringify({ email: userEmail }));
     // localStorage.setItem('favoriteRecipes', JSON.stringify([]));
+    setLoading(true);
     history.push('/foods');
   };
 
