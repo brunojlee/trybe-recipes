@@ -34,12 +34,10 @@ export default function Foods() {
   useEffect(() => {
     const handleFetchCategory = async () => {
       setLoading(true);
-      console.log(categorySelected);
       if (categorySelected) {
         const teste = await fetchFilterMealsByCategory(categorySelected);
         setSearchResults(teste);
         setLoading(false);
-        console.log(teste);
       }
     };
     handleFetchCategory();

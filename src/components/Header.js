@@ -1,13 +1,19 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import RecipesContext from '../context/RecipesContext';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
 
 function Header({ pageName, showSearchBar, showProfileImg }) {
   const history = useHistory();
-  const [searchBarToggle, setSearchBarToggle] = React.useState(false);
+  const [searchBarToggle, setSearchBarToggle] = useState(false);
+  const { loading, setLoading } = useContext(RecipesContext);
+  const handleSearchBar = () => {
+    setLoading(!loading);
+    setSearchBarToggle(!searchBarToggle);
+  };
   return (
     <>
       <header
@@ -32,7 +38,7 @@ function Header({ pageName, showSearchBar, showProfileImg }) {
         </h2>
         {
           showSearchBar && (
-            <button type="button" onClick={ () => setSearchBarToggle(!searchBarToggle) }>
+            <button type="button" onClick={ handleSearchBar }>
               <img
                 src={ searchIcon }
                 alt="userIMG"
