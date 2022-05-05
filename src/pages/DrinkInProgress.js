@@ -3,81 +3,21 @@ import copy from 'clipboard-copy';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
+import {
+  checkBoxStyles,
+  checkStyle,
+  getCheckedsDrinks,
+  handleChangeOut,
+  handleIngredientsMeasuresData,
+  isHandleFavoriteFunction,
+} from '../functions/Handles';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import ShareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import fetchDrinksId from '../services/fetchDrinksId';
 import {
-  getCheckedIngredientsDrinks,
   saveCheckedIngredientsDrink,
 } from '../services/localStorage';
-
-function handleChangeOut(isChecked, setIsChecked) {
-  return ({ target }) => {
-    const { name } = target;
-    const filter = isChecked.filter((el) => el !== name);
-    const updateCheckedIngredients = () => {
-      if (target.checked) {
-        setIsChecked(() => ([
-          ...filter, name,
-        ]));
-      } else {
-        setIsChecked(() => ([
-          ...filter,
-        ]));
-      }
-    };
-    updateCheckedIngredients();
-  };
-}
-function checkBoxStyles(isChecked, index) {
-  return isChecked.find((el) => el === `ingredient${index}`)
-    ? { textDecoration: 'none solid rgb(0,0,0)' }
-    : { textDecoration: 'line-through solid rgb(0,0,0)' };
-}
-function getCheckeds(recipeId) {
-  return getCheckedIngredientsDrinks(recipeId)
-    ? getCheckedIngredientsDrinks(recipeId) : [];
-}
-function handleIngredientsMeasuresData(loading, recipeData, setIngredients, setMeasures) {
-  if (loading) {
-    const entries = Object.entries(recipeData);
-    const ingredientFilter = entries
-      .filter((el) => el[0].includes('strIngredient'));
-    const measuresFilter = entries
-      .filter((el) => el[0].includes('strMeasure'));
-    const filteredIngredient = ingredientFilter
-      .filter((ingredientInfo) => ingredientInfo[1] !== null)
-      .filter((ingredientInfo) => ingredientInfo[1].length > 0);
-    setIngredients(filteredIngredient);
-    const filteredMeasures = measuresFilter
-      .filter((measureInfo) => measureInfo[1] !== null)
-      .filter((measureInfo) => measureInfo[1].length > 0);
-    setMeasures(filteredMeasures);
-  }
-}
-function checkStyle(isChecked, index) {
-  return isChecked.find((el) => el === `ingredient${index}`)
-    ? { textDecoration: 'line-through solid rgb(0,0,0)' }
-    : { textDecoration: 'none solid rgb(0,0,0)' };
-}
-
-function isHandleFavoriteFunction(recipeInfo, recipeId,
-  favoriteRecipes, setFavoriteRecipes) {
-  return () => {
-    if (favoriteRecipes.find((recipe) => recipe.id === recipeId)) {
-      const filteredRecipes = favoriteRecipes.filter((recipe) => recipe.id !== recipeId);
-      localStorage.setItem('favoriteRecipes', [JSON.stringify(filteredRecipes)]);
-      setFavoriteRecipes(filteredRecipes);
-    } else {
-      const getLocalStorage = localStorage.key('favoriteRecipes') === null
-        ? JSON.parse(localStorage.getItem('favoriteRecipes')) : [];
-      localStorage.setItem('favoriteRecipes', [JSON.stringify([...getLocalStorage,
-        recipeInfo])]);
-      setFavoriteRecipes([...favoriteRecipes, recipeInfo]);
-    }
-  };
-}
 
 function DrinkInProgress() {
   const regexNumbers = /([0-9])\w+/;
@@ -128,7 +68,7 @@ function DrinkInProgress() {
 
   useEffect(() => {
     const bringCheckedIngredients = async () => {
-      const localStorageCheckeds = getCheckeds(recipeId);
+      const localStorageCheckeds = getCheckedsDrinks(recipeId);
       setIsChecked(localStorageCheckeds);
     };
     bringCheckedIngredients();
