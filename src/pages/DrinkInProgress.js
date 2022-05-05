@@ -112,7 +112,7 @@ function DrinkInProgress() {
   }, [isChecked]);
 
   const finishRecipe = () => {
-    saveDoneRecipe(recipeId, finishedRecipeInfo);
+    saveDoneRecipe(finishedRecipeInfo);
     history.push('/done-recipes');
   };
 
