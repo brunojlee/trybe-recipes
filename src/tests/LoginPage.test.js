@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
-describe('Teste o componente <App.js />', () => {
+describe('Teste a página de Login', () => {
   it('Será validada a existência dos inputs, seus controles e botão.', async () => {
     render(
       <MemoryRouter>
@@ -26,7 +26,7 @@ describe('Teste o componente <App.js />', () => {
     userEvent.click(loginButton);
     expect(loginButton).toBeEnabled();
   });
-  it('Será validada a existência dos inputs, seus controles e botão.', () => {
+  it('Será validada a troca de página.', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/foods');
     expect(history.location.pathname).toBe('/foods');

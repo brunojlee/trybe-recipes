@@ -69,7 +69,10 @@ export default function Foods() {
                   className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
                   type="button"
                   data-testid="All-category-filter"
-                  onClick={ () => handleCategory('All') }
+                  onClick={ () => {
+                    handleCategory('All');
+                    setLoading(false);
+                  } }
                 >
                   All
                 </button>

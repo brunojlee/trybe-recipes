@@ -30,7 +30,6 @@ export default function FavoriteRecipes() {
   };
 
   const handleCategoryChange = ({ target }) => {
-    console.log(target.value);
     setSelectedCategory(target.value);
   };
 
@@ -46,7 +45,6 @@ export default function FavoriteRecipes() {
     setLoading(true);
     history.push(target.name);
   };
-  console.log(favoriteRecipes);
   return (
     <>
       <Header pageName="Favorite Recipes" showProfileImg="true" />
