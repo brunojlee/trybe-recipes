@@ -23,7 +23,6 @@ export default function FoodsNationalities() {
     const handleSearchFetch = async () => {
       await setMealsCategory(await fetchMealsAreas());
       setCategorySelected('All');
-      console.log(mealsCategory);
     };
     handleSearchFetch();
   }, []);

@@ -79,6 +79,7 @@ function Login() {
           />
         </label>
         <button
+          name="entrar"
           className="bg-darkblue
           py-2 px-4 text-white rounded-xl mt-4 opacity-70 hover:opacity-100"
           disabled={ isButtonDisabled }
