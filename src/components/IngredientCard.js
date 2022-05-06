@@ -11,6 +11,7 @@ function IngredientCard({ drinks, meals }) {
 
   const [ingredientImage, setIngredientImage] = useState('');
   const [loading, setLoading] = useState(true);
+  console.log(setLoading);
 
   useEffect(() => {
     const handleIngredientsCard = async () => {
