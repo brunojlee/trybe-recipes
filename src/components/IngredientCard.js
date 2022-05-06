@@ -14,7 +14,8 @@ function IngredientCard({ drinks, meals, index }) {
           type="button"
           onClick={ () => {
             setLoading(true);
-            history.push(`/drinks?INGREDIENT=${drinks.strIngredient1.toLowerCase()}`);
+            localStorage.setItem('ingredient', drinks.strIngredient1);
+            history.push('/drinks');
           } }
         >
           <div data-testid={ `${index}-ingredient-card` } key={ index }>
@@ -44,7 +45,7 @@ function IngredientCard({ drinks, meals, index }) {
         type="button"
         onClick={ () => {
           setLoading(true);
-          localStorage.setItem('ingredient', meals.strIngredient.toLowerCase());
+          localStorage.setItem('ingredient', meals.strIngredient);
           history.push('/foods');
         } }
       >
