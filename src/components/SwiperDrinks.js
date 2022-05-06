@@ -25,7 +25,7 @@ function SwiperDrinks({ drinksRecommendations }) {
 }
 
 SwiperDrinks.propTypes = {
-  drinksRecommendations: PropTypes.func.isRequired,
+  drinksRecommendations: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
 export default SwiperDrinks;

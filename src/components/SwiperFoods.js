@@ -11,7 +11,7 @@ function SwiperFoods({ mealsRecommendations }) {
       spaceBetween={ 10 }
       slidesPerView={ 2 }
     >
-      <section>
+      <section className="my-22">
         {
           mealsRecommendations.map((meal, index) => (
             <SwiperSlide key={ index }>
@@ -25,7 +25,7 @@ function SwiperFoods({ mealsRecommendations }) {
 }
 
 SwiperFoods.propTypes = {
-  mealsRecommendations: PropTypes.objectOf.isRequired,
-};
+  mealsRecommendations: PropTypes.arrayOf(PropTypes.any),
+}.isRequired;
 
 export default SwiperFoods;

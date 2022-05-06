@@ -127,40 +127,51 @@ function FoodInProgress() {
         !loading && (
           <>
             <img
+              className="object-cover h-44 w-screen"
               alt="Foto da receita"
               data-testid="recipe-photo"
               src={ recipeData.strMealThumb }
             />
-            <div>
-              <h2 data-testid="recipe-category">{recipeData.strAlcoholic}</h2>
-              <ul>
-                {
-                  ingredients.map((el, index) => (
-                    <li
-                      id={ `ingredient${index}` }
-                      key={ index }
-                      data-testid={ `${index}-ingredient-step` }
-                      style={ checkStyle(isChecked, index) }
-                    >
-                      {`${el[1]} ${measures[index] ? measures[index][1] : ''}`}
-                      <input
-                        type="checkbox"
-                        name={ `ingredient${index}` }
-                        checked={ (
-                          isChecked.find(
-                            (e) => e === `ingredient${index}`,
-                          )) !== undefined }
-                        style={ checkBoxStyles(isChecked, index) }
-                        onChange={ handleChange }
-                      />
-                    </li>
-                  ))
-                }
-              </ul>
-            </div>
-            <h2 data-testid="instructions">Instruções</h2>
+            <h2
+              className="text-center my-5 mx-auto text-xl font-bold"
+              data-testid="recipe-category"
+            >
+              {recipeData.strCategory}
+            </h2>
+            <ul className="text-right mr-5 text-xl">
+              {
+                ingredients.map((el, index) => (
+                  <li
+                    id={ `ingredient${index}` }
+                    key={ index }
+                    data-testid={ `${index}-ingredient-step` }
+                    style={ checkStyle(isChecked, index) }
+                  >
+                    {`${el[1]} ${measures[index] ? measures[index][1] : ''}`}
+                    <input
+                      className="ml-3"
+                      type="checkbox"
+                      name={ `ingredient${index}` }
+                      checked={ (
+                        isChecked.find(
+                          (e) => e === `ingredient${index}`,
+                        )) !== undefined }
+                      style={ checkBoxStyles(isChecked, index) }
+                      onChange={ handleChange }
+                    />
+                  </li>
+                ))
+              }
+            </ul>
+            <h2
+              data-testid="instructions"
+              className="text-center my-5 mx-auto text-xl font-bold"
+            >
+              Instructions
+            </h2>
             <div className="flex flex-row mx-auto justify-center m-4">
               <button
+                className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
                 type="button"
                 data-testid="share-btn"
                 src={ ShareIcon }
@@ -172,37 +183,43 @@ function FoodInProgress() {
               </button>
               {
                 favoriteRecipes
-                && (favoriteRecipes[0]
-                  ? (
-                    <button
-                      type="button"
-                      data-testid="favorite-btn"
-                      src={ blackHeartIcon }
-                      onClick={ () => handleFavorite() }
-                    >
-                      <img src={ blackHeartIcon } alt="isFavorite" />
-                    </button>
-                  ) : (
-                    <button
-                      type="button"
-                      data-testid="favorite-btn"
-                      src={ whiteHeartIcon }
-                      onClick={ () => handleFavorite() }
-                    >
-                      <img src={ whiteHeartIcon } alt="isNotFavorite" />
-                    </button>
-                  ))
+              && (favoriteRecipes[0]
+                ? (
+                  <button
+                    className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
+                    type="button"
+                    data-testid="favorite-btn"
+                    src={ blackHeartIcon }
+                    onClick={ () => handleFavorite() }
+                  >
+                    <img src={ blackHeartIcon } alt="isFavorite" />
+                  </button>
+                ) : (
+                  <button
+                    className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
+                    type="button"
+                    data-testid="favorite-btn"
+                    src={ whiteHeartIcon }
+                    onClick={ () => handleFavorite() }
+                  >
+                    <img src={ whiteHeartIcon } alt="isNotFavorite" />
+                  </button>
+                ))
               }
             </div>
-            <button
-              className="bg-darkblue rounded-xl text-white px-2 py-1 disabled:opacity-20"
-              type="button"
-              data-testid="finish-recipe-btn"
-              disabled={ !disableFinished }
-              onClick={ finishRecipe }
-            >
-              Finalizar receita
-            </button>
+            <div className="w-full flex justify-center mt-16 my-8">
+
+              <button
+                className="text-2xl mx-auto bg-darkblue rounded-xl text-white px-4 py-1
+                disabled:opacity-20"
+                type="button"
+                data-testid="finish-recipe-btn"
+                disabled={ !disableFinished }
+                onClick={ finishRecipe }
+              >
+                Done Recipe
+              </button>
+            </div>
           </>
         )
       }

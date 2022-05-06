@@ -4,26 +4,48 @@ import React from 'react';
 function RecommendationCard({ meal, drink, index }) {
   if (drink) {
     return (
-      <div data-testid={ `${index}-recomendation-card` }>
+      <div
+        className="flex flex-row items-center border-2
+        border-black rounded-xl"
+        data-testid={ `${index}-recomendation-card` }
+      >
         <img
           data-testid={ `${index}-card-img` }
           src={ drink.strDrinkThumb }
+          style={ { maxWidth: '50%' } }
           alt="Drink"
+          className="rounded-l-xl"
         />
-        <span data-testid={ `${index}-recomendation-title` }>{drink.strDrink}</span>
+        <p
+          className="text-xl text-center mx-auto"
+          data-testid={ `${index}-recomendation-title` }
+        >
+          {drink.strDrink}
+        </p>
       </div>
     );
   }
 
   if (meal) {
     return (
-      <div data-testid={ `${index}-recomendation-card` }>
+      <div
+        className="flex flex-row text-center items-center border-2
+        border-black rounded-xl"
+        data-testid={ `${index}-recomendation-card` }
+      >
         <img
           data-testid={ `${index}-card-img` }
+          style={ { maxWidth: '50%' } }
           src={ meal.strMealThumb }
-          alt="Drink"
+          alt="Meal"
+          className="rounded-l-xl"
         />
-        <span data-testid={ `${index}-recomendation-title` }>{meal.strMeal}</span>
+        <p
+          data-testid={ `${index}-recomendation-title` }
+          className="text-xl text-center mx-auto"
+        >
+          {meal.strMeal}
+        </p>
       </div>
     );
   }
