@@ -8,12 +8,17 @@ import {
   fetchDrinksCategory,
   fetchFilterDrinksByCategory,
 } from '../services/fetchCategory';
+import fetchDrinks from '../services/fetchDrinks';
 
 if (!localStorage.getItem('inProgressRecipes')) {
   localStorage.setItem('inProgressRecipes', JSON.stringify({ meals: {}, cocktails: {} }));
 }
 
 export default function Drinks() {
+  const regexIngredient = /([a-z])\w+/;
+  const ingredientExplorer = window.location.search.match(regexIngredient) !== null
+    ? window.location.search.match(regexIngredient)[0]
+    : '';
   const { searchResults,
     setSearchResults,
     loading,
@@ -21,13 +26,16 @@ export default function Drinks() {
 
   const [drinksCategory, setDrinksCategory] = useState('');
   const [categorySelected, setCategorySelected] = useState('All');
-
+  const [watchUrl] = useState(window.location.search);
   const TWELVE = 12;
   const FIVE = 5;
 
   useEffect(() => {
     const handleSearchFetch = async () => {
       setDrinksCategory(await fetchDrinksCategory());
+      if (watchUrl === `?INGREDIENT=${ingredientExplorer}`) {
+        await setSearchResults(await fetchDrinks('ingredient', ingredientExplorer));
+      }
     };
     handleSearchFetch();
   }, []);

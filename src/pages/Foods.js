@@ -8,6 +8,7 @@ import {
   fetchFilterMealsByCategory,
   fetchMealsCategory,
 } from '../services/fetchCategory';
+import fetchFoods from '../services/fetchFoods';
 
 if (!localStorage.getItem('inProgressRecipes')) {
   localStorage.setItem('inProgressRecipes', JSON.stringify({ meals: {}, cocktails: {} }));
@@ -20,14 +21,22 @@ export default function Foods() {
     setLoading } = useContext(RecipesContext);
 
   const [mealsCategory, setMealsCategory] = useState('');
-  const [categorySelected, setCategorySelected] = useState('All');
-
+  const [categorySelected, setCategorySelected] = useState('');
+  const watchUrl = localStorage.getItem('ingredient')
+    ? localStorage.getItem('ingredient') : '';
   const TWELVE = 12;
   const FIVE = 5;
 
   useEffect(() => {
     const handleSearchFetch = async () => {
       setMealsCategory(await fetchMealsCategory());
+      if (watchUrl.length > 0) {
+        await setSearchResults(await fetchFoods('ingredient', watchUrl));
+        localStorage.setItem('ingredient', '');
+        setLoading(false);
+      } else {
+        setCategorySelected('All');
+      }
     };
     handleSearchFetch();
   }, []);
