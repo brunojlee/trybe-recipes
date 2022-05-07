@@ -3,10 +3,13 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import App from '../App';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from './Helpers/renderWithRouter';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 const timeDelay = 1000;
+const buttonId = 'exec-search-btn';
+const FIRSTLETTER = 'First Letter';
+
 describe('Teste do componentes SearchBar ', () => {
   it('Será validado a SearchBar na página de receitas de comidas.', async () => {
     await act(async () => {
@@ -19,7 +22,7 @@ describe('Teste do componentes SearchBar ', () => {
     expect(screen.getByText('Search')).toBeInTheDocument();
     expect(screen.getByText('Ingredient')).toBeInTheDocument();
     expect(screen.getByText('Name')).toBeInTheDocument();
-    expect(screen.getByText('First Letter')).toBeInTheDocument();
+    expect(screen.getByText(FIRSTLETTER)).toBeInTheDocument();
     await act(async () => {
       fireEvent.click(screen.getByText('Search'));
     });
@@ -33,7 +36,7 @@ describe('Teste do componentes SearchBar ', () => {
     const TWENTYFOUR = 24;
     const radioButtons = screen.getAllByRole('radio');
     const searchInput = screen.getAllByRole('textbox');
-    const searchButton = screen.getByTestId('exec-search-btn');
+    const searchButton = screen.getByTestId(buttonId);
     expect(radioButtons.length).toBe(THREE);
     expect(screen.getAllByRole('button').length).toBe(TWENTYFOUR);
     expect(screen.getAllByText(/corba/i)[0]).toBeInTheDocument();
@@ -66,7 +69,7 @@ describe('Teste do componentes SearchBar ', () => {
 
   it('Será validado a SearchBar na página de receitas de Drinks.', async () => {
     await act(async () => {
-      renderWithRouter(<App />).history.push('/foods');
+      renderWithRouter(<App />).history.push('/drinks');
     });
 
     const buttons = screen.getAllByRole('button');
@@ -76,7 +79,7 @@ describe('Teste do componentes SearchBar ', () => {
     expect(screen.getByText('Search')).toBeInTheDocument();
     expect(screen.getByText('Ingredient')).toBeInTheDocument();
     expect(screen.getByText('Name')).toBeInTheDocument();
-    expect(screen.getByText('First Letter')).toBeInTheDocument();
+    expect(screen.getByText(FIRSTLETTER)).toBeInTheDocument();
     await act(async () => {
       fireEvent.click(screen.getByText('Search'));
     });
@@ -89,7 +92,7 @@ describe('Teste do componentes SearchBar ', () => {
     const THREE = 3;
     const radioButtons = screen.getAllByRole('radio');
     const searchInput = screen.getAllByRole('textbox');
-    const searchButton = screen.getByTestId('exec-search-btn');
+    const searchButton = screen.getByTestId(buttonId);
     expect(radioButtons.length).toBe(THREE);
     expect(screen.getAllByText(/gg/i)[0]).toBeInTheDocument();
     await act(async () => {
@@ -116,6 +119,31 @@ describe('Teste do componentes SearchBar ', () => {
     });
     await act(async () => {
       await delay(timeDelay);
+    });
+  });
+
+  it('Será validado a SearchBar na página de receitas de Drinks.', async () => {
+    await act(async () => {
+      renderWithRouter(<App />).history.push('/drinks');
+    });
+    const buttons = screen.getAllByRole('button');
+    await act(async () => {
+      userEvent.click(buttons[1]);
+    });
+    expect(screen.getByText('Search')).toBeInTheDocument();
+    expect(screen.getByText('Ingredient')).toBeInTheDocument();
+    expect(screen.getByText('Name')).toBeInTheDocument();
+    expect(screen.getByText(FIRSTLETTER)).toBeInTheDocument();
+
+    const radioButtons = screen.getAllByRole('radio');
+    const searchInput = screen.getAllByRole('textbox');
+    const searchButton = screen.getByTestId(buttonId);
+    const three = 3;
+    expect(radioButtons.length).toBe(three);
+    await act(async () => {
+      fireEvent.click(radioButtons[1]);
+      await userEvent.type(searchInput[0], 'Aquamarine');
+      fireEvent.click(searchButton);
     });
   });
 });

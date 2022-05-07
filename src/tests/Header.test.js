@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import App from '../App';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from './Helpers/renderWithRouter';
 
 describe('Teste dos componentes Header', () => {
   it('Será validada a existência botões.', async () => {
