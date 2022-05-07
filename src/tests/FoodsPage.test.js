@@ -6,7 +6,7 @@ import App from '../App';
 import renderWithBrowser from './Helpers/renderWithBrowser';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-const timeDelay = 1200;
+const timeDelay = 1300;
 const btnCount = 23;
 const imgCount = 17;
 
@@ -100,6 +100,13 @@ describe('Teste da página inicial de comidas ', () => {
       fireEvent.click(goatBtn);
       await delay(timeDelay);
     });
-    expect(screen.getByText(/roasted goat/i)).toBeInTheDocument();
+
+    const meal = screen.getByText(/roasted goat/i);
+    expect(meal).toBeInTheDocument();
+    await act(async () => {
+      fireEvent.click(meal);
+      await delay(timeDelay);
+    });
+    expect(screen.getAllByText(/roasted goat/i)[0]).toBeInTheDocument();
   });
 });

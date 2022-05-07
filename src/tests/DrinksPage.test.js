@@ -101,6 +101,13 @@ describe('Teste da página inicial de comidas ', () => {
       fireEvent.click(cocoaBtn);
       await delay(timeDelay);
     });
-    expect(screen.getByText(/chocolate drink/i)).toBeInTheDocument();
+
+    const drink = screen.getByText(/chocolate drink/i);
+    expect(drink).toBeInTheDocument();
+    await act(async () => {
+      fireEvent.click(drink);
+      await delay(timeDelay);
+    });
+    expect(screen.getAllByText(/chocolate/i)[0]).toBeInTheDocument();
   });
 });
