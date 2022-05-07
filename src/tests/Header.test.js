@@ -12,9 +12,6 @@ describe('Teste dos componentes Header', () => {
     });
     const CINCO = 5;
     const buttons = screen.getAllByRole('button');
-    /*
-    const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-    await act(async () => { await delay(SEGUNDO); }); */
     expect(buttons).toHaveLength(CINCO);
   });
   it('Será validado o botão Profile.', async () => {
