@@ -7,7 +7,7 @@ import renderWithBrowser from './Helpers/renderWithBrowser';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 const timeDelay = 2000;
-const aquamarineImgs = 9;
+const arrabiataImgs = 9;
 
 describe('Teste da página de detalhes de comidas ', () => {
   it('Serão validados os componentes.', async () => {
@@ -19,7 +19,7 @@ describe('Teste da página de detalhes de comidas ', () => {
     });
     expect(screen.getByText(/arrabiata/i)).toBeInTheDocument();
     const images = screen.getAllByRole('img');
-    expect(images.length).toBe(aquamarineImgs);
+    expect(images.length).toBe(arrabiataImgs);
 
     const favBtn = screen.getByTestId('favorite-btn');
     await act(async () => {
@@ -29,7 +29,6 @@ describe('Teste da página de detalhes de comidas ', () => {
     await act(async () => {
       fireEvent.click(startBtn);
     });
-    console.log(window.location.pathname);
     expect(window.location.pathname).toBe('/foods/52771/in-progress');
   });
 });
