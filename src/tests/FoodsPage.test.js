@@ -6,7 +6,7 @@ import App from '../App';
 import renderWithBrowser from './Helpers/renderWithBrowser';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-const timeDelay = 1300;
+const timeDelay = 1500;
 const btnCount = 23;
 const imgCount = 17;
 
