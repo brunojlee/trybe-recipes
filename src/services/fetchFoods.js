@@ -1,6 +1,5 @@
 const fetchFoods = async (radioSelected, searchBarInput) => {
   let response = '';
-
   switch (radioSelected) {
   case 'ingredient':
     response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchBarInput}`);
@@ -15,7 +14,9 @@ const fetchFoods = async (radioSelected, searchBarInput) => {
     return 'Radio not selected';
   }
 
-  const json = await response.json();
+  let json = '';
+  try { json = await response.json(); } catch (error) { json = { meals: null }; }
+
   return response.ok ? Promise.resolve(json) : Promise.reject(json);
 };
 

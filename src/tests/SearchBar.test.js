@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import App from '../App';
+import renderWithBrowser from './Helpers/renderWithBrowser';
 import renderWithRouter from './Helpers/renderWithRouter';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
@@ -13,7 +14,7 @@ const FIRSTLETTER = 'First Letter';
 describe('Teste do componentes SearchBar ', () => {
   it('Será validado a SearchBar na página de receitas de comidas.', async () => {
     await act(async () => {
-      renderWithRouter(<App />).history.push('/foods');
+      renderWithBrowser(<App />).history.push('/foods');
     });
     const buttons = screen.getAllByRole('button');
     await act(async () => {
@@ -48,7 +49,7 @@ describe('Teste do componentes SearchBar ', () => {
     await act(async () => {
       await delay(timeDelay);
     });
-    expect(screen.getByText(/beef/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/beef/i)[0]).toBeInTheDocument();
     await act(async () => {
       fireEvent.click(radioButtons[1]);
       userEvent.type(searchInput[0], 'aeeeeeeeeee');
@@ -69,7 +70,7 @@ describe('Teste do componentes SearchBar ', () => {
 
   it('Será validado a SearchBar na página de receitas de Drinks.', async () => {
     await act(async () => {
-      renderWithRouter(<App />).history.push('/drinks');
+      renderWithBrowser(<App />).history.push('/drinks');
     });
 
     const buttons = screen.getAllByRole('button');
