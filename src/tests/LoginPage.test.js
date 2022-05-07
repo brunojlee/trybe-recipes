@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from './Helpers/renderWithRouter';
 
 describe('Teste a página de Login', () => {
   it('Será validada a existência dos inputs, seus controles e botão.', async () => {

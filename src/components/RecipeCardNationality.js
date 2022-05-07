@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 
-function RecipeCard({ drinks, meals }) {
+function RecipeCardNationality({ meals }) {
   const history = useHistory();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -15,50 +15,7 @@ function RecipeCard({ drinks, meals }) {
     setIsLoading(false);
   }, []);
 
-  if (!isLoading && drinks && drinks.length > 0) {
-    return (
-      <div>
-        {
-          (!isLoading && drinks && drinks.length > 0) && (
-            drinks.map((recipe, index) => (
-              <button
-                type="button"
-                key={ recipe.idDrink }
-                value={ recipe.idDrink }
-                onClick={ () => {
-                  setLoading(true);
-                  history.push(`./drinks/${recipe.idDrink}`);
-                } }
-              >
-                <div
-                  className="flex flex-row items-center justify-between m-2 mx-4
-                  border-darkblue rounded-lg
-                  border-2"
-                  data-testid={ `${index}-recipe-card` }
-                >
-                  <img
-                    className="rounded-l"
-                    data-testid={ `${index}-card-img` }
-                    src={ recipe.strDrinkThumb }
-                    alt="Drink"
-                    style={ { maxWidth: '40%' } }
-                  />
-                  <div className="w-full text-center">
-                    <h2
-                      className="text-2xl text-darkblue"
-                      data-testid={ `${index}-card-name` }
-                    >
-                      { recipe.strDrink }
-                    </h2>
-                  </div>
-                </div>
-              </button>
-            ))
-          )
-        }
-      </div>
-    );
-  } return (
+  return (
     <div>
       {
         (!isLoading && meals && meals.length > 0) && (
@@ -92,7 +49,6 @@ function RecipeCard({ drinks, meals }) {
                   >
                     { recipe.strMeal }
                   </h2>
-
                 </div>
               </div>
             </button>
@@ -103,9 +59,8 @@ function RecipeCard({ drinks, meals }) {
   );
 }
 
-RecipeCard.propTypes = {
-  drinks: PropTypes.objectOf(PropTypes.any),
+RecipeCardNationality.propTypes = {
   meals: PropTypes.objectOf(PropTypes.any),
 }.isRequired;
 
-export default RecipeCard;
+export default RecipeCardNationality;

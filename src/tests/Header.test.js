@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import App from '../App';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from './Helpers/renderWithRouter';
 
 describe('Teste dos componentes Header', () => {
   it('Será validada a existência botões.', async () => {
@@ -12,9 +12,6 @@ describe('Teste dos componentes Header', () => {
     });
     const CINCO = 5;
     const buttons = screen.getAllByRole('button');
-    /*
-    const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-    await act(async () => { await delay(SEGUNDO); }); */
     expect(buttons).toHaveLength(CINCO);
   });
   it('Será validado o botão Profile.', async () => {

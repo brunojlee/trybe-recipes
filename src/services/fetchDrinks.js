@@ -14,7 +14,8 @@ const fetchDrinks = async (radioSelected, searchBarInput) => {
     return 'Radio not selected';
   }
 
-  const json = await response.json();
+  let json = '';
+  try { json = await response.json(); } catch (error) { json = { drinks: null }; }
 
   return response.ok ? Promise.resolve(json) : Promise.reject(json);
 };
