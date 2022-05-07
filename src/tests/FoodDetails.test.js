@@ -9,15 +9,15 @@ const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 const timeDelay = 2000;
 const aquamarineImgs = 9;
 
-describe('Teste da página de detalhes de bebidas ', () => {
+describe('Teste da página de detalhes de comidas ', () => {
   it('Serão validados os componentes.', async () => {
     await act(async () => {
-      renderWithBrowser(<App />).history.push('/drinks/178319');
+      renderWithBrowser(<App />).history.push('/foods/52771');
     });
     await act(async () => {
       await delay(timeDelay);
     });
-    expect(screen.getByText(/aquamarine/i)).toBeInTheDocument();
+    expect(screen.getByText(/arrabiata/i)).toBeInTheDocument();
     const images = screen.getAllByRole('img');
     expect(images.length).toBe(aquamarineImgs);
 
@@ -30,6 +30,6 @@ describe('Teste da página de detalhes de bebidas ', () => {
       fireEvent.click(startBtn);
     });
     console.log(window.location.pathname);
-    expect(window.location.pathname).toBe('/drinks/178319/in-progress');
+    expect(window.location.pathname).toBe('/foods/52771/in-progress');
   });
 });
