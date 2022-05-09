@@ -2,13 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-
 import RecipesContext from '../context/RecipesContext';
 import ExplorerIconDrink from '../images/explore2.svg';
 import { fetchRandomFoods } from '../services/fetchRandomRecipe';
-import { fetchRandomFoods } from '../services/fetchRandomRecipe';
-import RecipesContext from '../context/RecipesContext';
-
 
 function ExploreFoods() {
   const history = useHistory();
@@ -31,12 +27,10 @@ function ExploreFoods() {
   return (
     <>
       <Header pageName="Explore Foods" showProfileImg="true" />
-      <main>
+      <main className="flex flex-wrap w-screen justify-center h-24 items-center">
         <button
-
           className="font-2xl bg-darkblue text-white rounded-xl py-2 px-4 mt-4 opacity-90
-          hover:opacity-100"
-
+          hover:opacity-100 m-10"
           type="button"
           data-testid="explore-by-ingredient"
           onClick={ () => {
@@ -47,10 +41,8 @@ function ExploreFoods() {
           By Ingredient
         </button>
         <button
-
           className="font-2xl bg-darkblue text-white rounded-xl py-2 px-4 mt-4 opacity-90
-          hover:opacity-100"
-
+          hover:opacity-100 m-10"
           type="button"
           data-testid="explore-by-nationality"
           onClick={ () => { history.push('foods/nationalities'); } }
@@ -58,17 +50,14 @@ function ExploreFoods() {
           By Nationality
         </button>
         <button
-
           className="font-2xl bg-darkblue text-white rounded-xl py-2 px-4 mt-4 opacity-90
-          hover:opacity-100"
-
+          hover:opacity-100 m-10"
           type="button"
           data-testid="explore-surprise"
           onClick={ () => handleSurprise() }
         >
           Surprise me!
         </button>
-
         <img
           className="wy-50"
           src={ ExplorerIconDrink }
