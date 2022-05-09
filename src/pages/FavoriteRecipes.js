@@ -52,36 +52,40 @@ export default function FavoriteRecipes() {
         className="flex flex-row items-center justify-between m-2 mx-2
                   rounded-xl shadow-md w-full text-center"
       >
-        <button
-          className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
-          data-testid="filter-by-all-btn"
-          type="button"
-          value="all"
-          onClick={ handleCategoryChange }
-        >
-          All
-        </button>
-        <button
-          className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
-          data-testid="filter-by-food-btn"
-          type="button"
-          value="food"
-          onClick={ handleCategoryChange }
-        >
-          Food
-        </button>
-        <button
-          className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
-          data-testid="filter-by-drink-btn"
-          type="button"
-          value="drink"
-          onClick={ handleCategoryChange }
-        >
-          Drinks
-        </button>
+        <div className="grid grid-cols-3 gap-2 mx-2 mt-3 mb-2">
+
+          <button
+            className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
+            data-testid="filter-by-all-btn"
+            type="button"
+            value="all"
+            onClick={ handleCategoryChange }
+          >
+            All
+          </button>
+          <button
+            className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
+            data-testid="filter-by-food-btn"
+            type="button"
+            value="food"
+            onClick={ handleCategoryChange }
+          >
+            Food
+          </button>
+          <button
+            className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
+            data-testid="filter-by-drink-btn"
+            type="button"
+            value="drink"
+            onClick={ handleCategoryChange }
+          >
+            Drinks
+          </button>
+        </div>
       </div>
       <div
-        className="grid grid-cols-3 gap-2 mx-2 mt-3 mb-2"
+        className="flex flex-row items-center justify-between m-2 mx-2
+        rounded-xl shadow-md"
       >
 
         {
@@ -97,13 +101,14 @@ export default function FavoriteRecipes() {
                   onClick={ pushToDetails }
                 >
                   <img
+                    className="rounded-l-xl"
                     alt="Card Receita"
                     name={ `./${recipe.type}s/${recipe.id}` }
                     data-testid={ `${index}-horizontal-image` }
                     src={ recipe.image }
                   />
                 </button>
-                <div>
+                <div className="w-full text-center">
                   <h3
                     data-testid={ `${index}-horizontal-top-text` }
                   >
@@ -133,6 +138,7 @@ export default function FavoriteRecipes() {
                     }
                   </button>
                   <button
+                    className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
                     type="button"
                     data-testid={ `${index}-horizontal-favorite-btn` }
                     src={ blackHeartIcon }

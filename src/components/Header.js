@@ -14,7 +14,7 @@ function Header({ pageName, showSearchBar, showProfileImg }) {
   return (
     <>
       <header
-        className="flex justify-between px-8 py-3 bg-orange text-white"
+        className="flex justify-between align-center px-8 py-3 bg-orange text-white"
       >
         {showProfileImg && (
           <button
@@ -29,7 +29,7 @@ function Header({ pageName, showSearchBar, showProfileImg }) {
             />
           </button>
         )}
-        <h2 className="text-2xl font-bold" data-testid="page-title">
+        <h2 className="text-md font-bold" data-testid="page-title">
           { pageName }
         </h2>
         {

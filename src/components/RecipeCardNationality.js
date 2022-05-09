@@ -30,9 +30,8 @@ function RecipeCardNationality({ meals }) {
               } }
             >
               <div
-                className="flex flex-row items-center justify-between m-2 mx-4
-                border-darkblue rounded-lg
-                border-2"
+                className="flex flex-row items-center justify-between m-2 mx-2
+                rounded-xl shadow-md"
                 data-testid={ `${index}-recipe-card` }
               >
                 <img
@@ -40,7 +39,7 @@ function RecipeCardNationality({ meals }) {
                   data-testid={ `${index}-card-img` }
                   src={ recipe.strMealThumb }
                   alt="Food"
-                  style={ { maxWidth: '40%' } }
+                  style={ { maxWidth: '50%' } }
                 />
                 <div className="w-full text-center">
                   <h2

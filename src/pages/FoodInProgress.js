@@ -4,12 +4,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 import {
-  checkBoxStyles,
-  checkStyle,
-  getCheckedsMeals,
-  handleChangeOut,
-  handleIngredientsMeasuresData,
-  isHandleFavoriteFunction,
+    checkBoxStyles,
+    checkStyle,
+    getCheckedsMeals,
+    handleChangeOut,
+    handleIngredientsMeasuresData,
+    isHandleFavoriteFunction
 } from '../functions/Handles';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import ShareIcon from '../images/shareIcon.svg';
@@ -138,7 +138,7 @@ function FoodInProgress() {
             >
               {recipeData.strCategory}
             </h2>
-            <ul className="text-right mr-5 text-xl">
+            <ul className="text-right mr-5 text-xl bg-orange">
               {
                 ingredients.map((el, index) => (
                   <li

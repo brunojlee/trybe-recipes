@@ -35,8 +35,10 @@ export default function DoneRecipes() {
   return (
     <>
       <Header pageName="Done Recipes" showProfileImg="true" />
-      <div>
+      <div className="grid grid-cols-3 gap-2 mx-2 mt-3 mb-2">
         <button
+          className="bg-darkblue text-white rounded font-semibold
+          h-10 text-center"
           data-testid="filter-by-all-btn"
           type="button"
           value="all"
@@ -45,6 +47,8 @@ export default function DoneRecipes() {
           All
         </button>
         <button
+          className="bg-darkblue text-white rounded font-semibold
+          h-10 text-center"
           data-testid="filter-by-food-btn"
           type="button"
           value="food"
@@ -53,6 +57,8 @@ export default function DoneRecipes() {
           Food
         </button>
         <button
+          className="bg-darkblue text-white rounded font-semibold
+          h-10 text-center"
           data-testid="filter-by-drink-btn"
           type="button"
           value="drink"
