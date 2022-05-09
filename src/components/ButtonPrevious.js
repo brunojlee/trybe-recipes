@@ -9,7 +9,7 @@ function ButtonPrevious() {
     <button
       type="button"
       onClick={ goBack }
-      className="bg-darkblue text-white m-2 py-1 px-4 rounded"
+      className="bg-darkblue text-white mx-2 my-4 py-1 px-4 rounded"
     >
       <svg
         className="fill-white"

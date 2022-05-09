@@ -36,7 +36,11 @@ export default function DoneRecipes() {
     <>
       <Header pageName="Done Recipes" showProfileImg="true" />
       <div>
+
+
+        <div className="flex flex-wrap w-screen justify-center h-24 items-center">
         <button
+          className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
           data-testid="filter-by-all-btn"
           type="button"
           value="all"
@@ -45,6 +49,7 @@ export default function DoneRecipes() {
           All
         </button>
         <button
+          className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
           data-testid="filter-by-food-btn"
           type="button"
           value="food"
@@ -53,6 +58,7 @@ export default function DoneRecipes() {
           Food
         </button>
         <button
+          className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
           data-testid="filter-by-drink-btn"
           type="button"
           value="drink"
@@ -60,6 +66,7 @@ export default function DoneRecipes() {
         >
           Drinks
         </button>
+
 
         <div>
           {

@@ -9,7 +9,7 @@ import ShareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import fetchDrinksId from '../services/fetchDrinksId';
 import fetchMealsRecommendations from '../services/fetchMealsRecommendations';
-import styles from '../styles/RecipeDetailsPage.module.css';
+// import styles from '../styles/RecipeDetailsPage.module.css';
 
 function progressTestOut(recipeId) {
   return () => {
@@ -54,15 +54,8 @@ function DrinkDetails() {
   const history = useHistory();
 
   const {
-    ingredients,
-    setIngredients,
-    measures,
-    setMeasures,
-    loading,
-    setLoading,
-    favoriteRecipes,
-    setFavoriteRecipes,
-  } = useContext(RecipesContext);
+    ingredients, setIngredients, measures, setMeasures, loading,
+    setLoading, favoriteRecipes, setFavoriteRecipes } = useContext(RecipesContext);
 
   const handleShare = async () => {
     const recipeURL = window.location.pathname;
@@ -129,9 +122,7 @@ function DrinkDetails() {
     setLoading(true);
     history.push(`/drinks/${recipeId}/in-progress`);
   };
-
   const progressTest = progressTestOut(recipeId);
-
   return (
     <>
       <h1
@@ -143,67 +134,65 @@ function DrinkDetails() {
       {
         !loading && (
           <>
-            <ButtonPrevious />
-            <h2
-              className="text-center py-4 text-2xl font-bold"
-              data-testid="recipe-title"
-            >
-              {recipeData.strDrink}
-            </h2>
-            <img
-              className="mx-auto rounded"
-              data-testid="recipe-photo"
-              src={ recipeData.strDrinkThumb }
-              alt="Drink"
-            />
-            <button
-              type="button"
-              data-testid="share-btn"
-              src={ ShareIcon }
-              onClick={ () => handleShare() }
-            >
+            <div className="bg-grey1 pb-8 border-b-4 border-darkblue">
+              <ButtonPrevious />
+              <h2
+                className="text-center text-3xl font-bold"
+                data-testid="recipe-title"
+              >
+                {recipeData.strDrink}
+              </h2>
+              <p
+                className="text-center text-xl px-2 mb-4 mx-auto"
+                data-testid="recipe-category"
+              >
+                {recipeData.strAlcoholic}
+              </p>
+              <img
+                className="mx-auto rounded"
+                data-testid="recipe-photo"
+                src={ recipeData.strDrinkThumb }
+                style={ { maxWidth: '60%' } }
+                alt="Drink"
+              />
+            </div>
+            <div className="flex flex-row mx-auto justify-center m-4">
+              <button
+                className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
+                type="button"
+                data-testid="share-btn"
+                src={ ShareIcon }
+                onClick={ () => handleShare() }
+              >
+                {
+                  linkCopied ? 'Link copied!' : <img src={ ShareIcon } alt="Share" />
+                }
+              </button>
               {
-                linkCopied ? 'Link copied!' : <img src={ ShareIcon } alt="Share" />
+                favoriteRecipes.find((recipe) => recipe.id === recipeId) ? (
+                  <button
+                    className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
+                    type="button"
+                    data-testid="favorite-btn"
+                    src={ blackHeartIcon }
+                    onClick={ () => handleFavorite() }
+                  >
+                    <img src={ blackHeartIcon } alt="isFavorite" />
+                  </button>
+                ) : (
+                  <button
+                    className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
+                    type="button"
+                    data-testid="favorite-btn"
+                    src={ whiteHeartIcon }
+                    onClick={ () => handleFavorite() }
+                  >
+                    <img src={ whiteHeartIcon } alt="isNotFavorite" />
+                  </button>
+                )
               }
-            </button>
-            {
-              favoriteRecipes.find((recipe) => recipe.id === recipeId) ? (
-                <button
-                  type="button"
-                  data-testid="favorite-btn"
-                  src={ blackHeartIcon }
-                  onClick={ () => handleFavorite() }
-                >
-                  <img src={ blackHeartIcon } alt="isFavorite" />
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  data-testid="favorite-btn"
-                  src={ whiteHeartIcon }
-                  onClick={ () => handleFavorite() }
-                >
-                  <img src={ whiteHeartIcon } alt="isNotFavorite" />
-                </button>
-              )
-            }
-            <span
-              data-testid="recipe-category"
-            >
-              {recipeData.strAlcoholic}
-            </span>
-            <iframe
-              title="video"
-              width="320"
-              height="240"
-              src={
-                recipeData.strVideo ? recipeData.strVideo
-                  .replace('watch?v=', 'embed/') : ''
-              }
-              frameBorder="0"
-              allowFullScreen
-            />
-            <ul>
+            </div>
+            <ul className="text-start mx-12 text-xl mt-4">
               {
                 ingredients.map((el, index) => (
                   <li
@@ -215,14 +204,22 @@ function DrinkDetails() {
                 ))
               }
             </ul>
-            <span data-testid="instructions">
+            <p
+              data-testid="instructions"
+              className="mt-4 mx-4 text-justify"
+            >
               {recipeData.strInstructions}
-            </span>
-            <SwiperFoods
-              mealsRecommendations={ mealsRecommendations }
-            />
+            </p>
+            <div className="pl-4 py-6 mb-8">
+              <h2 className="my-4 text-center text-xl font-bold">
+                Recomendations
+              </h2>
+              <SwiperFoods mealsRecommendations={ mealsRecommendations } />
+            </div>
             <button
-              className={ `${styles['start-recipe-btn']}` }
+              className="fixed bottom-0
+              bg-darkblue text-white
+              p-1 rounded-lg font-bold left-1/4 w-48"
               type="button"
               data-testid="start-recipe-btn"
               onClick={ goProgress }

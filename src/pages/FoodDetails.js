@@ -9,7 +9,7 @@ import ShareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import fetchDrinksRecommendations from '../services/fetchDrinksRecommendations';
 import fetchFoodsId from '../services/fetchFoodsId';
-import styles from '../styles/RecipeDetailsPage.module.css';
+// import styles from '../styles/RecipeDetailsPage.module.css';
 
 function progressTestOut(recipeId) {
   return () => {
@@ -113,6 +113,7 @@ function FoodDetails() {
     history.push(`/foods/${recipeId}/in-progress`);
   };
   const progressTest = progressTestOut(recipeId);
+
   return (
     <>
       <h1
@@ -124,22 +125,32 @@ function FoodDetails() {
       {
         !loading && (
           <>
-            <ButtonPrevious />
-            <h2
-              className="text-center py-4 text-2xl font-bold"
-              data-testid="recipe-title"
-            >
-              {recipeData.strMeal}
-            </h2>
-            <img
-              className="mx-auto rounded"
-              data-testid="recipe-photo"
-              src={ recipeData.strMealThumb }
-              style={ { maxWidth: '60%' } }
-              alt="Food"
-            />
+            <div className="bg-grey1 pb-8 border-b-4 border-darkblue">
+              <ButtonPrevious />
+              <h2
+                className="text-center text-3xl font-bold"
+                data-testid="recipe-title"
+              >
+                {recipeData.strMeal}
+              </h2>
+              <p
+                className="text-center text-xl px-2 mb-4 mx-auto"
+                data-testid="recipe-category"
+              >
+                {recipeData.strCategory}
+              </p>
+              <img
+                className="mx-auto rounded"
+                data-testid="recipe-photo"
+                src={ recipeData.strMealThumb }
+                style={ { maxWidth: '60%' } }
+                alt="Food"
+              />
+
+            </div>
             <div className="flex flex-row mx-auto justify-center m-4">
               <button
+                className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
                 type="button"
                 data-testid="share-btn"
                 src={ ShareIcon }
@@ -152,6 +163,7 @@ function FoodDetails() {
               {
                 favoriteRecipes.find((recipe) => recipe.id === recipeId) ? (
                   <button
+                    className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
                     type="button"
                     data-testid="favorite-btn"
                     src={ blackHeartIcon }
@@ -161,6 +173,7 @@ function FoodDetails() {
                   </button>
                 ) : (
                   <button
+                    className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
                     type="button"
                     data-testid="favorite-btn"
                     src={ whiteHeartIcon }
@@ -171,13 +184,6 @@ function FoodDetails() {
                 )
               }
             </div>
-            <h3
-              className="w-56 border-2 border-black text-center text-xl px-2
-              py-1 my-4 mx-auto rounded-xl"
-              data-testid="recipe-category"
-            >
-              {recipeData.strCategory}
-            </h3>
             <iframe
               className="mx-auto"
               title="video"
@@ -191,7 +197,7 @@ function FoodDetails() {
               allowFullScreen
               data-testid="video"
             />
-            <ul className="text-start mx-12 text-xl">
+            <ul className="text-start mx-12 text-xl mt-4">
               {
                 ingredients.map((el, index) => (
                   <li
@@ -203,15 +209,22 @@ function FoodDetails() {
                 ))
               }
             </ul>
-            <span data-testid="instructions">
+            <p
+              data-testid="instructions"
+              className="mt-4 mx-4 text-justify"
+            >
               {recipeData.strInstructions}
-            </span>
-            {/* <p
-              className="text-center my-4 text-xl font-bold text-darkblue"
-            /> */}
-            <SwiperDrinks drinksRecommendations={ drinksRecommendations } />
+            </p>
+            <div className="pl-4 py-6 mb-8">
+              <h2 className="my-4 text-center text-xl font-bold">
+                Recomendations
+              </h2>
+              <SwiperDrinks drinksRecommendations={ drinksRecommendations } />
+            </div>
             <button
-              className={ `${styles['start-recipe-btn']}` }
+              className="fixed bottom-0
+              bg-darkblue text-white
+              p-1 rounded-lg font-bold left-1/4 w-48"
               type="button"
               data-testid="start-recipe-btn"
               onClick={ goProgress }
