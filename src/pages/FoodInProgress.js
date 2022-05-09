@@ -118,7 +118,7 @@ function FoodInProgress() {
     <>
       <h1
         className="text-center bg-orange py-4 text-2xl font-bold border-b-4
-        border-darkblue"
+        border-darkblue text-white"
         data-testid="recipe-title"
       >
         Food in Progress Page

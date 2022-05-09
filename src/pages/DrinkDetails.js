@@ -124,13 +124,7 @@ function DrinkDetails() {
   };
   const progressTest = progressTestOut(recipeId);
   return (
-    <>
-      <h1
-        className="text-center bg-orange py-4 text-2xl font-bold border-b-4
-        border-darkblue"
-      >
-        Drink Details Page
-      </h1>
+    <div>
       {
         !loading && (
           <>
@@ -216,22 +210,23 @@ function DrinkDetails() {
               </h2>
               <SwiperFoods mealsRecommendations={ mealsRecommendations } />
             </div>
-            <button
-              className="fixed bottom-0
-              bg-darkblue text-white
-              p-1 rounded-lg font-bold left-1/4 w-48"
-              type="button"
-              data-testid="start-recipe-btn"
-              onClick={ goProgress }
-            >
-              {
-                progressTest() ? 'Continue Recipe' : 'Start Recipe'
-              }
-            </button>
+            <div className="w-full flex justify-center mb-8">
+              <button
+                className="bg-darkblue text-white
+                p-1 rounded-lg font-bold left-1/4 w-48"
+                type="button"
+                data-testid="start-recipe-btn"
+                onClick={ goProgress }
+              >
+                {
+                  progressTest() ? 'Continue Recipe' : 'Start Recipe'
+                }
+              </button>
+            </div>
           </>
         )
       }
-    </>
+    </div>
   );
 }
 

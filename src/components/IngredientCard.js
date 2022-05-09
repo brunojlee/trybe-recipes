@@ -18,7 +18,12 @@ function IngredientCard({ drinks, meals, index }) {
             history.push('/drinks');
           } }
         >
-          <div data-testid={ `${index}-ingredient-card` } key={ index }>
+          <div
+            className="flex flex-row items-center justify-between m-2 mx-2
+            rounded-xl shadow-md"
+            data-testid={ `${index}-ingredient-card` }
+            key={ index }
+          >
             <img
               className="rounded-l"
               data-testid={ `${index}-card-img` }

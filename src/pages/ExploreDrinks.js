@@ -27,7 +27,7 @@ function ExploreDrinks() {
   return (
     <>
       <Header pageName="Explore Drinks" showProfileImg="true" />
-      <main>
+      <main className="flex flex-wrap w-screen justify-center h-24 items-center">
         <button
           className="font-bold bg-darkblue font-3xl text-white
             rounded-xl py-2 px-4 mt-4 opacity-90

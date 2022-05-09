@@ -25,7 +25,7 @@ export default function FoodsIngredients() {
   return (
     <>
       <Header pageName="Explore Ingredients" showProfileImg="true" />
-      <main>
+      <main className="mt-1 mb-20">
         {
           (!loading && ingredientsList.length > 0) && (
             ingredientsList.map((ingredient, index) => (

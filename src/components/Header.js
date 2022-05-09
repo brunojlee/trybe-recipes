@@ -14,8 +14,7 @@ function Header({ pageName, showSearchBar, showProfileImg }) {
   return (
     <>
       <header
-        className="flex justify-between px-8 py-6 bg-orange
-        border-b-4 border-darkblue text-white"
+        className="flex justify-between px-8 py-3 bg-orange text-white"
       >
         {showProfileImg && (
           <button

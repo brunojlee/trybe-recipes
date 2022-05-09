@@ -65,9 +65,10 @@ export default function Drinks() {
         {
           !loading && (
             <>
-              <div className="flex flex-wrap w-screen justify-center h-24 items-center">
+              <div className="grid grid-cols-3 gap-2 mx-2 mt-3 mb-2">
                 <button
-                  className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
+                  className="bg-darkblue text-white rounded font-semibold
+                  h-12 text-center"
                   type="button"
                   data-testid="All-category-filter"
                   onClick={ () => {
@@ -80,7 +81,8 @@ export default function Drinks() {
                 {drinksCategory.drinks
                 && drinksCategory.drinks.slice(0, FIVE).map((category, index) => (
                   <button
-                    className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
+                    className="bg-darkblue text-white rounded font-semibold
+                    h-12 text-center break-words"
                     key={ index }
                     type="button"
                     data-testid={ `${category.strCategory}-category-filter` }
