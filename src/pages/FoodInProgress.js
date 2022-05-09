@@ -110,7 +110,7 @@ function FoodInProgress() {
   }, [isChecked]);
 
   const finishRecipe = () => {
-    saveDoneRecipe(recipeId, finishedRecipeInfo);
+    saveDoneRecipe(finishedRecipeInfo);
     history.push('/done-recipes');
   };
 

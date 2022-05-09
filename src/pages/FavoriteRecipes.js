@@ -48,9 +48,14 @@ export default function FavoriteRecipes() {
   return (
     <>
       <Header pageName="Favorite Recipes" showProfileImg="true" />
+
       <div className="flex flex-wrap w-screen justify-center h-24 items-center">
         <button
           className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
+
+      <div>
+        <button
+
           data-testid="filter-by-all-btn"
           type="button"
           value="all"
@@ -59,7 +64,9 @@ export default function FavoriteRecipes() {
           All
         </button>
         <button
+
           className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
+
           data-testid="filter-by-food-btn"
           type="button"
           value="food"
@@ -68,7 +75,9 @@ export default function FavoriteRecipes() {
           Food
         </button>
         <button
+
           className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
+
           data-testid="filter-by-drink-btn"
           type="button"
           value="drink"

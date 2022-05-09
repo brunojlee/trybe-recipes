@@ -8,6 +8,7 @@ import {
   fetchFilterMealsByCategory,
   fetchMealsCategory,
 } from '../services/fetchCategory';
+import fetchFoods from '../services/fetchFoods';
 
 if (!localStorage.getItem('inProgressRecipes')) {
   localStorage.setItem('inProgressRecipes', JSON.stringify({ meals: {}, cocktails: {} }));
@@ -20,14 +21,22 @@ export default function Foods() {
     setLoading } = useContext(RecipesContext);
 
   const [mealsCategory, setMealsCategory] = useState('');
-  const [categorySelected, setCategorySelected] = useState('All');
-
+  const [categorySelected, setCategorySelected] = useState('');
+  const watchUrl = localStorage.getItem('ingredient')
+    ? localStorage.getItem('ingredient') : '';
   const TWELVE = 12;
   const FIVE = 5;
 
   useEffect(() => {
     const handleSearchFetch = async () => {
-      await setMealsCategory(await fetchMealsCategory());
+      setMealsCategory(await fetchMealsCategory());
+      if (watchUrl.length > 0) {
+        await setSearchResults(await fetchFoods('ingredient', watchUrl));
+        localStorage.setItem('ingredient', '');
+        setLoading(false);
+      } else {
+        setCategorySelected('All');
+      }
     };
     handleSearchFetch();
   }, []);
@@ -35,17 +44,17 @@ export default function Foods() {
   useEffect(() => {
     const handleFetchCategory = async () => {
       if (categorySelected) {
-        const teste = await fetchFilterMealsByCategory(categorySelected);
-        await setSearchResults(teste);
+        const filterMealsByCategory = await fetchFilterMealsByCategory(categorySelected);
+        await setSearchResults(filterMealsByCategory);
         setLoading(false);
       }
     };
     handleFetchCategory();
   }, [categorySelected]);
 
-  const handleCategory = async (category) => {
+  const handleCategory = (category) => {
     setLoading(true);
-    await setCategorySelected(category);
+    setCategorySelected(category);
   };
 
   return (
@@ -60,7 +69,10 @@ export default function Foods() {
                   className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
                   type="button"
                   data-testid="All-category-filter"
-                  onClick={ () => handleCategory('All') }
+                  onClick={ () => {
+                    handleCategory('All');
+                    setLoading(false);
+                  } }
                 >
                   All
                 </button>
