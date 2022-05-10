@@ -100,7 +100,7 @@ function SearchBar() {
           htmlFor="ingredient"
         >
           <input
-            className="form-check-input rounded-full h-4 w-4"
+            className="form-check-input rounded-full h-4 w-4 accent-orange"
             data-testid="ingredient-search-radio"
             name="radios"
             value="ingredient"
@@ -114,7 +114,7 @@ function SearchBar() {
           htmlFor="name"
         >
           <input
-            className="form-check-input rounded-full h-4 w-4"
+            className="form-check-input rounded-full h-4 w-4 accent-orange"
             data-testid="name-search-radio"
             name="radios"
             value="name"
@@ -128,7 +128,7 @@ function SearchBar() {
           htmlFor="first-letter"
         >
           <input
-            className="form-check-input rounded-full h-4 w-4"
+            className="form-check-input rounded-full h-4 w-4 accent-orange"
             data-testid="first-letter-search-radio"
             name="radios"
             value="first-letter"
