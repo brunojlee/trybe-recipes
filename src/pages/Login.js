@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 import backgroundBlob from '../images/blob.svg';
 import logoIcon from '../images/logo.svg';
+import styles from '../styles/Login.module.css';
 
 function Login() {
   const history = useHistory();
@@ -48,10 +49,8 @@ function Login() {
   }, [userEmail, password]);
 
   return (
-    <div
-      className="h-screen flex flex-col justify-center items-center w-screen"
-    >
-      <div>
+    <div>
+      <div className="h-screen flex flex-col justify-center items-center w-screen">
         <img
           className="w-70"
           src={ logoIcon }
@@ -105,7 +104,7 @@ function Login() {
           src={ backgroundBlob }
           alt="wave background"
         />
-        <div className="w-full h-56 bg-orange" />
+        <div className={ `${styles['background-wave']} w-full bg-orange ` } />
       </div>
     </div>
   );
