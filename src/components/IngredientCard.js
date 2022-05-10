@@ -9,7 +9,10 @@ function IngredientCard({ drinks, meals, index }) {
 
   if (drinks) {
     return (
-      <div>
+      <div
+        className="flex mx-2 mt-3
+        rounded-xl shadow-md"
+      >
         <button
           type="button"
           onClick={ () => {
@@ -18,22 +21,16 @@ function IngredientCard({ drinks, meals, index }) {
             history.push('/drinks');
           } }
         >
-          <div
-            className="flex flex-row items-center justify-between m-2 mx-2
-            rounded-xl shadow-md"
-            data-testid={ `${index}-ingredient-card` }
-            key={ index }
-          >
+          <div data-testid={ `${index}-ingredient-card` } key={ index }>
             <img
-              className="rounded-l"
+              className="rounded-l-xl w-56 ml-3"
               data-testid={ `${index}-card-img` }
               src={ `https://www.thecocktaildb.com/images/ingredients/${drinks.strIngredient1}-Small.png` }
               alt="Drink"
-              style={ { maxWidth: '40%' } }
             />
-            <div className="w-full text-center">
+            <div className="flex w-full items-center justify-center">
               <h2
-                className="text-2xl text-darkblue"
+                className="font-semibold text-xl"
                 data-testid={ `${index}-card-name` }
               >
                 { drinks.strIngredient1 }
@@ -45,7 +42,10 @@ function IngredientCard({ drinks, meals, index }) {
     );
   }
   return (
-    <div>
+    <div
+      className="flex mx-2 mt-3
+      rounded-xl shadow-md"
+    >
       <button
         type="button"
         onClick={ () => {
@@ -56,22 +56,21 @@ function IngredientCard({ drinks, meals, index }) {
       >
         <div data-testid={ `${index}-ingredient-card` } key={ index }>
           <img
-            className="rounded-l"
+            className="rounded-l-xl w-56 ml-3"
             data-testid={ `${index}-card-img` }
             src={ `https://www.themealdb.com/images/ingredients/${meals.strIngredient}-Small.png` }
-            alt="Meal"
-            style={ { maxWidth: '40%' } }
+            alt="al"
           />
-          <div className="w-full text-center">
-            <h2
-              className="text-2xl text-darkblue"
-              data-testid={ `${index}-card-name` }
-            >
-              { meals.strIngredient }
-            </h2>
-          </div>
         </div>
       </button>
+      <div className="flex w-full items-center justify-center">
+        <h2
+          className="font-semibold text-xl"
+          data-testid={ `${index}-card-name` }
+        >
+          { meals.strIngredient }
+        </h2>
+      </div>
     </div>
   );
 }
