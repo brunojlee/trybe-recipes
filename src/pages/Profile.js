@@ -15,7 +15,7 @@ export default function Profile() {
   };
 
   return (
-    <section className="text-center h-screen">
+    <section className="text-center">
       <Header pageName="Profile" showProfileImg="true" />
       <div className="flex flex-col items-center w-70 mt-4">
         <img

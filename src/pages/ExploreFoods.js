@@ -29,7 +29,7 @@ function ExploreFoods() {
       <Header pageName="Explore Foods" showProfileImg="true" />
       <main className="flex flex-wrap w-screen justify-center h-24 items-center">
         <img
-          className="w-60 mx-auto mt-5 mb-4"
+          className="w-72 mx-auto mt-5 mb-4"
           src={ ExplorerIconDrink }
           alt="Button who shows a wave"
         />
