@@ -45,7 +45,7 @@ function RecipeCard({ drinks, meals }) {
                   />
                   <div className="w-full text-center">
                     <h2
-                      className="text-2xl text-darkblue"
+                      className="text-xl text-darkblue"
                       data-testid={ `${index}-card-name` }
                     >
                       { recipe.strDrink }
@@ -87,7 +87,7 @@ function RecipeCard({ drinks, meals }) {
                 />
                 <div className="w-full text-center">
                   <h2
-                    className="text-2xl text-darkblue"
+                    className="text-xl text-darkblue"
                     data-testid={ `${index}-card-name` }
                   >
                     { recipe.strMeal }
