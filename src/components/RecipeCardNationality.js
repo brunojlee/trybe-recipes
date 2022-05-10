@@ -31,7 +31,7 @@ function RecipeCardNationality({ meals }) {
             >
               <div
                 className="flex flex-row items-center justify-between m-2 mx-2
-                rounded-xl shadow-md"
+                rounded-xl shadow"
                 data-testid={ `${index}-recipe-card` }
               >
                 <img
@@ -43,7 +43,7 @@ function RecipeCardNationality({ meals }) {
                 />
                 <div className="w-full text-center">
                   <h2
-                    className="text-2xl text-darkblue"
+                    className="text-2xl font-bold"
                     data-testid={ `${index}-card-name` }
                   >
                     { recipe.strMeal }

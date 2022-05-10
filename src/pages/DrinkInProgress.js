@@ -19,6 +19,7 @@ import {
   saveCheckedIngredientsDrink,
   saveDoneRecipe,
 } from '../services/localStorage';
+import formatDate from '../helpers/formatDate';
 
 function DrinkInProgress() {
   const regexNumbers = /([0-9])\w+/;
@@ -41,9 +42,7 @@ function DrinkInProgress() {
     setFavoriteRecipes,
   } = useContext(RecipesContext);
 
-  const timeElapsed = Date.now();
-
-  const today = new Date(timeElapsed);
+  const today = formatDate();
 
   const recipeInfo = {
     id: recipeData.idDrink,
@@ -120,7 +119,7 @@ function DrinkInProgress() {
     <>
       <h1
         className="text-center bg-orange py-4 text-2xl font-bold border-b-4
-        border-darkblue"
+        border-darkblue text-white"
         data-testid="recipe-title"
       >
         Drink in Progress Page
@@ -139,7 +138,7 @@ function DrinkInProgress() {
           >
             {recipeData.strAlcoholic}
           </h2>
-          <ul className="text-right mr-5 text-xl">
+          <ul className="text-right p-2 rounded-xl mx-5 text-xl bg-grey1">
             {
               ingredients.map((el, index) => (
                 <li
