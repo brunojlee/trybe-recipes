@@ -29,10 +29,11 @@ function RecipeCard({ drinks, meals }) {
                   setLoading(true);
                   history.push(`./drinks/${recipe.idDrink}`);
                 } }
+                className="flex flex-col mx-2 mt-3
+                rounded-xl shadow-md"
               >
                 <div
-                  className="flex flex-row items-center justify-between m-2 mx-2
-                  rounded-xl shadow-md"
+                  className="flex flex-row items-center justify-between"
                   data-testid={ `${index}-recipe-card` }
                 >
                   <img
@@ -40,7 +41,7 @@ function RecipeCard({ drinks, meals }) {
                     data-testid={ `${index}-card-img` }
                     src={ recipe.strDrinkThumb }
                     alt="Drink"
-                    style={ { maxWidth: '50%' } }
+                    style={ { width: '50%' } }
                   />
                   <div className="w-full text-center">
                     <h2
@@ -70,10 +71,11 @@ function RecipeCard({ drinks, meals }) {
                 setLoading(true);
                 history.push(`./foods/${recipe.idMeal}`);
               } }
+              className="flex flex-col mx-2 mt-3
+              rounded-xl shadow-md"
             >
               <div
-                className="flex flex-row items-center justify-between m-2 mx-2
-                rounded-xl shadow-md"
+                className="flex flex-row items-center justify-between"
                 data-testid={ `${index}-recipe-card` }
               >
                 <img
@@ -81,7 +83,7 @@ function RecipeCard({ drinks, meals }) {
                   data-testid={ `${index}-card-img` }
                   src={ recipe.strMealThumb }
                   alt="Food"
-                  style={ { maxWidth: '50%' } }
+                  style={ { width: '50%' } }
                 />
                 <div className="w-full text-center">
                   <h2
@@ -90,7 +92,6 @@ function RecipeCard({ drinks, meals }) {
                   >
                     { recipe.strMeal }
                   </h2>
-
                 </div>
               </div>
             </button>

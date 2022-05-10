@@ -79,21 +79,28 @@ function SearchBar() {
   }, [searchResults]);
 
   return (
-    <form className="bg-grey1 border-b-4 border-darkblue text-white text-center">
-      <input
-        className="text-black mt-4 mb-2 py-1 px-2 rounded-xl border-2 border-darkblue"
-        type="text"
-        data-testid="search-input"
-        onChange={ handleInputChange }
-        value={ searchBarInput }
-      />
-      <div className="w-screen flex justify-evenly">
+    <form className="bg-orange text-center">
+      <div
+        className="flex flex-col mx-3 mb-3"
+      >
+        <input
+          className="placeholder: pl-[16px]
+          rounded-md  h-10
+          focus:outline-none"
+          placeholder="Search for a recipe..."
+          type="text"
+          data-testid="search-input"
+          onChange={ handleInputChange }
+          value={ searchBarInput }
+        />
+      </div>
+      <div className="flex justify-evenly mx-2">
         <label
-          className="font-bold text-black flex items-center "
+          className="font-medium form-check-label text-white ml-3"
           htmlFor="ingredient"
         >
           <input
-            className="mr-2 checked:after:bg-black"
+            className="form-check-input rounded-full h-4 w-4"
             data-testid="ingredient-search-radio"
             name="radios"
             value="ingredient"
@@ -103,11 +110,11 @@ function SearchBar() {
           Ingredient
         </label>
         <label
-          className="font-bold text-black flex items-center"
+          className="font-medium form-check-label text-white ml-4"
           htmlFor="name"
         >
           <input
-            className="mr-2"
+            className="form-check-input rounded-full h-4 w-4"
             data-testid="name-search-radio"
             name="radios"
             value="name"
@@ -117,11 +124,11 @@ function SearchBar() {
           Name
         </label>
         <label
-          className="font-bold text-black flex items-center"
+          className="font-medium form-check-label text-white ml-4"
           htmlFor="first-letter"
         >
           <input
-            className="mr-2"
+            className="form-check-input rounded-full h-4 w-4"
             data-testid="first-letter-search-radio"
             name="radios"
             value="first-letter"
@@ -132,9 +139,9 @@ function SearchBar() {
         </label>
       </div>
       <button
-        className="font-bold bg-yellow font-3xl text-darkblue
-        rounded-xl py-1 px-4 mb-2 opacity-90
-        hover:opacity-100"
+        className="font-bold bg-white text-black
+        rounded-md py-2 px-5 mt-3 mb-3 opacity-100
+        hover:opacity-90"
         type="button"
         data-testid="exec-search-btn"
         onClick={ () => {
