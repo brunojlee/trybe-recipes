@@ -31,9 +31,9 @@ export default function Profile() {
       </div>
       <div className="flex flex-col mx-4 h-full">
         <button
-          className="font-2xl font-bold
+          className="font-bold
           bg-darkblue text-white rounded-xl py-3 opacity-100
-            hover:opacity-90"
+          hover:opacity-90"
           type="button"
           data-testid="profile-done-btn"
           onClick={ () => { history.push('/done-recipes'); } }
@@ -41,7 +41,7 @@ export default function Profile() {
           Done Recipes
         </button>
         <button
-          className="font-2xl font-bold mt-2
+          className="font-bold mt-2
           bg-darkblue text-white rounded-xl py-3 opacity-100
           hover:opacity-90"
           type="button"
@@ -51,9 +51,9 @@ export default function Profile() {
           Favorite Recipes
         </button>
         <button
-          className="font-2xl font-bold mt-2
+          className="font-bold mt-2
           bg-darkblue text-white rounded-xl py-3 opacity-100
-            hover:opacity-90"
+          hover:opacity-90"
           type="button"
           data-testid="profile-logout-btn"
           onClick={ () => { clearLocalStorage(); } }

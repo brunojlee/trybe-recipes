@@ -16,7 +16,7 @@ export default function Explore() {
           alt="Explorer figure"
         />
         <button
-          className="font-bold bg-darkblue font-3xl text-white
+          className="font-bold bg-darkblue text-white
             rounded-xl py-3 mt-5 opacity-100
           hover:opacity-90"
           type="button"
@@ -26,7 +26,7 @@ export default function Explore() {
           Explore Foods
         </button>
         <button
-          className="font-bold bg-darkblue font-3xl text-white
+          className="font-bold bg-darkblue text-white
             rounded-xl py-3 mt-2 opacity-100
           hover:opacity-90"
           type="button"
