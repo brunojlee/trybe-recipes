@@ -65,7 +65,7 @@ function IngredientCard({ drinks, meals, index }) {
       </button>
       <div className="flex w-full items-center justify-center">
         <h2
-          className="font-semibold text-xl"
+          className="font-semibold text-l px-5"
           data-testid={ `${index}-card-name` }
         >
           { meals.strIngredient }
