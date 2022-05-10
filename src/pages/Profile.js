@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import ProfileImage from '../images/profile3.svg';
 
 export default function Profile() {
   const history = useHistory();
@@ -16,16 +17,23 @@ export default function Profile() {
   return (
     <section className="text-center h-screen">
       <Header pageName="Profile" showProfileImg="true" />
-      <h2
-        className="w-full mx-auto font-bold text-2xl py-8 border-b-2 border-darkblue"
-        data-testid="profile-email"
-      >
-        {userEmail.email}
-      </h2>
-      <div className="flex flex-col pt-24 justify-center my-auto items-center">
+      <div className="flex flex-col items-center w-70 mt-4">
+        <img
+          src={ ProfileImage }
+          alt="Profile figure"
+        />
+        <h2
+          className="w-full mx-auto font-semibold text-2xl py-3"
+          data-testid="profile-email"
+        >
+          {userEmail.email}
+        </h2>
+      </div>
+      <div className="flex flex-col mx-4 h-full">
         <button
-          className="font-2xl bg-darkblue text-white rounded-xl py-2 px-4 mt-4 opacity-90
-            hover:opacity-100"
+          className="font-2xl font-bold
+          bg-darkblue text-white rounded-xl py-3 opacity-100
+            hover:opacity-90"
           type="button"
           data-testid="profile-done-btn"
           onClick={ () => { history.push('/done-recipes'); } }
@@ -33,8 +41,9 @@ export default function Profile() {
           Done Recipes
         </button>
         <button
-          className="font-2xl bg-darkblue text-white rounded-xl py-2 px-4 mt-4 opacity-90
-            hover:opacity-100"
+          className="font-2xl font-bold mt-2
+          bg-darkblue text-white rounded-xl py-3 opacity-100
+          hover:opacity-90"
           type="button"
           data-testid="profile-favorite-btn"
           onClick={ () => { history.push('/favorite-recipes'); } }
@@ -42,8 +51,9 @@ export default function Profile() {
           Favorite Recipes
         </button>
         <button
-          className="font-2xl bg-darkblue text-white rounded-xl py-2 px-4 mt-4 opacity-90
-            hover:opacity-100"
+          className="font-2xl font-bold mt-2
+          bg-darkblue text-white rounded-xl py-3 opacity-100
+            hover:opacity-90"
           type="button"
           data-testid="profile-logout-btn"
           onClick={ () => { clearLocalStorage(); } }
