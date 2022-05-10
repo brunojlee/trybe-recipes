@@ -48,46 +48,36 @@ export default function FavoriteRecipes() {
   return (
     <>
       <Header pageName="Favorite Recipes" showProfileImg="true" />
-      <div
-        className="flex flex-row items-center justify-between m-2 mx-2
-                  rounded-xl shadow-md w-full text-center"
-      >
-        <div className="grid grid-cols-3 gap-2 mx-2 mt-3 mb-2">
-
-          <button
-            className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
-            data-testid="filter-by-all-btn"
-            type="button"
-            value="all"
-            onClick={ handleCategoryChange }
-          >
-            All
-          </button>
-          <button
-            className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
-            data-testid="filter-by-food-btn"
-            type="button"
-            value="food"
-            onClick={ handleCategoryChange }
-          >
-            Food
-          </button>
-          <button
-            className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
-            data-testid="filter-by-drink-btn"
-            type="button"
-            value="drink"
-            onClick={ handleCategoryChange }
-          >
-            Drinks
-          </button>
-        </div>
+      <div className="grid grid-cols-3 gap-1 mx-2 mt-3 mb-3">
+        <button
+          className="font-semibold bg-darkblue text-white py-2 px-4 rounded"
+          data-testid="filter-by-all-btn"
+          type="button"
+          value="all"
+          onClick={ handleCategoryChange }
+        >
+          All
+        </button>
+        <button
+          className="font-semibold bg-darkblue text-white py-2 px-4 rounded"
+          data-testid="filter-by-food-btn"
+          type="button"
+          value="food"
+          onClick={ handleCategoryChange }
+        >
+          Food
+        </button>
+        <button
+          className="font-semibold bg-darkblue text-white py-2 px-4 rounded"
+          data-testid="filter-by-drink-btn"
+          type="button"
+          value="drink"
+          onClick={ handleCategoryChange }
+        >
+          Drinks
+        </button>
       </div>
-      <div
-        className="flex flex-row items-center justify-between m-2 mx-2
-        rounded-xl shadow-md"
-      >
-
+      <div>
         {
           recipes && recipes
             .filter(
@@ -95,10 +85,16 @@ export default function FavoriteRecipes() {
                 selectedCategory !== 'all' ? recipe.type === selectedCategory : recipe),
             )
             .map((recipe, index) => (
-              <div key={ index } id={ `Receita-${recipe.id}` }>
+              <div
+                key={ index }
+                id={ `Receita-${recipe.id}` }
+                className="flex mx-2 mt-3
+                  rounded-xl shadow-md"
+              >
                 <button
                   type="button"
                   onClick={ pushToDetails }
+                  className="flex rounded-xl shadow-md w-80"
                 >
                   <img
                     className="rounded-l-xl"
@@ -108,8 +104,9 @@ export default function FavoriteRecipes() {
                     src={ recipe.image }
                   />
                 </button>
-                <div className="w-full text-center">
+                <div className="flex flex-col w-full text-center">
                   <h3
+                    className="text-start mx-2 text-l mt-3"
                     data-testid={ `${index}-horizontal-top-text` }
                   >
                     {
@@ -123,33 +120,39 @@ export default function FavoriteRecipes() {
                     type="button"
                     onClick={ pushToDetails }
                     name={ `./${recipe.type}s/${recipe.id}` }
+                    className="font-bold text-start mx-2 text-xl mt-3"
                   >
                     {recipe.name}
                   </button>
-                  <button
-                    type="button"
-                    data-testid={ `${index}-horizontal-share-btn` }
-                    src={ ShareIcon }
-                    onClick={ () => handleShare(recipe.type, recipe.id) }
+                  <div
+                    className="grid grid-cols-2 gap-1 mx-2 mt-3 h-16"
                   >
-                    {
-                      linkCopied
-                        ? 'Link copied!' : <img src={ ShareIcon } alt="Share" />
-                    }
-                  </button>
-                  <button
-                    className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
-                    type="button"
-                    data-testid={ `${index}-horizontal-favorite-btn` }
-                    src={ blackHeartIcon }
-                    onClick={ handleFavorite }
-                  >
-                    <img
-                      name={ recipe.id }
+                    <button
+                      type="button"
+                      data-testid={ `${index}-horizontal-share-btn` }
+                      src={ ShareIcon }
+                      onClick={ () => handleShare(recipe.type, recipe.id) }
+                      className="mx-auto"
+                    >
+                      {
+                        linkCopied
+                          ? 'Link copied!' : <img src={ ShareIcon } alt="Share" />
+                      }
+                    </button>
+                    <button
+                      className="mx-auto"
+                      type="button"
+                      data-testid={ `${index}-horizontal-favorite-btn` }
                       src={ blackHeartIcon }
-                      alt="isFavorite"
-                    />
-                  </button>
+                      onClick={ handleFavorite }
+                    >
+                      <img
+                        name={ recipe.id }
+                        src={ blackHeartIcon }
+                        alt="isFavorite"
+                      />
+                    </button>
+                  </div>
                 </div>
               </div>
             ))
