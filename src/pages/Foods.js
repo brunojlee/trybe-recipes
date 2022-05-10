@@ -69,7 +69,7 @@ export default function Foods() {
               >
                 <button
                   className="bg-darkblue text-white rounded font-semibold
-                  h-10 text-center"
+                  h-10 text-center hover:opacity-90"
                   type="button"
                   data-testid="All-category-filter"
                   onClick={ () => {
@@ -83,7 +83,7 @@ export default function Foods() {
                 && mealsCategory.meals.slice(0, FIVE).map((category, index) => (
                   <button
                     className="bg-darkblue text-white rounded font-semibold
-                    h-10 text-center"
+                    h-10 text-center hover:opacity-90"
                     key={ index }
                     type="button"
                     data-testid={ `${category.strCategory}-category-filter` }
