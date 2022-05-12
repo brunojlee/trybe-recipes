@@ -19,6 +19,7 @@ export default function Profile() {
       <Header pageName="Profile" showProfileImg="true" />
       <div className="flex flex-col items-center w-70 mt-4">
         <img
+          className="w-3/5"
           src={ ProfileImage }
           alt="Profile figure"
         />
