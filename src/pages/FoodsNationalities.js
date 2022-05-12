@@ -54,9 +54,9 @@ export default function FoodsNationalities() {
         {
           !loading && (
             <>
-              <div className="flex flex-wrap w-screen justify-center h-24 items-center">
+              <div className="flex justify-center h-12 mt-3 mb-3 mx-2">
                 <select
-                  className="w-full shadow mx-4 p-2 text-lg rounded-lg"
+                  className="w-full shadow p-2 text-lg rounded-lg"
                   value={ categorySelected }
                   data-testid="explore-by-nationality-dropdown"
                   name="areaFilter"
