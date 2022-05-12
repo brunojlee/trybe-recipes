@@ -104,7 +104,7 @@ function Login() {
           src={ backgroundBlob }
           alt="wave background"
         />
-        <div className={ `${styles['background-wave']} w-full bg-orange ` } />
+        <div className={ `${styles['background-wave']} bg-orange ` } />
       </div>
     </div>
   );
