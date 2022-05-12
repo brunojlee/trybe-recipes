@@ -1,7 +1,7 @@
 import copy from 'clipboard-copy';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-// import ButtonPrevious from '../components/ButtonPrevious';
+import ButtonPrevious from '../components/ButtonPrevious';
 import SwiperDrinks from '../components/SwiperDrinks';
 import RecipesContext from '../context/RecipesContext';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -119,6 +119,7 @@ function FoodDetails() {
       {
         !loading && (
           <>
+            <ButtonPrevious />
             <img
               className="mx-auto h-64 min-w-full object-cover"
               data-testid="recipe-photo"
@@ -127,7 +128,6 @@ function FoodDetails() {
             />
             <div className="grid grid-cols-2 gap-2 h-28">
               <div className="flex flex-column justify-center">
-                {/* <ButtonPrevious /> */}
                 <h2
                   className="text-3xl font-bold ml-3"
                   data-testid="recipe-title"

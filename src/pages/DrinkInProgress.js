@@ -2,6 +2,7 @@
 import copy from 'clipboard-copy';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+// import ButtonPrevious from '../components/ButtonPrevious';
 import RecipesContext from '../context/RecipesContext';
 import {
   checkBoxStyles,
@@ -11,6 +12,7 @@ import {
   handleIngredientsMeasuresData,
   isHandleFavoriteFunction,
 } from '../functions/Handles';
+import formatDate from '../helpers/formatDate';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import ShareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
@@ -19,7 +21,6 @@ import {
   saveCheckedIngredientsDrink,
   saveDoneRecipe,
 } from '../services/localStorage';
-import formatDate from '../helpers/formatDate';
 
 function DrinkInProgress() {
   const regexNumbers = /([0-9])\w+/;
@@ -119,6 +120,7 @@ function DrinkInProgress() {
     <div>
       {!loading && (
         <>
+          {/* <ButtonPrevious /> */}
           <img
             className="object-cover h-44 w-screen"
             alt="Foto da receita"
@@ -128,7 +130,6 @@ function DrinkInProgress() {
 
           <div className="grid grid-cols-2 gap-2 h-28">
             <div className="flex flex-column justify-center">
-              {/* <ButtonPrevious /> */}
               <h2
                 className="text-3xl font-bold ml-3"
                 data-testid="recipe-title"

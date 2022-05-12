@@ -9,6 +9,7 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import fetchDrinksId from '../services/fetchDrinksId';
 import fetchMealsRecommendations from '../services/fetchMealsRecommendations';
 // import styles from '../styles/RecipeDetailsPage.module.css';
+import ButtonPrevious from '../components/ButtonPrevious';
 
 function progressTestOut(recipeId) {
   return () => {
@@ -127,6 +128,7 @@ function DrinkDetails() {
       {
         !loading && (
           <>
+            <ButtonPrevious />
             <img
               className="mx-auto h-64 min-w-full object-cover"
               data-testid="recipe-photo"
@@ -135,7 +137,6 @@ function DrinkDetails() {
             />
             <div className="grid grid-cols-2 gap-2 h-28">
               <div className="flex flex-column justify-center">
-                {/* <ButtonPrevious /> */}
                 <h2
                   className="text-3xl font-bold ml-3"
                   data-testid="recipe-title"
