@@ -197,7 +197,7 @@ function FoodDetails() {
             <div className="bg-grey1 flex flex-col mx-4 h-full rounded-xl">
               <p
                 data-testid="instructions"
-                className="mt-4 mx-4 text-justify"
+                className="mt-3 mx-4 text-justify mb-3"
               >
                 {recipeData.strInstructions}
               </p>
