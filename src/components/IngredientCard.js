@@ -21,7 +21,7 @@ function IngredientCard({ drinks, meals, index }) {
             history.push('/drinks');
           } }
         >
-          <div data-testid={ `${index}-ingredient-card` } key={ index }>
+          <div data-testid={ `${index}-ingredient-card` } key={ index } className="flex">
             <img
               className="rounded-l-xl w-56 ml-3"
               data-testid={ `${index}-card-img` }
@@ -30,7 +30,7 @@ function IngredientCard({ drinks, meals, index }) {
             />
             <div className="flex w-full items-center justify-center">
               <h2
-                className="font-semibold text-xl"
+                className="font-semibold text-l px-5"
                 data-testid={ `${index}-card-name` }
               >
                 { drinks.strIngredient1 }
@@ -44,7 +44,7 @@ function IngredientCard({ drinks, meals, index }) {
   return (
     <div
       className="flex mx-2 mt-3
-      rounded-xl shadow-md"
+        rounded-xl shadow-md"
     >
       <button
         type="button"
@@ -54,7 +54,7 @@ function IngredientCard({ drinks, meals, index }) {
           history.push('/foods');
         } }
       >
-        <div data-testid={ `${index}-ingredient-card` } key={ index }>
+        <div data-testid={ `${index}-ingredient-card` } key={ index } className="flex">
           <img
             className="rounded-l-xl w-56 ml-3"
             data-testid={ `${index}-card-img` }

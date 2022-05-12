@@ -33,7 +33,7 @@ export default function DoneRecipes() {
   };
 
   return (
-    <section className="bg-grey2 h-full mb-6">
+    <section className="h-full mb-6">
       <Header pageName="Done Recipes" showProfileImg="true" />
       <div className="grid grid-cols-3 gap-2 mx-2 mt-3 mb-6">
         <button
