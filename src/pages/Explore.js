@@ -11,7 +11,7 @@ export default function Explore() {
       <Header pageName="Explore" showProfileImg="true" />
       <section className="flex flex-col mx-4 h-full">
         <img
-          className="w-72 mx-auto mt-5 mb-4"
+          className="w-4/5 mx-auto mt-5 mb-4"
           src={ ExplorerIcon }
           alt="Explorer figure"
         />
