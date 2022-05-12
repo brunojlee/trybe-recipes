@@ -118,26 +118,24 @@ function FoodDetails() {
     <div>
       {
         !loading && (
-          <div>
-            <div>
-              <img
-                className="mx-auto h-64 min-w-full object-cover"
-                data-testid="recipe-photo"
-                src={ recipeData.strMealThumb }
-                alt="Food"
-              />
-            </div>
+          <>
+            <img
+              className="mx-auto h-64 min-w-full object-cover"
+              data-testid="recipe-photo"
+              src={ recipeData.strMealThumb }
+              alt="Food"
+            />
             <div className="grid grid-cols-2 gap-2 h-28">
-              <div className="flex flex-column items-center justify-center">
+              <div className="flex flex-column justify-center">
                 {/* <ButtonPrevious /> */}
                 <h2
-                  className="text-center text-3xl font-bold"
+                  className="text-3xl font-bold ml-3"
                   data-testid="recipe-title"
                 >
                   {recipeData.strMeal}
                 </h2>
                 <p
-                  className="text-center text-xl px-2 mx-auto"
+                  className="text-xl ml-4"
                   data-testid="recipe-category"
                 >
                   {recipeData.strCategory}
@@ -235,7 +233,7 @@ function FoodDetails() {
                 }
               </button>
             </div>
-          </div>
+          </>
         )
       }
     </div>

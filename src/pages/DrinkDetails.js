@@ -1,7 +1,6 @@
 import copy from 'clipboard-copy';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import ButtonPrevious from '../components/ButtonPrevious';
 import SwiperFoods from '../components/SwiperFoods';
 import RecipesContext from '../context/RecipesContext';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -128,92 +127,98 @@ function DrinkDetails() {
       {
         !loading && (
           <>
-            <div className="bg-grey1 pb-8 border-b-4 border-darkblue">
-              <ButtonPrevious />
-              <h2
-                className="text-center text-3xl font-bold"
-                data-testid="recipe-title"
-              >
-                {recipeData.strDrink}
-              </h2>
-              <p
-                className="text-center text-xl px-2 mb-4 mx-auto"
-                data-testid="recipe-category"
-              >
-                {recipeData.strAlcoholic}
-              </p>
-              <img
-                className="mx-auto rounded"
-                data-testid="recipe-photo"
-                src={ recipeData.strDrinkThumb }
-                style={ { maxWidth: '60%' } }
-                alt="Drink"
-              />
-            </div>
-            <div className="flex flex-row mx-auto justify-center m-4">
-              <button
-                className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
-                type="button"
-                data-testid="share-btn"
-                src={ ShareIcon }
-                onClick={ () => handleShare() }
-              >
+            <img
+              className="mx-auto h-64 min-w-full object-cover"
+              data-testid="recipe-photo"
+              src={ recipeData.strDrinkThumb }
+              alt="Drink"
+            />
+            <div className="grid grid-cols-2 gap-2 h-28">
+              <div className="flex flex-column justify-center">
+                {/* <ButtonPrevious /> */}
+                <h2
+                  className="text-3xl font-bold ml-3"
+                  data-testid="recipe-title"
+                >
+                  {recipeData.strDrink}
+                </h2>
+                <p
+                  className="text-xl ml-4"
+                  data-testid="recipe-category"
+                >
+                  {recipeData.strAlcoholic}
+                </p>
+              </div>
+              <div className="flex justify-content-end mr-3">
+                <button
+                  className="mx-2"
+                  type="button"
+                  data-testid="share-btn"
+                  src={ ShareIcon }
+                  onClick={ () => handleShare() }
+                >
+                  {
+                    linkCopied ? 'Link copied!' : <img src={ ShareIcon } alt="Share" />
+                  }
+                </button>
                 {
-                  linkCopied ? 'Link copied!' : <img src={ ShareIcon } alt="Share" />
+                  favoriteRecipes.find((recipe) => recipe.id === recipeId) ? (
+                    <button
+                      className="mx-2"
+                      type="button"
+                      data-testid="favorite-btn"
+                      src={ blackHeartIcon }
+                      onClick={ () => handleFavorite() }
+                    >
+                      <img src={ blackHeartIcon } alt="isFavorite" />
+                    </button>
+                  ) : (
+                    <button
+                      className="mx-2"
+                      type="button"
+                      data-testid="favorite-btn"
+                      src={ whiteHeartIcon }
+                      onClick={ () => handleFavorite() }
+                    >
+                      <img src={ whiteHeartIcon } alt="isNotFavorite" />
+                    </button>
+                  )
                 }
-              </button>
-              {
-                favoriteRecipes.find((recipe) => recipe.id === recipeId) ? (
-                  <button
-                    className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
-                    type="button"
-                    data-testid="favorite-btn"
-                    src={ blackHeartIcon }
-                    onClick={ () => handleFavorite() }
-                  >
-                    <img src={ blackHeartIcon } alt="isFavorite" />
-                  </button>
-                ) : (
-                  <button
-                    className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
-                    type="button"
-                    data-testid="favorite-btn"
-                    src={ whiteHeartIcon }
-                    onClick={ () => handleFavorite() }
-                  >
-                    <img src={ whiteHeartIcon } alt="isNotFavorite" />
-                  </button>
-                )
-              }
+              </div>
             </div>
-            <ul className="text-start mx-12 text-xl mt-4">
-              {
-                ingredients.map((el, index) => (
-                  <li
-                    key={ index }
-                    data-testid={ `${index}-ingredient-name-and-measure` }
-                  >
-                    {`${el[1]} ${measures[index] ? measures[index][1] : ''}`}
-                  </li>
-                ))
-              }
-            </ul>
-            <p
-              data-testid="instructions"
-              className="mt-4 mx-4 text-justify"
-            >
-              {recipeData.strInstructions}
-            </p>
-            <div className="pl-4 py-6 mb-8">
-              <h2 className="my-4 text-center text-xl font-bold">
-                Recomendations
-              </h2>
+            <h1 className="text-3xl font-medium mx-3 mb-3">Ingredients</h1>
+            <div className="bg-grey1 flex flex-col mx-4 h-full rounded-xl">
+              <ul className="text-start mx-4 mt-3 mb-3 text-l">
+                {
+                  ingredients.map((el, index) => (
+                    <li
+                      key={ index }
+                      data-testid={ `${index}-ingredient-name-and-measure` }
+                    >
+                      {`${el[1]} ${measures[index] ? measures[index][1] : ''}`}
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+            <h1 className="text-3xl font-medium mx-3 mb-3 mt-4">Instructions</h1>
+            <div className="bg-grey1 flex flex-col mx-4 h-full rounded-xl">
+              <p
+                data-testid="instructions"
+                className="mt-3 mx-4 text-justify mb-3"
+              >
+                {recipeData.strInstructions}
+              </p>
+            </div>
+            <h1 className="text-3xl font-medium mx-3 mb-3 mt-4">Recommendations</h1>
+            <div className="pl-4 py-6 mb-3">
               <SwiperFoods mealsRecommendations={ mealsRecommendations } />
             </div>
-            <div className="w-full flex justify-center mb-8">
+            <div className="flex flex-col mx-4 h-full mb-5">
               <button
-                className="bg-darkblue text-white
-                p-1 rounded-lg font-bold left-1/4 w-48"
+                className="font-bold bg-darkblue text-white
+                rounded-xl py-3 opacity-100
+                hover:opacity-90"
                 type="button"
                 data-testid="start-recipe-btn"
                 onClick={ goProgress }
