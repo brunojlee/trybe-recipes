@@ -81,7 +81,7 @@ export default function Drinks() {
                 {drinksCategory.drinks
                 && drinksCategory.drinks.slice(0, FIVE).map((category, index) => (
                   <button
-                    className="bg-darkblue text-white rounded font-semibold
+                    className="bg-darkblue text-xs text-white rounded font-semibold
                     h-12 text-center break-words hover:opacity-90"
                     key={ index }
                     type="button"
