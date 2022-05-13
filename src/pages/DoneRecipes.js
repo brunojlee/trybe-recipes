@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
 import ShareIcon from '../images/shareIcon.svg';
+import backgroundImage from '../images/Intersect3.svg';
 
 export default function DoneRecipes() {
   const [doneRecipes, setDoneRecipes] = useState([]);
@@ -35,6 +36,11 @@ export default function DoneRecipes() {
   return (
     <section className="h-full mb-6">
       <Header pageName="Done Recipes" showProfileImg="true" />
+      <img
+        src={ backgroundImage }
+        alt="background"
+        className="bottom-0 w-screen fixed bg-scroll -z-10"
+      />
       <div className="grid grid-cols-3 gap-2 mx-2 mt-3 mb-6">
         <button
           className="bg-darkblue text-white rounded font-semibold

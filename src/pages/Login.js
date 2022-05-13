@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
-import backgroundBlob from '../images/blob.svg';
+// import backgroundBlob from '../images/blob.svg';
+import backgroundImage from '../images/Intersect.svg';
 import logoIcon from '../images/logo.svg';
-import styles from '../styles/Login.module.css';
+// import styles from '../styles/Login.module.css';
 
 function Login() {
   const history = useHistory();
@@ -50,6 +51,11 @@ function Login() {
 
   return (
     <div>
+      <img
+        src={ backgroundImage }
+        alt="background"
+        className="bottom-0 w-screen fixed bg-scroll -z-10"
+      />
       <div className="h-screen flex flex-col justify-center items-center w-screen">
         <img
           className="w-70"
@@ -98,14 +104,14 @@ function Login() {
           </button>
         </form>
       </div>
-      <div className="absolute w-full bottom-0 -z-10">
+      {/* <div className="absolute w-full bottom-0 -z-10">
         <img
           className="w-full"
           src={ backgroundBlob }
           alt="wave background"
         />
         <div className={ `${styles['background-wave']} bg-orange ` } />
-      </div>
+      </div> */}
     </div>
   );
 }

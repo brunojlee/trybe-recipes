@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import ShareIcon from '../images/shareIcon.svg';
+import backgroundImage from '../images/Intersect2.svg';
 
 const getLocalStorageOut = localStorage.getItem('favoriteRecipes')
   ? JSON.parse(localStorage.getItem('favoriteRecipes')) : [];
@@ -48,6 +49,11 @@ export default function FavoriteRecipes() {
   return (
     <>
       <Header pageName="Favorite Recipes" showProfileImg="true" />
+      <img
+        src={ backgroundImage }
+        alt="background"
+        className="bottom-0 w-screen fixed bg-scroll -z-10"
+      />
       <div className="grid grid-cols-3 gap-1 mx-2 mt-3 mb-3">
         <button
           className="font-semibold bg-darkblue text-white py-2 px-4 rounded"
@@ -89,7 +95,7 @@ export default function FavoriteRecipes() {
                 key={ index }
                 id={ `Receita-${recipe.id}` }
                 className="flex mx-2 mt-3
-                  rounded-xl shadow-md"
+                  rounded-xl shadow-md bg-white"
               >
                 <button
                   type="button"

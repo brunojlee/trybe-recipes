@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import IngredientCard from '../components/IngredientCard';
 import RecipesContext from '../context/RecipesContext';
 import { fetchMealsIngredientsList } from '../services/fetchIngredientsList';
+import backgroundImage from '../images/Intersect2.svg';
 
 export default function FoodsIngredients() {
   const { loading, setLoading } = useContext(RecipesContext);
@@ -25,6 +26,11 @@ export default function FoodsIngredients() {
   return (
     <>
       <Header pageName="Explore Ingredients" showProfileImg="true" />
+      <img
+        src={ backgroundImage }
+        alt="background"
+        className="bottom-0 w-screen fixed bg-scroll -z-10"
+      />
       <main className="mt-1 mb-20">
         {
           (!loading && ingredientsList.length > 0) && (

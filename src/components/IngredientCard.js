@@ -11,7 +11,7 @@ function IngredientCard({ drinks, meals, index }) {
     return (
       <div
         className="flex mx-2 mt-3
-        rounded-xl shadow-md"
+        rounded-xl shadow-md bg-white"
       >
         <button
           type="button"
@@ -44,7 +44,7 @@ function IngredientCard({ drinks, meals, index }) {
   return (
     <div
       className="flex mx-2 mt-3
-        rounded-xl shadow-md"
+        rounded-xl shadow-md bg-white"
     >
       <button
         type="button"
