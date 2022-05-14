@@ -85,7 +85,7 @@ function SearchBar() {
       >
         <input
           className="placeholder: pl-[16px]
-          rounded-md  h-10
+          rounded-md h-10
           focus:outline-none"
           placeholder="Search for a recipe..."
           type="text"

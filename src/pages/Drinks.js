@@ -58,6 +58,11 @@ export default function Drinks() {
     setCategorySelected(category);
   };
 
+  if (!loading) {
+    const array = drinksCategory.drinks.slice(0, FIVE);
+    array[3].strCategory = 'Other Unknown';
+  }
+
   return (
     <>
       <Header pageName="Drinks" showSearchBar="true" showProfileImg="true" />
@@ -79,21 +84,23 @@ export default function Drinks() {
                   All
                 </button>
                 {drinksCategory.drinks
-                && drinksCategory.drinks.slice(0, FIVE).map((category, index) => (
-                  <button
-                    className="bg-darkblue text-xs text-white rounded font-semibold
-                    h-12 text-center break-words hover:opacity-90"
-                    key={ index }
-                    type="button"
-                    data-testid={ `${category.strCategory}-category-filter` }
-                    onClick={ () => handleCategory(
-                      category.strCategory === categorySelected
-                        ? 'All' : category.strCategory,
-                    ) }
-                  >
-                    {category.strCategory}
-                  </button>
-                ))}
+                && drinksCategory.drinks.slice(0, FIVE)
+                  .sort((a, b) => (a.strCategory.localeCompare(b.strCategory)))
+                  .map((category, index) => (
+                    <button
+                      className="bg-darkblue text-md text-white rounded font-semibold
+                      h-12 text-center break-words hover:opacity-90 px-3"
+                      key={ index }
+                      type="button"
+                      data-testid={ `${category.strCategory}-category-filter` }
+                      onClick={ () => handleCategory(
+                        category.strCategory === categorySelected
+                          ? 'All' : category.strCategory,
+                      ) }
+                    >
+                      {category.strCategory}
+                    </button>
+                  ))}
               </div>
               <RecipeCard
                 drinks={ searchResults.drinks

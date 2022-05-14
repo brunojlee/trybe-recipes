@@ -29,7 +29,7 @@ function ExploreDrinks() {
       <Header pageName="Explore Drinks" showProfileImg="true" />
       <main className="flex flex-wrap w-screen justify-center h-24 items-center">
         <img
-          className="w-4/5 mx-auto mt-5 mb-4"
+          className="w-4/5 mx-auto mt-5 mb-5"
           src={ ExplorerIconDrink }
           alt="logo app"
         />

@@ -17,7 +17,7 @@ export default function Profile() {
   return (
     <section className="text-center">
       <Header pageName="Profile" showProfileImg="true" />
-      <div className="flex flex-col items-center w-70 mt-4">
+      <div className="flex flex-col items-center w-70 mt-5">
         <img
           className="w-3/5"
           src={ ProfileImage }
@@ -33,8 +33,8 @@ export default function Profile() {
       <div className="flex flex-col mx-4 h-full">
         <button
           className="font-bold
-          bg-darkblue text-white rounded-xl py-3 opacity-100
-          hover:opacity-90"
+            bg-darkblue text-white rounded-xl py-3 opacity-100
+            hover:opacity-90"
           type="button"
           data-testid="profile-done-btn"
           onClick={ () => { history.push('/done-recipes'); } }
@@ -43,8 +43,8 @@ export default function Profile() {
         </button>
         <button
           className="font-bold mt-2
-          bg-darkblue text-white rounded-xl py-3 opacity-100
-          hover:opacity-90"
+            bg-darkblue text-white rounded-xl py-3 opacity-100
+            hover:opacity-90"
           type="button"
           data-testid="profile-favorite-btn"
           onClick={ () => { history.push('/favorite-recipes'); } }
@@ -53,8 +53,8 @@ export default function Profile() {
         </button>
         <button
           className="font-bold mt-2
-          bg-darkblue text-white rounded-xl py-3 opacity-100
-          hover:opacity-90"
+            bg-darkblue text-white rounded-xl py-3 opacity-100
+            hover:opacity-90"
           type="button"
           data-testid="profile-logout-btn"
           onClick={ () => { clearLocalStorage(); } }

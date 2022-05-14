@@ -19,47 +19,45 @@ function RecipeCard({ drinks, meals }) {
     return (
       <div>
         {
-          (!isLoading && drinks && drinks.length > 0) && (
-            drinks.map((recipe, index) => (
-              <div
-                key={ index }
-                id={ `Receita-${recipe.id}` }
-                className="flex mx-2 mt-3
+          drinks.map((recipe, index) => (
+            <div
+              key={ index }
+              id={ `Receita-${recipe.id}` }
+              className="flex mx-2 mt-3
                   rounded-xl shadow-md"
+            >
+              <button
+                type="button"
+                value={ recipe.idDrink }
+                onClick={ () => {
+                  setLoading(true);
+                  history.push(`./drinks/${recipe.idDrink}`);
+                } }
+                className="flex rounded-xl"
               >
-                <button
-                  type="button"
-                  value={ recipe.idDrink }
-                  onClick={ () => {
-                    setLoading(true);
-                    history.push(`./drinks/${recipe.idDrink}`);
-                  } }
-                  className="flex mt-3 rounded-xl"
+                <div
+                  className="flex flex-row items-center justify-between"
+                  data-testid={ `${index}-recipe-card` }
                 >
-                  <div
-                    className="flex flex-row items-center justify-between"
-                    data-testid={ `${index}-recipe-card` }
-                  >
-                    <img
-                      className="rounded-l-xl"
-                      data-testid={ `${index}-card-img` }
-                      src={ recipe.strDrinkThumb }
-                      alt="Drink"
-                      style={ { width: '50%' } }
-                    />
-                    <div className="w-full text-center">
-                      <h2
-                        className="text-xl text-darkblue"
-                        data-testid={ `${index}-card-name` }
-                      >
-                        { recipe.strDrink }
-                      </h2>
-                    </div>
+                  <img
+                    className="rounded-l-xl"
+                    data-testid={ `${index}-card-img` }
+                    src={ recipe.strDrinkThumb }
+                    alt="Drink"
+                    style={ { width: '50%' } }
+                  />
+                  <div className="w-full text-center">
+                    <h2
+                      className="text-xl text-darkblue"
+                      data-testid={ `${index}-card-name` }
+                    >
+                      { recipe.strDrink }
+                    </h2>
                   </div>
-                </button>
-              </div>
-            ))
-          )
+                </div>
+              </button>
+            </div>
+          ))
         }
       </div>
     );
@@ -82,7 +80,7 @@ function RecipeCard({ drinks, meals }) {
                   setLoading(true);
                   history.push(`./foods/${recipe.idMeal}`);
                 } }
-                className="flex flex-col mt-3 rounded-xl"
+                className="flex rounded-xl"
               >
                 <div
                   className="flex flex-row items-center justify-between"
