@@ -2,6 +2,7 @@
 import copy from 'clipboard-copy';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+// import ButtonPrevious from '../components/ButtonPrevious';
 import RecipesContext from '../context/RecipesContext';
 import {
   checkBoxStyles,
@@ -11,6 +12,7 @@ import {
   handleIngredientsMeasuresData,
   isHandleFavoriteFunction,
 } from '../functions/Handles';
+import formatDate from '../helpers/formatDate';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import ShareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
@@ -41,9 +43,7 @@ function DrinkInProgress() {
     setFavoriteRecipes,
   } = useContext(RecipesContext);
 
-  const timeElapsed = Date.now();
-
-  const today = new Date(timeElapsed);
+  const today = formatDate();
 
   const recipeInfo = {
     id: recipeData.idDrink,
@@ -117,101 +117,113 @@ function DrinkInProgress() {
   };
 
   return (
-    <>
-      <h1
-        className="text-center bg-orange py-4 text-2xl font-bold border-b-4
-        border-darkblue"
-        data-testid="recipe-title"
-      >
-        Drink in Progress Page
-      </h1>
+    <div>
       {!loading && (
         <>
+          {/* <ButtonPrevious /> */}
           <img
             className="object-cover h-44 w-screen"
             alt="Foto da receita"
             data-testid="recipe-photo"
             src={ recipeData.strDrinkThumb }
           />
-          <h2
-            className="text-center my-5 mx-auto text-xl font-bold"
-            data-testid="recipe-category"
-          >
-            {recipeData.strAlcoholic}
-          </h2>
-          <ul className="text-right mr-5 text-xl">
-            {
-              ingredients.map((el, index) => (
-                <li
-                  id={ `ingredient${index}` }
-                  key={ index }
-                  data-testid={ `${index}-ingredient-step` }
-                  style={ checkStyle(isChecked, index) }
-                >
-                  {`${el[1]} ${measures[index] ? measures[index][1] : ''}`}
-                  <input
-                    className="ml-3"
-                    type="checkbox"
-                    name={ `ingredient${index}` }
-                    checked={ (
-                      isChecked.find(
-                        (e) => e === `ingredient${index}`,
-                      )) !== undefined }
-                    style={ checkBoxStyles(isChecked, index) }
-                    onChange={ handleChange }
-                  />
-                </li>
-              ))
-            }
-          </ul>
-          <h2
-            className="text-center my-5 mx-auto text-xl font-bold"
-            data-testid="instructions"
-          >
-            Instructions
-          </h2>
-          <div className="flex flex-row mx-auto justify-center m-4">
-            <button
-              className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
-              type="button"
-              data-testid="share-btn"
-              src={ ShareIcon }
-              onClick={ () => handleShare() }
-            >
+
+          <div className="grid grid-cols-2 gap-2 h-28">
+            <div className="flex flex-column justify-center">
+              <h2
+                className="text-3xl font-bold ml-3"
+                data-testid="recipe-title"
+              >
+                {recipeData.strDrink}
+              </h2>
+              <p
+                className="text-l ml-3"
+                data-testid="recipe-category"
+              >
+                {recipeData.strAlcoholic}
+              </p>
+            </div>
+            <div className="flex justify-content-end mr-3">
+              <button
+                className="mx-2"
+                type="button"
+                data-testid="share-btn"
+                src={ ShareIcon }
+                onClick={ () => handleShare() }
+              >
+                {
+                  linkCopied ? 'Link copied!' : <img src={ ShareIcon } alt="Share" />
+                }
+              </button>
               {
-                linkCopied ? 'Link copied!' : <img src={ ShareIcon } alt="Share" />
+                favoriteRecipes.find((recipe) => recipe.id === recipeId) ? (
+                  <button
+                    className="mx-2"
+                    type="button"
+                    data-testid="favorite-btn"
+                    src={ blackHeartIcon }
+                    onClick={ () => handleFavorite() }
+                  >
+                    <img src={ blackHeartIcon } alt="isFavorite" />
+                  </button>
+                ) : (
+                  <button
+                    className="mx-2"
+                    type="button"
+                    data-testid="favorite-btn"
+                    src={ whiteHeartIcon }
+                    onClick={ () => handleFavorite() }
+                  >
+                    <img src={ whiteHeartIcon } alt="isNotFavorite" />
+                  </button>
+                )
               }
-            </button>
-            {
-              favoriteRecipes
-                  && (favoriteRecipes[0]
-                    ? (
-                      <button
-                        className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
-                        type="button"
-                        data-testid="favorite-btn"
-                        src={ blackHeartIcon }
-                        onClick={ () => handleFavorite() }
-                      >
-                        <img src={ blackHeartIcon } alt="isFavorite" />
-                      </button>
-                    ) : (
-                      <button
-                        className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
-                        type="button"
-                        data-testid="favorite-btn"
-                        src={ whiteHeartIcon }
-                        onClick={ () => handleFavorite() }
-                      >
-                        <img src={ whiteHeartIcon } alt="isNotFavorite" />
-                      </button>
-                    ))
-            }
+            </div>
           </div>
-          <div className="w-full flex justify-center mt-16 my-8">
+          <h1 className="text-3xl font-medium mx-3 mb-3">Ingredients</h1>
+          <div className="bg-grey1 flex flex-col mx-4 h-full rounded-xl">
+            <ul className="text-start mx-4 mt-3 mb-3 text-l">
+              {
+                ingredients.map((el, index) => (
+                  <li
+                    id={ `ingredient${index}` }
+                    key={ index }
+                    data-testid={ `${index}-ingredient-step` }
+                    style={ checkStyle(isChecked, index) }
+                  >
+                    {`${el[1]} ${measures[index] ? measures[index][1] : ''}`}
+                    <input
+                      className="ml-3"
+                      type="checkbox"
+                      name={ `ingredient${index}` }
+                      checked={ (
+                        isChecked.find(
+                          (e) => e === `ingredient${index}`,
+                        )) !== undefined }
+                      style={ checkBoxStyles(isChecked, index) }
+                      onChange={ handleChange }
+                    />
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+          <h1 className="text-3xl font-medium mx-3 mb-3 mt-4">Instructions</h1>
+          <div className="bg-grey1 flex flex-col mx-4 h-full rounded-xl mb-4">
+            <p
+              data-testid="instructions"
+              className="mt-3 mx-4 text-justify mb-3"
+            >
+              {recipeData.strInstructions}
+            </p>
+          </div>
+
+          <div className="flex flex-col mx-4 h-full mb-5">
             <button
-              className="text-2xl mx-auto bg-darkblue rounded-xl text-white px-4 py-1
-              disabled:opacity-20"
+              className="font-bold bg-darkblue text-white
+              rounded-xl py-3 opacity-100
+              hover:opacity-90
+              disabled:opacity-50"
               type="button"
               data-testid="finish-recipe-btn"
               disabled={ !disableFinished }
@@ -223,7 +235,7 @@ function DrinkInProgress() {
 
         </>
       )}
-    </>
+    </div>
   );
 }
 

@@ -5,8 +5,8 @@ function RecommendationCard({ meal, drink, index }) {
   if (drink) {
     return (
       <div
-        className="flex flex-row items-center border-2
-        border-black rounded-xl"
+        className="flex flex-row items-center rounded-xl border-r-2
+        border-b-4 border-grey"
         data-testid={ `${index}-recomendation-card` }
       >
         <img
@@ -29,8 +29,8 @@ function RecommendationCard({ meal, drink, index }) {
   if (meal) {
     return (
       <div
-        className="flex flex-row text-center items-center border-2
-        border-black rounded-xl"
+        className="flex flex-row items-center rounded-xl border-r-2
+        border-b-4 border-grey"
         data-testid={ `${index}-recomendation-card` }
       >
         <img

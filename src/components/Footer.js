@@ -14,8 +14,7 @@ function Footer() {
     <footer
       data-testid="footer"
       className={
-        `flex justify-between w-screen border-t-4 border-darkblue
-         px-8 py-3 bg-orange ${styles['footer-container']}`
+        `flex justify-between w-screen px-8 py-3 bg-orange ${styles['footer-container']}`
       }
     >
       <button

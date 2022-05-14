@@ -28,41 +28,46 @@ function ExploreFoods() {
     <>
       <Header pageName="Explore Foods" showProfileImg="true" />
       <main className="flex flex-wrap w-screen justify-center h-24 items-center">
-        <button
-          className="font-2xl bg-darkblue text-white rounded-xl py-2 px-4 mt-4 opacity-90
-          hover:opacity-100 m-10"
-          type="button"
-          data-testid="explore-by-ingredient"
-          onClick={ () => {
-            setLoading(true);
-            history.push('foods/ingredients');
-          } }
-        >
-          By Ingredient
-        </button>
-        <button
-          className="font-2xl bg-darkblue text-white rounded-xl py-2 px-4 mt-4 opacity-90
-          hover:opacity-100 m-10"
-          type="button"
-          data-testid="explore-by-nationality"
-          onClick={ () => { history.push('foods/nationalities'); } }
-        >
-          By Nationality
-        </button>
-        <button
-          className="font-2xl bg-darkblue text-white rounded-xl py-2 px-4 mt-4 opacity-90
-          hover:opacity-100 m-10"
-          type="button"
-          data-testid="explore-surprise"
-          onClick={ () => handleSurprise() }
-        >
-          Surprise me!
-        </button>
         <img
-          className="wy-50"
+          className="w-4/5 mx-auto mt-5 mb-3"
           src={ ExplorerIconDrink }
-          alt="logo app"
+          alt="Button who shows a wave"
         />
+        <div className="flex flex-col mx-4 w-full">
+          <button
+            className="font-2xl font-semibold mt-4
+            bg-darkblue text-white rounded-xl py-3 opacity-100
+            hover:opacity-90"
+            type="button"
+            data-testid="explore-by-ingredient"
+            onClick={ () => {
+              setLoading(true);
+              history.push('foods/ingredients');
+            } }
+          >
+            By Ingredient
+          </button>
+          <button
+            className="font-2xl font-semibold mt-2
+            bg-darkblue text-white rounded-xl py-3 opacity-100
+            hover:opacity-90"
+            type="button"
+            data-testid="explore-by-nationality"
+            onClick={ () => { history.push('foods/nationalities'); } }
+          >
+            By Nationality
+          </button>
+          <button
+            className="font-2xl font-semibold mt-2
+            bg-darkblue text-white rounded-xl py-3 opacity-100
+            hover:opacity-90"
+            type="button"
+            data-testid="explore-surprise"
+            onClick={ () => handleSurprise() }
+          >
+            Surprise me!
+          </button>
+        </div>
       </main>
       <Footer />
     </>

@@ -58,6 +58,11 @@ export default function Drinks() {
     setCategorySelected(category);
   };
 
+  if (drinksCategory.drinks) {
+    const array = drinksCategory.drinks.slice(0, FIVE);
+    array[3].strCategory = 'Other Unknown';
+  }
+
   return (
     <>
       <Header pageName="Drinks" showSearchBar="true" showProfileImg="true" />
@@ -65,9 +70,10 @@ export default function Drinks() {
         {
           !loading && (
             <>
-              <div className="flex flex-wrap w-screen justify-center h-24 items-center">
+              <div className="grid grid-cols-3 gap-2 mx-2 mt-3 mb-2">
                 <button
-                  className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
+                  className="bg-darkblue text-white rounded font-semibold
+                  h-12 text-center hover:opacity-90"
                   type="button"
                   data-testid="All-category-filter"
                   onClick={ () => {
@@ -78,20 +84,23 @@ export default function Drinks() {
                   All
                 </button>
                 {drinksCategory.drinks
-                && drinksCategory.drinks.slice(0, FIVE).map((category, index) => (
-                  <button
-                    className="mx-2 bg-darkblue text-white py-1 px-4 rounded"
-                    key={ index }
-                    type="button"
-                    data-testid={ `${category.strCategory}-category-filter` }
-                    onClick={ () => handleCategory(
-                      category.strCategory === categorySelected
-                        ? 'All' : category.strCategory,
-                    ) }
-                  >
-                    {category.strCategory}
-                  </button>
-                ))}
+                && drinksCategory.drinks.slice(0, FIVE)
+                  .sort((a, b) => (a.strCategory.localeCompare(b.strCategory)))
+                  .map((category, index) => (
+                    <button
+                      className="bg-darkblue text-md text-white rounded font-semibold
+                      h-12 text-center break-words hover:opacity-90 px-3"
+                      key={ index }
+                      type="button"
+                      data-testid={ `${category.strCategory}-category-filter` }
+                      onClick={ () => handleCategory(
+                        category.strCategory === categorySelected
+                          ? 'All' : category.strCategory,
+                      ) }
+                    >
+                      {category.strCategory}
+                    </button>
+                  ))}
               </div>
               <RecipeCard
                 drinks={ searchResults.drinks

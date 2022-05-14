@@ -11,3 +11,25 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Montserrat', sans-serif;
 }
+
+.custom-shape-divider-bottom-1652306020 {
+  bottom: 0;
+  left: 0;
+  line-height: 0;
+  overflow: hidden;
+  position: absolute;
+  transform: rotate(180deg);
+  width: 100%;
+}
+
+.custom-shape-divider-bottom-1652306020 svg {
+  display: block;
+  height: 133px;
+  position: relative;
+  width: calc(121% + 1.3px);
+}
+
+.custom-shape-divider-bottom-1652306020 .shape-fill {
+  fill: #e7562f;
+}
+

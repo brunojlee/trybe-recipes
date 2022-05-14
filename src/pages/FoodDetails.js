@@ -115,79 +115,97 @@ function FoodDetails() {
   const progressTest = progressTestOut(recipeId);
 
   return (
-    <>
-      <h1
-        className="text-center bg-orange py-4 text-2xl font-bold border-b-4
-        border-darkblue"
-      >
-        Foods Details Page
-      </h1>
+    <div>
       {
         !loading && (
           <>
-            <div className="bg-grey1 pb-8 border-b-4 border-darkblue">
-              <ButtonPrevious />
-              <h2
-                className="text-center text-3xl font-bold"
-                data-testid="recipe-title"
-              >
-                {recipeData.strMeal}
-              </h2>
-              <p
-                className="text-center text-xl px-2 mb-4 mx-auto"
-                data-testid="recipe-category"
-              >
-                {recipeData.strCategory}
-              </p>
-              <img
-                className="mx-auto rounded"
-                data-testid="recipe-photo"
-                src={ recipeData.strMealThumb }
-                style={ { maxWidth: '60%' } }
-                alt="Food"
-              />
-
-            </div>
-            <div className="flex flex-row mx-auto justify-center m-4">
-              <button
-                className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
-                type="button"
-                data-testid="share-btn"
-                src={ ShareIcon }
-                onClick={ () => handleShare() }
-              >
+            <ButtonPrevious />
+            <img
+              className="mx-auto h-64 min-w-full object-cover"
+              data-testid="recipe-photo"
+              src={ recipeData.strMealThumb }
+              alt="Food"
+            />
+            <div className="grid grid-cols-2 gap-2 h-28">
+              <div className="flex flex-column justify-center">
+                <h2
+                  className="text-3xl font-bold ml-3"
+                  data-testid="recipe-title"
+                >
+                  {recipeData.strMeal}
+                </h2>
+                <p
+                  className="text-xl ml-4"
+                  data-testid="recipe-category"
+                >
+                  {recipeData.strCategory}
+                </p>
+              </div>
+              <div className="flex justify-content-end mr-3">
+                <button
+                  className="mx-2"
+                  type="button"
+                  data-testid="share-btn"
+                  src={ ShareIcon }
+                  onClick={ () => handleShare() }
+                >
+                  {
+                    linkCopied ? 'Link copied!' : <img src={ ShareIcon } alt="Share" />
+                  }
+                </button>
                 {
-                  linkCopied ? 'Link copied!' : <img src={ ShareIcon } alt="Share" />
+                  favoriteRecipes.find((recipe) => recipe.id === recipeId) ? (
+                    <button
+                      className="mx-2"
+                      type="button"
+                      data-testid="favorite-btn"
+                      src={ blackHeartIcon }
+                      onClick={ () => handleFavorite() }
+                    >
+                      <img src={ blackHeartIcon } alt="isFavorite" />
+                    </button>
+                  ) : (
+                    <button
+                      className="mx-2"
+                      type="button"
+                      data-testid="favorite-btn"
+                      src={ whiteHeartIcon }
+                      onClick={ () => handleFavorite() }
+                    >
+                      <img src={ whiteHeartIcon } alt="isNotFavorite" />
+                    </button>
+                  )
                 }
-              </button>
-              {
-                favoriteRecipes.find((recipe) => recipe.id === recipeId) ? (
-                  <button
-                    className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
-                    type="button"
-                    data-testid="favorite-btn"
-                    src={ blackHeartIcon }
-                    onClick={ () => handleFavorite() }
-                  >
-                    <img src={ blackHeartIcon } alt="isFavorite" />
-                  </button>
-                ) : (
-                  <button
-                    className="py-2 px-4 bg-grey1 mx-1 rounded-xl"
-                    type="button"
-                    data-testid="favorite-btn"
-                    src={ whiteHeartIcon }
-                    onClick={ () => handleFavorite() }
-                  >
-                    <img src={ whiteHeartIcon } alt="isNotFavorite" />
-                  </button>
-                )
-              }
+              </div>
+            </div>
+            <h1 className="text-3xl font-medium mx-3 mb-3">Ingredients</h1>
+            <div className="bg-grey1 flex flex-col mx-4 h-full rounded-xl">
+              <ul className="text-start mx-4 mt-3 mb-3 text-l">
+                {
+                  ingredients.map((el, index) => (
+                    <li
+                      key={ index }
+                      data-testid={ `${index}-ingredient-name-and-measure` }
+                    >
+                      {`${el[1]} ${measures[index] ? measures[index][1] : ''}`}
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+            <h1 className="text-3xl font-medium mx-3 mb-3 mt-4">Instructions</h1>
+            <div className="bg-grey1 flex flex-col mx-4 h-full rounded-xl">
+              <p
+                data-testid="instructions"
+                className="mt-3 mx-4 text-justify mb-3"
+              >
+                {recipeData.strInstructions}
+              </p>
             </div>
             <iframe
-              className="mx-auto"
+              className="mx-auto mt-4"
               title="video"
-              width="320"
+              width="340"
               height="240"
               src={
                 recipeData.strYoutube ? recipeData.strYoutube
@@ -197,46 +215,28 @@ function FoodDetails() {
               allowFullScreen
               data-testid="video"
             />
-            <ul className="text-start mx-12 text-xl mt-4">
-              {
-                ingredients.map((el, index) => (
-                  <li
-                    key={ index }
-                    data-testid={ `${index}-ingredient-name-and-measure` }
-                  >
-                    {`${el[1]} ${measures[index] ? measures[index][1] : ''}`}
-                  </li>
-                ))
-              }
-            </ul>
-            <p
-              data-testid="instructions"
-              className="mt-4 mx-4 text-justify"
-            >
-              {recipeData.strInstructions}
-            </p>
-            <div className="pl-4 py-6 mb-8">
-              <h2 className="my-4 text-center text-xl font-bold">
-                Recomendations
-              </h2>
+            <h1 className="text-3xl font-medium mx-3 mb-3 mt-4">Recommendations</h1>
+            <div className="pl-4 py-6 mb-3">
               <SwiperDrinks drinksRecommendations={ drinksRecommendations } />
             </div>
-            <button
-              className="fixed bottom-0
-              bg-darkblue text-white
-              p-1 rounded-lg font-bold left-1/4 w-48"
-              type="button"
-              data-testid="start-recipe-btn"
-              onClick={ goProgress }
-            >
-              {
-                progressTest() ? 'Continue Recipe' : 'Start Recipe'
-              }
-            </button>
+            <div className="flex flex-col mx-4 h-full mb-5">
+              <button
+                className="font-bold bg-darkblue text-white
+                rounded-xl py-3 opacity-100
+                hover:opacity-90"
+                type="button"
+                data-testid="start-recipe-btn"
+                onClick={ goProgress }
+              >
+                {
+                  progressTest() ? 'Continue Recipe' : 'Start Recipe'
+                }
+              </button>
+            </div>
           </>
         )
       }
-    </>
+    </div>
   );
 }
 
