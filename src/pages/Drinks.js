@@ -58,7 +58,7 @@ export default function Drinks() {
     setCategorySelected(category);
   };
 
-  if (!loading) {
+  if (drinksCategory.drinks) {
     const array = drinksCategory.drinks.slice(0, FIVE);
     array[3].strCategory = 'Other Unknown';
   }
