@@ -11,17 +11,17 @@
 
 ## 👩🏾‍💻Desenvolvido por
 
-<p align="center">
-<a href="https://www.linkedin.com/in/brunojlee/" target="_blank"><img src="https://img.shields.io/badge/-BrunoJLee-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
 
-<a href="https://www.linkedin.com/in/eduardomuchak/" target="_blank"><img src="https://img.shields.io/badge/-Eduardo Muchak-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+<a align="center" href="https://www.linkedin.com/in/brunojlee/" target="_blank"><img src="https://img.shields.io/badge/-BrunoJLee-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
 
-<a href="https://www.linkedin.com/in/leonardo-begnossi-41580a127/" target="_blank"><img src="https://img.shields.io/badge/-Leonardo Begnossi-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+<a align="center" href="https://www.linkedin.com/in/eduardomuchak/" target="_blank"><img src="https://img.shields.io/badge/-Eduardo Muchak-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
 
-<a href="https://www.linkedin.com/in/leonardo-begnossi-41580a127/" target="_blank"><img src="https://img.shields.io/badge/-Leonardo Diman-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+<a align="center" href="https://www.linkedin.com/in/leonardo-begnossi-41580a127/" target="_blank"><img src="https://img.shields.io/badge/-Leonardo Begnossi-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
 
-<a href="https://www.linkedin.com/in/jordaorafaela/" target="_blank"><img src="https://img.shields.io/badge/-Rafaela Jordão-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
- </p>
+<a align="center" href="https://www.linkedin.com/in/leonardo-begnossi-41580a127/" target="_blank"><img src="https://img.shields.io/badge/-Leonardo Diman-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+
+<a align="center" href="https://www.linkedin.com/in/jordaorafaela/" target="_blank"><img src="https://img.shields.io/badge/-Rafaela Jordão-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+
 ---
 <p align="center">
  <a href="https://brunojlee-trybe-recipes.vercel.app/" target="_blank">
