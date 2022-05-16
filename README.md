@@ -1,9 +1,9 @@
 <p align="center"><img width='150px' src='https://github.com/brunojlee/trybe-recipes/blob/main/src/images/readmeAnimation.gif' />
 <h1 align="center"> Trybe Recipes - Responsive Landing Page </h1>
-<h2 align="center">GitHub Pages:</h2>
+<h2 align="center">Vercel:</h2>
  
  <div align="center">
-   <a href="https://brunojlee.github.io/trybe-recipes/" target="_blank">
+   <a href="https://brunojlee-trybe-recipes.vercel.app/" target="_blank">
     <img width='100px' src='https://github.com/brunojlee/trybe-recipes/blob/main/src/images/logo.svg' target="_blank" />
  </div>
  
@@ -11,7 +11,7 @@
 
 ## 👩🏾‍💻Desenvolvido por
 
-
+<p align="center">
 <a href="https://www.linkedin.com/in/brunojlee/" target="_blank"><img src="https://img.shields.io/badge/-BrunoJLee-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
 
 <a href="https://www.linkedin.com/in/eduardomuchak/" target="_blank"><img src="https://img.shields.io/badge/-Eduardo Muchak-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
@@ -21,12 +21,14 @@
 <a href="https://www.linkedin.com/in/leonardo-begnossi-41580a127/" target="_blank"><img src="https://img.shields.io/badge/-Leonardo Diman-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
 
 <a href="https://www.linkedin.com/in/jordaorafaela/" target="_blank"><img src="https://img.shields.io/badge/-Rafaela Jordão-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
-
+ </p>
 ---
 <p align="center">
+ <a href="https://brunojlee-trybe-recipes.vercel.app/" target="_blank">
   <img 
     src="./screenshots/mobile.gif"
   >
+ </a>
 </p>
 </br>
 ## 💡 Sobre o Projeto
@@ -46,7 +48,7 @@ A partir dessas demandas, desenvolvemos uma aplicação onde os usuários poder�
 3. Após o desenvolvimento dos scripts, nos dividimos novamente entre estilização e desenvolvimento dos testes.
 
 ## 🛠 Tecnologias Usadas
-
+<p align="center">
 - HTML5
 - CSS3
 - Javascript
@@ -56,6 +58,7 @@ A partir dessas demandas, desenvolvemos uma aplicação onde os usuários poder�
 - React Icons
 - Tailwind CSS
 - Swiper
+</p>
 
 ## 🎲 Base de dados
 
