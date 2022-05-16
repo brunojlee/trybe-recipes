@@ -4,27 +4,27 @@
  
  <div align="center">
    <a href="https://brunojlee.github.io/trybe-recipes/" target="_blank">
-    <img width='100px' src='https://github.com/brunojlee/trybe-recipes/blob/main/src/files/images/bgGH.jpg' target="_blank" />
+    <img width='100px' src='https://github.com/brunojlee/trybe-recipes/blob/main/src/files/images/logo.svg' target="_blank" />
  </div>
  
 <h5 align="center">Clique na imagem</h5>
 
 ## 👩🏾‍💻Desenvolvido por
 
-@[BrunoJLee](https://github.com/brunojlee)
-<a href="https://www.linkedin.com/in/brunojlee/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+
+<a href="https://www.linkedin.com/in/brunojlee/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank">@[BrunoJLee](https://github.com/brunojlee)</a>
 <br>
-@[Eduardo Muchak](https://github.com/eduardomuchak)
-<a href="https://www.linkedin.com/in/eduardomuchak/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+
+<a href="https://www.linkedin.com/in/eduardomuchak/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank">@[Eduardo Muchak](https://github.com/eduardomuchak)</a>
 <br>
-@[Leonardo Begnossi](https://github.com/MadOrchid)
-<a href="https://www.linkedin.com/in/leonardo-begnossi-41580a127//" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+
+<a href="https://www.linkedin.com/in/leonardo-begnossi-41580a127//" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank">@[Leonardo Begnossi](https://github.com/MadOrchid)</a>
 <br>
-@[Leonardo Diman](https://github.com/leodiman182)
-<a href="https://www.linkedin.com/in/leonardo-diman-martins-b16439173/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white"target="_blank"></a>
+
+<a href="https://www.linkedin.com/in/leonardo-begnossi-41580a127//" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank">@[Leonardo Diman](https://github.com/leodiman182)</a>
+
 <br>
-@[Rafaela Jordão](https://github.com/rafaela-jordao)
-<a href="https://www.linkedin.com/in/jordaorafaela/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+<a href="https://www.linkedin.com/in/jordaorafaela/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank">@[Rafaela Jordão](https://github.com/rafaela-jordao)</a> 
 <br>
 
 ---
