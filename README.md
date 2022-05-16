@@ -12,15 +12,15 @@
 ## 👩🏾‍💻Desenvolvido por
 
 
-<a align="center" href="https://www.linkedin.com/in/brunojlee/" target="_blank"><img src="https://img.shields.io/badge/-BrunoJLee-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+<a href="https://www.linkedin.com/in/brunojlee/" target="_blank"><img src="https://img.shields.io/badge/-BrunoJLee-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
 
-<a align="center" href="https://www.linkedin.com/in/eduardomuchak/" target="_blank"><img src="https://img.shields.io/badge/-Eduardo Muchak-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+<a href="https://www.linkedin.com/in/eduardomuchak/" target="_blank"><img src="https://img.shields.io/badge/-Eduardo Muchak-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
 
-<a align="center" href="https://www.linkedin.com/in/leonardo-begnossi-41580a127/" target="_blank"><img src="https://img.shields.io/badge/-Leonardo Begnossi-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+<a href="https://www.linkedin.com/in/leonardo-begnossi-41580a127/" target="_blank"><img src="https://img.shields.io/badge/-Leonardo Begnossi-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
 
-<a align="center" href="https://www.linkedin.com/in/leonardo-begnossi-41580a127/" target="_blank"><img src="https://img.shields.io/badge/-Leonardo Diman-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+<a href="https://www.linkedin.com/in/leonardo-begnossi-41580a127/" target="_blank"><img src="https://img.shields.io/badge/-Leonardo Diman-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
 
-<a align="center" href="https://www.linkedin.com/in/jordaorafaela/" target="_blank"><img src="https://img.shields.io/badge/-Rafaela Jordão-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+<a href="https://www.linkedin.com/in/jordaorafaela/" target="_blank"><img src="https://img.shields.io/badge/-Rafaela Jordão-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
 
 ---
 <p align="center">
@@ -48,7 +48,7 @@ A partir dessas demandas, desenvolvemos uma aplicação onde os usuários poder�
 3. Após o desenvolvimento dos scripts, nos dividimos novamente entre estilização e desenvolvimento dos testes.
 
 ## 🛠 Tecnologias Usadas
-<p align="center">
+
 - HTML5
 - CSS3
 - Javascript
@@ -58,7 +58,7 @@ A partir dessas demandas, desenvolvemos uma aplicação onde os usuários poder�
 - React Icons
 - Tailwind CSS
 - Swiper
-</p>
+
 
 ## 🎲 Base de dados
 
