@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/trybe-recipes/static/css/main.94d5a9e8.css",
+    "main.js": "/trybe-recipes/static/js/main.472fd4c7.js",
+    "static/media/logo.svg": "/trybe-recipes/static/media/logo.69be457da3ab5638803de56eee4c5934.svg",
+    "static/media/whiteHeartIcon.svg": "/trybe-recipes/static/media/whiteHeartIcon.2b822118952dc5140129c6349fcd0472.svg",
+    "static/media/explore2.svg": "/trybe-recipes/static/media/explore2.22c8b4c8dd44f4a9160ae820fa133227.svg",
+    "static/media/profile3.svg": "/trybe-recipes/static/media/profile3.3c77412782a7b1511122028b7f3e25a4.svg",
+    "static/media/explore.svg": "/trybe-recipes/static/media/explore.997e91856015460187b083678f9763ff.svg",
+    "static/media/explore3.svg": "/trybe-recipes/static/media/explore3.04224872a54ec30b36f38b2b319d14f6.svg",
+    "static/media/shareIcon.svg": "/trybe-recipes/static/media/shareIcon.1d960d4337003da339aa076d59ed7f56.svg",
+    "static/media/exploreIcon.svg": "/trybe-recipes/static/media/exploreIcon.06830b0c197d12b33291db8b415d1827.svg",
+    "static/media/mealIcon.svg": "/trybe-recipes/static/media/mealIcon.6c728126248fbcf5fc4c7bd0f8633403.svg",
+    "index.html": "/trybe-recipes/index.html",
+    "static/media/drinkIcon.svg": "/trybe-recipes/static/media/drinkIcon.ce22854c449044dd732a8715dd65527d.svg",
+    "static/media/profileIcon.svg": "/trybe-recipes/static/media/profileIcon.641d8d771080e2916029aa371b718bfe.svg",
+    "static/media/searchIcon.svg": "/trybe-recipes/static/media/searchIcon.396b0687c5dd2a936bbdcfc899feff9e.svg",
+    "static/media/blackHeartIcon.svg": "/trybe-recipes/static/media/blackHeartIcon.570e8f53e160bc282c13a00c3459e4ca.svg",
+    "static/media/Intersect1.svg": "/trybe-recipes/static/media/Intersect1.841f87246f852944585377d4f473bcf9.svg",
+    "static/media/Intersect3.svg": "/trybe-recipes/static/media/Intersect3.842f0ade77b27a2da1a76f183f65edca.svg",
+    "static/media/Intersect2.svg": "/trybe-recipes/static/media/Intersect2.71b0a2399590867ee9e967d10674dfc3.svg",
+    "main.94d5a9e8.css.map": "/trybe-recipes/static/css/main.94d5a9e8.css.map",
+    "main.472fd4c7.js.map": "/trybe-recipes/static/js/main.472fd4c7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.94d5a9e8.css",
+    "static/js/main.472fd4c7.js"
+  ]
+}
