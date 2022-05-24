@@ -8,6 +8,15 @@
  </div>
  
 <h5 align="center">Clique na imagem</h5>
+ 
+ <h2 align="center">GitHub Pages:</h2>
+ 
+ <div align="center">
+   <a href="https://brunojlee.github.io/trybe-recipes/" target="_blank">
+    <img width='100px' src='https://github.com/brunojlee/trybe-recipes/blob/main/src/images/logo.svg' target="_blank" />
+ </div>
+ 
+<h5 align="center">Clique na imagem</h5>
   
 ## 👩🏾‍💻Desenvolvido por
 
