@@ -46,7 +46,7 @@ const getLocalStorageOut = localStorage.getItem('favoriteRecipes')
 
 function FoodDetails() {
   const regexNumbers = /([0-9])\w+/;
-  const recipeId = window.location.pathname.match(regexNumbers)[0];
+  const recipeId = window.location.hash.match(regexNumbers)[0];
   const [recipeData, setRecipeData] = useState([]);
   const [drinksRecommendations, setDrinksRecommendations] = useState('');
   const [linkCopied, setLinkCopied] = useState(false);
@@ -55,8 +55,8 @@ function FoodDetails() {
     ingredients, setIngredients, measures, setMeasures, loading,
     setLoading, favoriteRecipes, setFavoriteRecipes } = useContext(RecipesContext);
   const handleShare = async () => {
-    const recipeURL = window.location.pathname;
-    await copy(`http://localhost:3000${recipeURL}`);
+    const recipeURL = window.location.hash;
+    await copy(`http://localhost:3000/${recipeURL}`);
     setLinkCopied(!linkCopied);
   };
 

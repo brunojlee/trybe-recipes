@@ -1,6 +1,7 @@
 {
-  "name": "recipes-app-test",
+  "name": "trybe-recipes",
   "version": "0.1.0",
+  "homepage": "trybe-recipes/",
   "private": true,
   "engines": {
     "node": "16"

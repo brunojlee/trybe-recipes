@@ -24,7 +24,7 @@ import {
 
 function DrinkInProgress() {
   const regexNumbers = /([0-9])\w+/;
-  const recipeId = window.location.pathname.match(regexNumbers)[0];
+  const recipeId = window.location.hash.match(regexNumbers)[0];
   const [recipeData, setRecipeData] = useState([]);
   const [disableFinished, setDisableFinished] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
@@ -99,7 +99,7 @@ function DrinkInProgress() {
 
   const handleShare = async () => {
     await copy(`http://localhost:3000/drinks/${recipeId}`);
-    console.log(window.location.pathname);
+    console.log(window.location.hash);
     setLinkCopied(!linkCopied);
   };
 

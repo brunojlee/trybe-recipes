@@ -1,6 +1,8 @@
 import copy from 'clipboard-copy';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+// import styles from '../styles/RecipeDetailsPage.module.css';
+import ButtonPrevious from '../components/ButtonPrevious';
 import SwiperFoods from '../components/SwiperFoods';
 import RecipesContext from '../context/RecipesContext';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -8,8 +10,6 @@ import ShareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import fetchDrinksId from '../services/fetchDrinksId';
 import fetchMealsRecommendations from '../services/fetchMealsRecommendations';
-// import styles from '../styles/RecipeDetailsPage.module.css';
-import ButtonPrevious from '../components/ButtonPrevious';
 
 function progressTestOut(recipeId) {
   return () => {
@@ -46,7 +46,7 @@ const getLocalStorageOut = localStorage.getItem('favoriteRecipes')
 
 function DrinkDetails() {
   const regexNumbers = /([0-9])\w+/;
-  const recipeId = window.location.pathname.match(regexNumbers)[0];
+  const recipeId = window.location.hash.match(regexNumbers)[0];
   const [recipeData, setRecipeData] = useState([]);
   const [mealsRecommendations, setMealsRecommendations] = useState('');
   const [linkCopied, setLinkCopied] = useState(false);
@@ -58,8 +58,8 @@ function DrinkDetails() {
     setLoading, favoriteRecipes, setFavoriteRecipes } = useContext(RecipesContext);
 
   const handleShare = async () => {
-    const recipeURL = window.location.pathname;
-    await copy(`http://localhost:3000${recipeURL}`);
+    const recipeURL = window.location.hash;
+    await copy(`http://localhost:3000/${recipeURL}`);
     setLinkCopied(!linkCopied);
   };
 
